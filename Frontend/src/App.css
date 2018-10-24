@@ -1,0 +1,35 @@
+.App {
+}
+
+.App-logo {
+ 
+  height: 20vmin;
+  margin-right: 70%;
+
+}
+
+.App-text{
+
+  align-self: center;
+  justify-self: start;
+  font-size: 300%;
+  height: 150px;
+  width: 700px;
+
+}
+
+.App-header {
+  background-color: #a83f15;
+  
+  height: 180px;
+  display: grid;
+  grid-template-columns: 400px 500px auto;
+  font-size: 200%;
+  
+  color: white;
+  
+  
+}
+
+
+
