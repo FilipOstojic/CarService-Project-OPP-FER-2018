@@ -1,0 +1,19 @@
+DNEVNIK SASTAJANJA
+
+3. listopada 2018.
+PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
+PLAN: Dogovor oko imena grupe i teme projektnog zadatka.
+ZAKLJUČAK: Ime grupe je 'LittleSkillzException' i dogovoreno je kako se neće predlagati nova tema projektnog zadatka nego se ostaje pri zadanoj temi 'Auto servis'. Također, svaki član mora napraviti GitLab korisnički račun.
+
+11. listopada 2018.
+PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
+CILJ: Rasprava o tekstu projektnog zadatka.
+ZAKLJUČAK: Razriješene su neke nejasnoće, ali su i nastale nove. Razmatra se sastanak s asistentom u vezi projektnog zadatka.
+
+17. listopada 2018.
+PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
+PLAN: Podjela zadataka i još jedna detaljna rasprava o tekstu projektnog zadatka.
+ZAKLJUČAK: Određeno je kako će članovi Ćaćić, Jelović i Mijoč biti zaduženi za frontend web aplikacije, a članovi Frühwirth, Ostojić i Žužul za backend web aplikacije. Svi članovi moraju dati svoj doprinos u pisanju dokumentacije projekta. 
+U raspravi o zadatku definitivno je odlučeno kako će voditelj grupe otići na sastanak s asistentom zbog nejasnoća pronađenih u tekstu projektnog zadatka.
+
+
