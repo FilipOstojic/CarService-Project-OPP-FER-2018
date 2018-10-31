@@ -1,4 +1,4 @@
-DNEVNIK SASTAJANJA
+﻿DNEVNIK SASTAJANJA
 
 3. listopada 2018.
 PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
@@ -7,7 +7,7 @@ ZAKLJUČAK: Ime grupe je 'LittleSkillzException' i dogovoreno je kako se neće p
 
 11. listopada 2018.
 PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
-CILJ: Rasprava o tekstu projektnog zadatka.
+PLAN: Rasprava o tekstu projektnog zadatka.
 ZAKLJUČAK: Razriješene su neke nejasnoće, ali su i nastale nove. Razmatra se sastanak s asistentom u vezi projektnog zadatka.
 
 17. listopada 2018.
@@ -21,4 +21,9 @@ PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
 PLAN: Pisanje funkcionalnih zahtjeva i podjela zadataka oko pisanja opisa obrazaca uporabe. Rješavanje pojedinačnih nejasnoća te razgovor o obrascima uporabe i sekvencijskim dijagramima. Planiranje izrade baze podataka.
 ZAKLJUČAK: Funkcionalni zahtjevi su napisani. Jelović, Mijoč i Ostojić imaju zadatak napisati opise obrazaca uporabe. Frühwirth, Ostojić i Žužul imaju zadatak izraditi bazu podataka do srijede 31. listopada. 
 Ćaćić će upisati sastanak u dnevnik sastanaka i ima zadatak detaljno proučiti obrasce uporabe i sekvencijske dijagrame te po mogućnosti započeti s njihovom izradom.
+
+31. listopada 2018.
+PRISUTNI: Frühwirth, Ostojić, Žužul
+PLAN: Kreiranje relacijske baze podataka i njen export u .sql datoteku.
+ZAKLJUČAK: Osmišljena je shema relacijske baze podataka u kojoj ćemo čuvati potrebne podatke. Baza podataka je kreirana u PostgreSQL-u. Kreirana je datoteka koja omogućuje ostalim članovima tima import spomenute baze podataka. 
 
