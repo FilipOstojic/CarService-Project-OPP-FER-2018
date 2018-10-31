@@ -16,4 +16,6 @@ PLAN: Podjela zadataka i još jedna detaljna rasprava o tekstu projektnog zadatk
 ZAKLJUČAK: Određeno je kako će članovi Ćaćić, Jelović i Mijoč biti zaduženi za frontend web aplikacije, a članovi Frühwirth, Ostojić i Žužul za backend web aplikacije. Svi članovi moraju dati svoj doprinos u pisanju dokumentacije projekta. 
 U raspravi o zadatku definitivno je odlučeno kako će voditelj grupe otići na sastanak s asistentom zbog nejasnoća pronađenih u tekstu projektnog zadatka.
 
+28. listopada 2018.
+
 
