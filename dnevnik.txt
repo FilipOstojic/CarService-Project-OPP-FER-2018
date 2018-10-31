@@ -17,5 +17,8 @@ ZAKLJUČAK: Određeno je kako će članovi Ćaćić, Jelović i Mijoč biti zadu
 U raspravi o zadatku definitivno je odlučeno kako će voditelj grupe otići na sastanak s asistentom zbog nejasnoća pronađenih u tekstu projektnog zadatka.
 
 28. listopada 2018.
-
+PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
+PLAN: Pisanje funkcionalnih zahtjeva i podjela zadataka oko pisanja opisa obrazaca uporabe. Rješavanje pojedinačnih nejasnoća te razgovor o obrascima uporabe i sekvencijskim dijagramima. Planiranje izrade baze podataka.
+ZAKLJUČAK: Funkcionalni zahtjevi su napisani. Jelović, Mijoč i Ostojić imaju zadatak napisati opise obrazaca uporabe. Frühwirth, Ostojić i Žužul imaju zadatak izraditi bazu podataka do srijede 31. listopada. 
+Ćaćić će upisati sastanak u dnevnik sastanaka i ima zadatak detaljno proučiti obrasce uporabe i sekvencijske dijagrame te po mogućnosti započeti s njihovom izradom.
 
