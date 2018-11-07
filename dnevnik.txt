@@ -27,3 +27,8 @@ PRISUTNI: Frühwirth, Ostojić, Žužul
 PLAN: Kreiranje relacijske baze podataka i njen export u .sql datoteku.
 ZAKLJUČAK: Osmišljena je shema relacijske baze podataka u kojoj ćemo čuvati potrebne podatke. Baza podataka je kreirana u PostgreSQL-u. Kreirana je datoteka koja omogućuje ostalim članovima tima import spomenute baze podataka. 
 
+5. studenog 2018.
+PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
+PLAN: Podjela zadataka oko kreiranja sekvencijskih dijagrama te dijagrama obrazaca uporabe. Dogovor i rješavanje nejasnoća istih.
+ZAKLJUČAK: Frühwirth radi sekvencijske dijagrame za UC13-14 i dijagrame obrazaca uporabe, ovisno o količini posla pomoći će mu Žužul. Žužul radi sekvencijske dijagrame za UC15-16, Ćaćić UC4-6, Jelović UC7-9, Ostojić UC10-12, Mijoč UC1-3 i upisuje sastanak u dnevnik sastanka. UC-ovi će se pushati u zaseban direktorij dokumentacija/sekvencijski.
+
