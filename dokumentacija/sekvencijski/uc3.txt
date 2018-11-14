@@ -1,0 +1,1 @@
+Korisnik koji se želi prijaviti unosi svoje podatke sve dok oni nisu valjani. Podaci se šalju poslužitelju, a on ih prosljeđuje bazi podataka u kojoj se provjerava postoji li korisnik s tim podacima te njihova ispravnost. Ukoliko su valjani, korisnik se uspješno prijavljuje na stranicu auto servisa.
