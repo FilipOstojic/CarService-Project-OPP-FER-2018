@@ -1,1 +1,0 @@
-Korisnik šalje poslužitelju zahtjev za odjavu sa sustava. Poslužitelj prima zahtjev, odjavljuje korisnika sa sustava i šalje potvrdu o uspješnoj odjavi.

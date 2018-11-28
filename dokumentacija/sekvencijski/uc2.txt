@@ -1,2 +1,0 @@
-Svaki korisnik ima mogućnost pregleda osnovnih informacija auto servisa.
-Središnjem poslužitelju se šalje zahtjev za pregledom informacija koje on onda dohvaća iz baze podataka, a potom ih šalje korisniku.

@@ -1,1 +1,0 @@
-Registrirani korisnik šalje zahtjev poslužitelju za uvid statusa popravka vozila. Poslužitelj zatraži status popravka od baze podataka. Baza podataka vrati status popravka poslužitelju koji ga onda prikaže korisniku.

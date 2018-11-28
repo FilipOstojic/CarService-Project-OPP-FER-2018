@@ -1,1 +1,0 @@
-Administrator poslužitelju šalje zahtjev za brisanjem registriranog korisnika skupa s njegovim korisnièkim imenom. Poslužitelj šalje bazi podataka zahtjev za brisanjem korisnika. Nakon što je korisnik obrisan poslužitelju se šalje informacija da je korisnik obrisan, a poslužitelj korisniku potvrdu o uspješnosti brisanja.

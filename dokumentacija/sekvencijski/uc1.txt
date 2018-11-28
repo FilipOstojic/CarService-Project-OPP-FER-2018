@@ -1,1 +1,0 @@
-Neregistrirani korisnik koji se želi registrirati unosi svoje podatke sve dok oni nisu valjani. Podaci se šalju poslužitelju, a on ih proslijeđuje bazi podataka u kojoj se provjerava postoji li već registrirani korisnik s istim podacima te jesu li oni ispravni. Ukoliko su valjani, pohranjuju se u bazu podataka te poslužitelj šalje korisniku potvrdu o uspješnoj registraciji.

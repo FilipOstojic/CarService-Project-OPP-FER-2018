@@ -1,1 +1,0 @@
-Administrator unosi nove ili izmjenjuje stare podatke o servisu. Nove podatke šalje poslužitelju koji ih prosljeđuje bazi podataka. Baza podataka sprema nove podatke o servisu i obavještava poslužitelja o uspješnoj pohrani novih podataka. Poslužitelj obavještava administratora o uspješnoj izmjeni podataka o servisu.

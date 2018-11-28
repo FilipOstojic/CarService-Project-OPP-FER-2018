@@ -1,1 +1,0 @@
-Ako korisnik želi obrisati vlastiti račun, središnjem poslužitelju šalje zahtjev za brisanjem. Središnji poslužitelj zatim šalje zahtjev za brisanjem korisničkog računa bazi podataka. Korisnik se briše iz baze podataka i središnjem poslužitelju se šalje informacija o uspješnom brisanju korisnika, o čemu on obavještava korisnika.
