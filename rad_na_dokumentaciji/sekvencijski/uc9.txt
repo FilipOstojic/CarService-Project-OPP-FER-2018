@@ -1,0 +1,1 @@
+Ovlašteni korisnik šalje zahtjev poslužitelju za prikaz svih prijavljenih korisnika. Poslužitelj provjerava u bazi podataka prijavljene korisnike i traži njihove podatke prijave. Baza podataka vraæa prijavu, a poslužitelj serviseru prikaže prijavljene korisnike.

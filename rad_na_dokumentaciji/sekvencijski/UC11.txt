@@ -1,0 +1,1 @@
+Ovlašteni serviser ažurira stanje popravka vozila. Nove podatke šalje poslužitelju koji ih prosljeđuje bazi podataka. Baza podataka pohranjuje nove podatke i obavještava poslužitelja o uspješnoj pohrani. Poslužitelj obavještava ovlaštenog servisera o uspješnosti ažuriranja stanja popravka vozila.
