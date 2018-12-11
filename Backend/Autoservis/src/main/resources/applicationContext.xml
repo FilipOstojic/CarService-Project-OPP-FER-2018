@@ -29,7 +29,11 @@
 				<value>autoservis.model.ServiceVehicle</value>
 				<value>autoservis.model.User</value>
 				<value>autoservis.model.UserVehicle</value>
+				<value>autoservis.model.Appointment</value>
+				<value>autoservis.model.Model</value>
+				<value>autoservis.model.Service</value>
 				<value>autoservis.model.Vehicle</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">
