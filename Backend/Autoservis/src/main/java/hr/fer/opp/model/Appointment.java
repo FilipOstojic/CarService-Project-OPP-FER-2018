@@ -1,4 +1,4 @@
-package model;
+package hr.fer.opp.model;
 
 import java.util.Date;
 
@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,15 +22,12 @@ public class Appointment {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@OneToOne
 	@Column(name = "mechanic", nullable = false)
 	private User mechanic;
 
-	@OneToOne
 	@Column(name = "vehicle", nullable = false)
 	private UserVehicle vehicle;
 
-	@OneToOne
 	@Column(name = "service", nullable = true)
 	private Service service;
 

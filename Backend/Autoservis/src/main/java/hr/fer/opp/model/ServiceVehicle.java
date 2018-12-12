@@ -1,10 +1,12 @@
-package model;
+package hr.fer.opp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
+@Embeddable
 @Table(name = "ServiceVehicle")
 public class ServiceVehicle extends Vehicle {
 

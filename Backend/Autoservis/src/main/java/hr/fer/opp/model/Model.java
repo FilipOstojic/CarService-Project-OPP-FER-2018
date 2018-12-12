@@ -1,4 +1,4 @@
-package model;
+package hr.fer.opp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Service")
-public class Service {
+@Table(name = "Model")
+public class Model {
 
 	@Id
 	@GeneratedValue
@@ -17,7 +17,7 @@ public class Service {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	public Service(String name) {
+	public Model(String name) {
 		super();
 		this.name = name;
 	}

@@ -1,4 +1,4 @@
-package model;
+package hr.fer.opp.model;
 
 import java.util.Set;
 

@@ -1,34 +1,47 @@
-package model;
+package hr.fer.opp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "User")
 public class User {
 	
 	@Id
+	@Email
+	@Size(max = 50)
 	@Column(name = "email", nullable = false)
 	private String email;
 
+	@Size(max = 20)
 	@Column(name = "name", nullable = false)
 	private String name;
 
+	@Size(max = 20)
 	@Column(name = "surname", nullable = false)
 	private String surname;
 
+	@Size(min = 8, max = 15)
 	@Column(name = "mobile", nullable = false)
 	private String mobile;
 
+	@Size(max = 11)
 	@Column(name = "oib", unique = true)
 	private String oib;
 
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "role", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
 	private Role role;
 
 	public User(String email, String name, String surname, String mobile, String oib, String password, Role role) {
