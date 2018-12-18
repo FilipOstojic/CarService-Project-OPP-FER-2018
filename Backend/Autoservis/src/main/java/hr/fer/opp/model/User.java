@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 @Table(name = "Users")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -40,7 +42,7 @@ public class User {
 	private String mobile;
 
 	@Size(max = 11)
-	@Column(name = "oib", unique = true )
+	@Column(name = "oib", unique = true)
 	private String oib;
 
 	@Column(name = "password", nullable = false)
@@ -53,14 +55,14 @@ public class User {
 	@OneToOne(mappedBy = "mechanic")
 	private Appointment appointment;
 
-	//nullable  true
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+	@Nullable()
 	private Set<UserVehicle> vehicles;
 
+	@Nullable
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "rentedTo")
 	private ServiceVehicle serviceVehicle;
-	
-	
+
 	public User(String email, String name, String surname, String mobile, String oib, String password, Role role) {
 		this.email = email;
 		this.name = name;

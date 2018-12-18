@@ -17,8 +17,7 @@ public class Role {
 
 	@Column(name = "name", nullable = false)
 	private String name;
-	
-	//one to many 
+	 
 	@OneToOne(mappedBy = "role")
 	private User user;
 
