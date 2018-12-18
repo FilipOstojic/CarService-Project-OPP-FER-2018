@@ -1,15 +1,25 @@
 package hr.fer.opp.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Vehicle {
 
 	@Id
 	@Column(name = "licensePlate", nullable = false)
 	private String licensePlate;
 
-	@Column(name = "model", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modelId" , foreignKey = @ForeignKey(name = "Fk_model_id"))
 	private Model model;
 
 	@Column(name = "year", nullable = false)

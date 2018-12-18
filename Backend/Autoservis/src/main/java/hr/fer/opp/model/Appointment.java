@@ -4,8 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,13 +26,16 @@ public class Appointment {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@Column(name = "mechanic", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mechanic_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
 	private User mechanic;
 
-	@Column(name = "vehicle", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
 	private UserVehicle vehicle;
 
-	@Column(name = "service", nullable = true)
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_service_name"))
 	private Service service;
 
 	@Column(name = "description", nullable = true)

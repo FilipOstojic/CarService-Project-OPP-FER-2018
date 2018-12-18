@@ -24,7 +24,6 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>hr.fer.opp.model.RegisteredUser</value>
 				<value>hr.fer.opp.model.Role</value>
 				<value>hr.fer.opp.model.ServiceVehicle</value>
 				<value>hr.fer.opp.model.User</value>
@@ -38,7 +37,8 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>

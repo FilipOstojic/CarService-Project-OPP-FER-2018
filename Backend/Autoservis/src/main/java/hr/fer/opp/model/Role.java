@@ -2,10 +2,8 @@ package hr.fer.opp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,9 +18,9 @@ public class Role {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+	//one to many 
+	@OneToOne(mappedBy = "role")
+	private User user;
 
 	public Role(String name) {
 		super();

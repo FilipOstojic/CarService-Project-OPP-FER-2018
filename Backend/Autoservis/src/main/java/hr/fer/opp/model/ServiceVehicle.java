@@ -1,28 +1,29 @@
 package hr.fer.opp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Embeddable
+@Entity
 @Table(name = "ServiceVehicle")
 public class ServiceVehicle extends Vehicle {
 
 	@OneToOne
-	private RegisteredUser rentedTo;
+	@JoinColumn(name = "rentedTo" , foreignKey = @ForeignKey(name = "Fk_regUser_email"))
+	private User rentedTo;
 
-	public ServiceVehicle(String licensePlate, Model model, String year, RegisteredUser rentedTo) {
+	public ServiceVehicle(String licensePlate, Model model, String year, User rentedTo) {
 		super(licensePlate, model, year);
 		this.rentedTo = rentedTo;
 	}
 
-	public RegisteredUser getRentedTo() {
+	public User getRentedTo() {
 		return rentedTo;
 	}
 
-	public void setRentedTo(RegisteredUser rentedTo) {
+	public void setRentedTo(User rentedTo) {
 		this.rentedTo = rentedTo;
 	}
 
