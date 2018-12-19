@@ -17,13 +17,17 @@ public class Role {
 
 	@Column(name = "name", nullable = false)
 	private String name;
-	 
+
 	@OneToOne(mappedBy = "role")
 	private User user;
 
 	public Role(String name) {
 		super();
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getName() {
