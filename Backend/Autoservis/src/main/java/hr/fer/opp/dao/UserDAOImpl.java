@@ -67,7 +67,7 @@ public class UserDAOImpl implements GenericDAO<User> {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.delete(user);
-		tx.commit();
+		tx.commit(); 
 		session.close();
 	}
 
