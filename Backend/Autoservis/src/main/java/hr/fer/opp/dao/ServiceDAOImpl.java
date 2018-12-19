@@ -55,7 +55,7 @@ public class ServiceDAOImpl implements GenericDAO<Service> {
 		Transaction tx = session.beginTransaction();
 		session.merge(service);
 		tx.commit();
-		session.close();
+		session.close(); 
 	}
 
 	@Override
