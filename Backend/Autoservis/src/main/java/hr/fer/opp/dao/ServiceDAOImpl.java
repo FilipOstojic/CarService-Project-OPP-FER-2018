@@ -46,7 +46,7 @@ public class ServiceDAOImpl implements GenericDAO<Service> {
 		query.setParameter("atribute", key);
 		List<Service> serviceList = query.list();
 		session.close();
-		return (serviceList.size() > 1) ? serviceList.get(0) : null;
+		return (serviceList.size() > 0) ? serviceList.get(0) : null;
 	}
 
 	@Override
