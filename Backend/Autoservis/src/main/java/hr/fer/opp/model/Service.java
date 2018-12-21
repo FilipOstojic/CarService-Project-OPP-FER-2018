@@ -17,6 +17,10 @@ public class Service {
 	@Column(name = "name", nullable = false)
 	private String name;
 
+	public Service() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Service(String name) {
 		super();
 		this.name = name;

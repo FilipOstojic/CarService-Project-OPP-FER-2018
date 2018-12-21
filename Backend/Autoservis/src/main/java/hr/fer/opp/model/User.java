@@ -62,6 +62,10 @@ public class User {
 	@Nullable
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "rentedTo")
 	private ServiceVehicle serviceVehicle;
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public User(String email, String name, String surname, String mobile, String oib, String password, Role role) {
 		this.email = email;

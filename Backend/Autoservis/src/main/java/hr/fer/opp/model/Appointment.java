@@ -27,15 +27,15 @@ public class Appointment {
 	private Date date;
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mechanic_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
+	@JoinColumn(name = "mechanic_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
 	private User mechanic;
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
+	@JoinColumn(name = "vehicle_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
 	private UserVehicle vehicle;
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_service_name"))
+	@JoinColumn(name = "service_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_service_name"))
 	private Service service;
 
 	@Column(name = "description", nullable = true)
@@ -43,6 +43,10 @@ public class Appointment {
 
 	@Column(name = "repVehicle", nullable = false)
 	private boolean repVehicle;
+
+	public Appointment() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Appointment(Date date, User mechanic, UserVehicle vehicle, Service service, String description,
 			boolean repVehicle) {

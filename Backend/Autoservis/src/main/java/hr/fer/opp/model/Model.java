@@ -21,6 +21,10 @@ public class Model {
 	@OneToOne(mappedBy = "model")
 	private Vehicle vehicle;
 
+	public Model() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Model(String name) {
 		super();
 		this.name = name;

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class ServiceVehicle extends Vehicle {
 
 	@OneToOne
-	@JoinColumn(name = "rentedTo" , foreignKey = @ForeignKey(name = "Fk_regUser_email"))
+	@JoinColumn(name = "rentedTo", foreignKey = @ForeignKey(name = "Fk_regUser_email"))
 	private User rentedTo;
 
 	public ServiceVehicle(String licensePlate, Model model, String year, User rentedTo) {

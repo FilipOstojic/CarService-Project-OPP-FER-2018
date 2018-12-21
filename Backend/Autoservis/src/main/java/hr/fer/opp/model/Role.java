@@ -21,6 +21,10 @@ public class Role {
 	@OneToOne(mappedBy = "role")
 	private User user;
 
+	public Role() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Role(String name) {
 		super();
 		this.name = name;
