@@ -1,0 +1,12 @@
+<body>
+    <h1>USLUGE</h1>
+
+	<ul id="usluge">
+        <li *ngFor="let service of getServices()">
+            <ul>
+                <li id="serviceName">{{service.name}}</li>
+                <li id="serviceDescription">{{service.description}}</li>
+            </ul>
+        </li>
+    </ul>
+</body>

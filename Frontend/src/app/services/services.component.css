@@ -1,0 +1,28 @@
+body {
+    overflow: scroll;
+    background-color: #f3f3f3;
+}
+
+h1 {
+    text-align: left;
+    color: black;
+    size: 12vh;
+}
+
+#usluge {
+    overflow: scroll;
+    height: 50vh;
+}
+
+#usluge ul #serviceDescription {
+    overflow: scroll;
+    height: 8vh;
+}
+
+ul {
+    list-style-type: none;
+}
+
+usluge ul li{
+    color: black;
+}

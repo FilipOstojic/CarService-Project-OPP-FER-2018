@@ -1,0 +1,136 @@
+html{
+    height:98.2vh;
+    margin:-1.1vh;
+    padding:-1vh;
+    background-image: url(images/img1.jpg);
+}
+
+body{
+    height: 97%;
+	color:#555;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	line-height:1.6em;
+	margin:0;
+	padding:0;
+}
+
+#main-header {
+    height:auto;
+    text-align: center;
+    color: black;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.container{
+	width:100%;
+    margin:auto;
+    overflow: hidden;
+}
+
+#nav-container {
+    width:auto;
+    height: auto; 
+}
+
+#navbar {
+    height: auto;
+    width:auto;
+    color:#333;
+    text-align: center;
+    margin-top:0;
+    padding-top: 0;
+}
+
+#navbar a{
+    text-decoration: none;
+    color: #333;
+}
+
+#navbar ul ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+#navbar ul {
+  position:sticky;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+#navbar ul li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+#navbar ul li:hover {
+  background: #f3f3f3;
+  color: black;
+}
+
+#navbar ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+
+#navbar ul > li:last-child ul{
+    right: 4px;
+    left: auto;
+}
+
+#navbar ul li ul li { 
+  background: #555; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #000;
+}
+
+#navbar ul li ul li:hover { background: #666; }
+
+#navbar ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+#navbar ul li .activated {
+    background-color: grey;
+}
+
+#main-footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	background: #333;
+	color:#fff;
+	text-align: center;
+	padding:0;
+	margin:0;
+}

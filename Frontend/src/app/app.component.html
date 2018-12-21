@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LSE Ovlašteni Servis</title>
+</head>
+<body>
+	<header id="main-header">
+		<div class="container">
+			<h1>LSE Ovlašteni Servis</h1>
+		</div>
+	</header>
+
+	<nav id="navbar">
+        <div id="nav-container">
+            <ul>
+                <li><a routerLink="pocetna">Početna</a></li>
+                <li><a routerLink="usluge">Usluge</a></li>
+                <li><a routerLink="o-nama">O Nama</a></li>
+                <li><a routerLink="serviseri">Serviseri</a></li>
+                <li class="dropdown">
+                    <a routerLink="racun" class="dropbtn">Račun</a>
+                        <ul class="dropdown-content">
+                            <li *ngFor="let option of getUserOptions()"><a routingLink="getRoute(option.name)">{{option.name}}</a></li>
+                        </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <router-outlet></router-outlet>
+	</div>
+</body>
+    <footer id="main-footer">
+		<p>Copyright &copy; 2018 LittleSkillzExceptionz</p>
+	</footer>
+</html>
