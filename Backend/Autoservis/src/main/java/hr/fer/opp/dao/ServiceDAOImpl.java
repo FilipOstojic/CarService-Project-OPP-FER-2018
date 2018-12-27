@@ -2,7 +2,7 @@ package hr.fer.opp.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import hr.fer.opp.model.Service;
 
-@SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 @Component
 public class ServiceDAOImpl implements GenericDAO<Service> {
 

@@ -1,4 +1,4 @@
-package hr.fer.opp.controler;
+package hr.fer.opp.controller;
 
 import java.util.List;
 
@@ -18,13 +18,13 @@ import hr.fer.opp.service.RoleService;
 
 @RestController
 @CrossOrigin("*")
-public class RoleControler {
+public class RoleController {
 
 	@Autowired
 	private RoleService roleService;
 
 	@RequestMapping(value = "/role", method = RequestMethod.GET)
-	public ResponseEntity<List<Role>> listProfesors() {
+	public ResponseEntity<List<Role>> listRoles() {
 		List<Role> list = roleService.listAll();
 		if (list != null) {
 			return new ResponseEntity<>(list, HttpStatus.OK);
@@ -35,7 +35,7 @@ public class RoleControler {
 
 	@RequestMapping(value = "/role", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<Role> crateProfesor(@RequestBody Role role) {
+	public ResponseEntity<Role> crateRole(@RequestBody Role role) {
 		boolean created = roleService.createRole(role);
 		if (created) {
 			return new ResponseEntity<Role>(role, HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class RoleControler {
 
 	@RequestMapping(value = "/role", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Role> updateProfesor(@RequestBody Role role) {
+	public ResponseEntity<Role> updateRole(@RequestBody Role role) {
 		try {
 			roleService.updateRole(role);
 			return new ResponseEntity<Role>(role, HttpStatus.OK);
@@ -57,9 +57,10 @@ public class RoleControler {
 
 	@RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseEntity<Role> deleteProfesor(@PathVariable("id") String id) {
+	public ResponseEntity<Role> deleteRole(@PathVariable("id") String id) {
 		try {
 			Role role = roleService.listRole(Integer.valueOf(id));
+			System.out.println("problem");
 			roleService.deleteRole(role);
 			return new ResponseEntity<Role>(role, HttpStatus.OK);
 		} catch (Exception e) {

@@ -42,13 +42,13 @@ public class RoleDAOImpl implements GenericDAO<Role> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Role read(String roleID) {
-		Session session = this.sessionFactory.openSession();
-
+		Session session = sessionFactory.openSession();
+		
 		@SuppressWarnings("rawtypes")
 		Query query = (Query) session.createQuery("from Role where id =:atribute ");
 		query.setParameter("atribute", roleID);
-
-		List<Role> roleList = query.list();
+	
+		List<Role> roleList = query.list();	
 		session.close();
 		return roleList.isEmpty() ? null : roleList.get(0);
 	}
