@@ -1,4 +1,4 @@
-﻿DNEVNIK SASTAJANJA
+DNEVNIK SASTAJANJA
 
 3. listopada 2018.
 PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
@@ -36,3 +36,8 @@ ZAKLJUČAK: Frühwirth radi sekvencijske dijagrame za UC13-14 i dijagrame obraza
 PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
 PLAN: Završna podjela zadataka u vezi pisanja dokumentacije. Provjera dokumentacije.
 ZAKLJUČAK: Prva verzija dokumentacije treba biti završena kroz 3 dana. Nakon toga slijedi završna provjera i predaja dokumentacije.
+
+28. prosinac 2018.
+PRISUTNI: Ćaćić, Mijoč, Jelović
+PLAN: Podjela front end posla po komponentama.
+ZAKLJUČAK: Ćaćić je napravio kostur web stranice, Jelović i Mijoč nastavljaju s radom na preostalim komponentama.
