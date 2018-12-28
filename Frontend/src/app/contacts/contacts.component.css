@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.background {
+
+   border-radius: 5px;
+   padding: 10px;
+   margin-top: 20px;
+   background-color: rgba(13, 45, 184, 0.952);
+   color: black;
+
+}
+
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

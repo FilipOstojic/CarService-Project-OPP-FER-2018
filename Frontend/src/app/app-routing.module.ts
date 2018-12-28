@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ServicesComponent} from './services/services.component';
 import {AboutComponent} from './about/about.component';
+import {ContactsComponent} from './contacts/contacts.component';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/pocetna', pathMatch: 'full'},
-    {path: 'usluge', component: ServicesComponent},
-    {path: 'pocetna', component: HomepageComponent},
-    {path: 'o-nama', component: AboutComponent}
+    {path: '', redirectTo: '/Pocetna', pathMatch: 'full'},
+    {path: 'Usluge', component: ServicesComponent},
+    {path: 'Pocetna', component: HomepageComponent},
+    {path: 'O-nama', component: AboutComponent},
+    {path: 'Kontakt', component: ContactsComponent}
 ];
 
 @NgModule({
