@@ -36,7 +36,7 @@ public class ModelService {
 	}
 
 	public boolean createModel(Model model) {
-		if (model != null && model.getName().length() > 0) {
+		if (model != null && !modelExists(model) && model.getName().length() > 0) {
 			modelDAO.create(model);
 			return true;
 		} else {
@@ -47,14 +47,15 @@ public class ModelService {
 	public void updateModel(Model model) {
 		if (!modelExists(model)) {
 			throw new NullPointerException("Cant update null model.");
-		} 
-		if (model.equals(modelDAO.read(String.valueOf(model.getId())) )) {
+		}
+		if (model.equals(modelDAO.read(String.valueOf(model.getId())))) {
 			throw new IllegalAddException("No update occured for model.");
 		}
 		modelDAO.update(model);
 	}
 
 	private boolean modelExists(Model model) {
-		return modelDAO.read(String.valueOf(model.getId())) != null;
+		List<Model> modelList = modelDAO.read();
+		return modelList.contains(model);
 	}
 }

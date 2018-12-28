@@ -45,8 +45,8 @@ public class ModelDAOImpl implements GenericDAO<Model> {
 		Session session = this.sessionFactory.openSession();
 
 		@SuppressWarnings("rawtypes")
-		Query query = (Query) session.createQuery("from Model where id =:atribute ");
-		query.setParameter("atribute", modelID);
+		Query query = (Query) session.createQuery("FROM Model WHERE id =:atribute");
+		query.setParameter("atribute", Integer.parseInt(modelID));
 
 		List<Model> modelList = query.list();
 		session.close();
