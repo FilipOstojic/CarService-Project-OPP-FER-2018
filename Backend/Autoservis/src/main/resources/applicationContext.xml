@@ -14,7 +14,7 @@
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost:5432/autoservice" />
 		<property name="username" value="admin" />
-		<property name="password" value="password" />
+		<property name="password" value="admin" />
 	</bean>
 
 

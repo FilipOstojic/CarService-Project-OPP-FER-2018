@@ -60,7 +60,6 @@ public class RoleController {
 	public ResponseEntity<Role> deleteRole(@PathVariable("id") String id) {
 		try {
 			Role role = roleService.listRole(Integer.valueOf(id));
-			System.out.println("problem");
 			roleService.deleteRole(role);
 			return new ResponseEntity<Role>(role, HttpStatus.OK);
 		} catch (Exception e) {

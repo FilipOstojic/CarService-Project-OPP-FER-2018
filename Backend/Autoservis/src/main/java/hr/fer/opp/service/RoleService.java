@@ -11,51 +11,52 @@ import hr.fer.opp.model.Role;
 
 @Service("roleService")
 public class RoleService {
-	
+
 	@Autowired
 	private GenericDAO<Role> roleDAO;
-	
-	public List<Role> listAll(){
+
+	public List<Role> listAll() {
 		return roleDAO.read();
 	}
-	
+
 	public Role listRole(int id) {
 		Role role = roleDAO.read(String.valueOf(id));
-		if(role != null) {
+		if (role != null) {
 			return role;
 		}
 		throw new NullPointerException("Cant list null role");
 	}
-	
+
 	public void deleteRole(Role role) {
-		if(roleExists(role)) {
+		if (roleExists(role)) {
 			roleDAO.delete(role);
 		} else {
 			throw new IllegalArgumentException("This role doesn't exist");
 		}
 	}
-	
+
 	public boolean createRole(Role role) {
-		if(role != null && role.getName().length() > 0) {
+		if (role != null && !roleExists(role) && role.getName().length() > 0) {
 			roleDAO.create(role);
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void updateRole(Role role) {
 		Role temp = roleDAO.read(String.valueOf(role.getId()));
-		
-		if(temp == null) {
+
+		if (temp == null) {
 			throw new NullPointerException("Cant update null role");
 		}
-		if(temp.equals(role)) {
+		if (temp.equals(role)) {
 			throw new IllegalAddException("No update occured for role");
 		}
 		roleDAO.update(role);
 	}
 
 	private boolean roleExists(Role role) {
-		return roleDAO.read(String.valueOf(role.getId())) != null;
+		List<Role> roleList = roleDAO.read();
+		return roleList.contains(role);
 	}
 }

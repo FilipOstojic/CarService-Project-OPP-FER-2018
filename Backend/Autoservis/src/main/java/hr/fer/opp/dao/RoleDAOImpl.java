@@ -45,8 +45,9 @@ public class RoleDAOImpl implements GenericDAO<Role> {
 		Session session = sessionFactory.openSession();
 		
 		@SuppressWarnings("rawtypes")
-		Query query = (Query) session.createQuery("from Role where id =:atribute ");
-		query.setParameter("atribute", roleID);
+		Query query = session.createQuery("FROM Role WHERE id = :atribute");
+		Integer i = Integer.parseInt(roleID);
+		query.setParameter("atribute", i);
 	
 		List<Role> roleList = query.list();	
 		session.close();
