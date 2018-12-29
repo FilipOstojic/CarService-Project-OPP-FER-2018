@@ -36,7 +36,7 @@ public class ModelController {
 	@RequestMapping(value = "/model", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Model> crateModel(@RequestBody Model model) {
-		boolean created = modelService.createModel(model);
+		boolean created = modelService.createRecord(model);
 		if (created) {
 			return new ResponseEntity<Model>(model, HttpStatus.CREATED);
 		} else {
@@ -48,7 +48,7 @@ public class ModelController {
 	@ResponseBody
 	public ResponseEntity<Model> updateModel(@RequestBody Model model) {
 		try {
-			modelService.updateModel(model);
+			modelService.updateRecord(model);
 			return new ResponseEntity<Model>(model, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Model>(model, HttpStatus.BAD_REQUEST);
@@ -59,8 +59,8 @@ public class ModelController {
 	@ResponseBody
 	public ResponseEntity<Model> deleteModel(@PathVariable("id") String id) {
 		try {
-			Model model = modelService.listModel(Integer.valueOf(id));
-			modelService.deleteModel(model);
+			Model model = modelService.showRecord(Integer.valueOf(id));
+			modelService.deleteRecord(model);
 			return new ResponseEntity<Model>(model, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Model>(HttpStatus.BAD_REQUEST);

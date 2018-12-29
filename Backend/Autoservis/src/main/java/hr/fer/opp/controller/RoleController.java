@@ -36,7 +36,7 @@ public class RoleController {
 	@RequestMapping(value = "/role", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Role> crateRole(@RequestBody Role role) {
-		boolean created = roleService.createRole(role);
+		boolean created = roleService.createRecord(role);
 		if (created) {
 			return new ResponseEntity<Role>(role, HttpStatus.CREATED);
 		} else {
@@ -48,7 +48,7 @@ public class RoleController {
 	@ResponseBody
 	public ResponseEntity<Role> updateRole(@RequestBody Role role) {
 		try {
-			roleService.updateRole(role);
+			roleService.updateRecord(role);
 			return new ResponseEntity<Role>(role, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Role>(role, HttpStatus.BAD_REQUEST);
@@ -59,8 +59,8 @@ public class RoleController {
 	@ResponseBody
 	public ResponseEntity<Role> deleteRole(@PathVariable("id") String id) {
 		try {
-			Role role = roleService.listRole(Integer.valueOf(id));
-			roleService.deleteRole(role);
+			Role role = roleService.showRecord(Integer.valueOf(id));
+			roleService.deleteRecord(role);
 			return new ResponseEntity<Role>(role, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Role>(HttpStatus.BAD_REQUEST);

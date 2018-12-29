@@ -15,7 +15,7 @@ public class Model {
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name")
 	private String name;
 
 	@OneToOne(mappedBy = "model")
@@ -65,5 +65,4 @@ public class Model {
 			return false;
 		return true;
 	}
-
 }

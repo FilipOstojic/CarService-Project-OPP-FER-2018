@@ -3,37 +3,18 @@ package hr.fer.opp.dao;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.fer.opp.model.Appointment;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @Component
-public class AppointmentDAOImpl implements GenericDAO<Appointment>{
-
-	@Autowired
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	@Override
-	public void create(Appointment appointment) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.persist(appointment);
-		tx.commit();
-		session.close();
-	}
+public class AppointmentDAOImpl extends GenericDAO<Appointment>{
 
 	@Override
 	public List<Appointment> read() {
-		Session session = this.sessionFactory.openSession();
+		Session session = sessionFactory.openSession();
 		List<Appointment> appointmentList = session.createQuery("from Appointment").list();
 		session.close();
 		return appointmentList;
@@ -41,30 +22,11 @@ public class AppointmentDAOImpl implements GenericDAO<Appointment>{
 
 	@Override
 	public Appointment read(String key) {
-		Session session = this.sessionFactory.openSession();
-		Query query = session.createQuery("from Appointment where id =:atribute ");
-		query.setParameter("atribute", key);
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Appointment where id = :attribute");
+		query.setParameter("attribute", key);
 		List<Appointment> appointmentList = query.list();
 		session.close();
 		return (appointmentList.size() > 0) ? appointmentList.get(0) : null;
 	}
-
-	@Override
-	public void update(Appointment appointment) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.merge(appointment);
-		tx.commit();
-		session.close(); 
-	}
-
-	@Override
-	public void delete(Appointment appointment) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.delete(appointment);
-		tx.commit();
-		session.close();
-	}
-
 }

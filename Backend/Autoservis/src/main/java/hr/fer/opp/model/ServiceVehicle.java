@@ -14,6 +14,10 @@ public class ServiceVehicle extends Vehicle {
 	@JoinColumn(name = "rentedTo", foreignKey = @ForeignKey(name = "Fk_regUser_email"))
 	private User rentedTo;
 
+	public ServiceVehicle() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public ServiceVehicle(String licensePlate, Model model, String year, User rentedTo) {
 		super(licensePlate, model, year);
 		this.rentedTo = rentedTo;

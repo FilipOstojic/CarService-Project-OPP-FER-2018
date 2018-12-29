@@ -2,15 +2,45 @@ package hr.fer.opp.dao;
 
 import java.util.List;
 
-public interface GenericDAO<T> {
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
-	public void create(T t);
+public abstract class GenericDAO<T> {
 
-	public List<T> read();
+	@Autowired
+	protected SessionFactory sessionFactory;
 
-	public T read(String key);
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	public void create(T record) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(record);
+		tx.commit();
+		session.close();
+	}
 
-	public void update(T t);
+	public abstract List<T> read();
 
-	public void delete(T t);
+	public abstract T read(String key);
+
+	public void update(T record) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.merge(record);
+		tx.commit();
+		session.close();
+	}
+
+	public void delete(T record) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(record);
+		tx.commit();
+		session.close();
+	}
 }
