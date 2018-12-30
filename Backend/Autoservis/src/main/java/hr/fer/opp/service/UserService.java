@@ -36,10 +36,7 @@ public class UserService extends GenericService<User, String> {
 		User temp = dao.read(user.getEmail());
 
 		if (temp == null) {
-			throw new NullPointerException("Cant update null user");
-		}
-		if (temp.equals(user)) {
-			throw new IllegalAddException("No update occured for user");
+			throw new NullPointerException("User with this email does not exist.");
 		}
 		dao.update(user);
 	}
