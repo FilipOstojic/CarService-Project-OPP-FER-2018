@@ -106,4 +106,8 @@ public class Appointment {
 		this.repVehicle = repVehicle;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 }
