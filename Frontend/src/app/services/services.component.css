@@ -4,19 +4,15 @@ body {
 }
 
 h1 {
-    text-align: left;
+    margin-left: 40%;
     color: black;
     size: 12vh;
 }
 
 #usluge {
-    overflow: scroll;
-    height: 50vh;
-}
-
-#usluge ul #serviceDescription {
-    overflow: scroll;
-    height: 8vh;
+    margin-left: 35%;
+    height: 50%;
+    box-sizing: border-box;
 }
 
 ul {

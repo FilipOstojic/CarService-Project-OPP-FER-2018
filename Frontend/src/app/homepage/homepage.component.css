@@ -13,14 +13,14 @@
 	width:70%;
 	padding:0 30px;
     box-sizing: border-box;
-    height:25vh;
+    height:25%;
 }
 
 #sidebar{
     background-color: #f3f3f3; 
 	float:right;
     width:30%;
-    height:25vh;
+    height:25%;
 	background: #333;
 	color:#fff;
 	padding:10px;

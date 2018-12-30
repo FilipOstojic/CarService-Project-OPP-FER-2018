@@ -37,6 +37,11 @@ PRISUTNI: Ćaćić, Frühwirth, Jelović, Mijoč, Ostojić, Žužul
 PLAN: Završna podjela zadataka u vezi pisanja dokumentacije. Provjera dokumentacije.
 ZAKLJUČAK: Prva verzija dokumentacije treba biti završena kroz 3 dana. Nakon toga slijedi završna provjera i predaja dokumentacije.
 
+14. prosinca 2018.
+PRISUTNI: Ćaćić, Jelović, Mijoč 
+PLAN: Prezentiranje ideja i dogovor oko izgleda aplikacije 
+ZAKLJUČAK: Definiran je izgled aplikacije i dogovorena je podjela poslova.
+
 28. prosinac 2018.
 PRISUTNI: Ćaćić, Mijoč, Jelović
 PLAN: Podjela front end posla po komponentama.
