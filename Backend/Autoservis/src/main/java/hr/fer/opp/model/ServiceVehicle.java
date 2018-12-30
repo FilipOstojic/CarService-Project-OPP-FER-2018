@@ -17,7 +17,7 @@ public class ServiceVehicle extends Vehicle {
 	public ServiceVehicle() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ServiceVehicle(String licensePlate, Model model, String year, User rentedTo) {
 		super(licensePlate, model, year);
 		this.rentedTo = rentedTo;
