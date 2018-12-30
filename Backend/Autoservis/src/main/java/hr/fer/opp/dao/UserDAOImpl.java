@@ -15,7 +15,7 @@ public class UserDAOImpl extends GenericDAO<User> {
 	@Override
 	public List<User> read() {
 		Session session = this.sessionFactory.openSession();
-		List<User> userList = session.createQuery("from Users").list();
+		List<User> userList = session.createQuery("from User").list();
 		session.close();
 		return userList;
 	}
@@ -26,7 +26,7 @@ public class UserDAOImpl extends GenericDAO<User> {
 		Session session = this.sessionFactory.openSession();
 
 		@SuppressWarnings("rawtypes")
-		Query query = (Query) session.createQuery("from Users where email = :attribute");
+		Query query = (Query) session.createQuery("from User where email = :attribute");
 		query.setParameter("attribute", email);
 
 		List<User> userList = query.list();
