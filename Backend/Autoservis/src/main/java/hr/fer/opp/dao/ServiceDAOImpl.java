@@ -21,12 +21,24 @@ public class ServiceDAOImpl extends GenericDAO<Service> {
 	}
 
 	@Override
-	public Service read(String key) {
+	public Service read(String serviceID) {
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from Service where id = :attribute");
-		query.setParameter("attribute", key);
+		Integer i = Integer.parseInt(serviceID);
+		query.setParameter("attribute", i);
 		List<Service> serviceList = query.list();
 		session.close();
 		return (serviceList.size() > 0) ? serviceList.get(0) : null;
+	}
+
+	public Service readByName(String serviceName) {
+		Session session = sessionFactory.openSession();
+
+		Query query = session.createQuery("FROM Role WHERE name = :attribute");
+		query.setParameter("attribute", serviceName);
+
+		List<Service> serviceList = query.list();
+		session.close();
+		return serviceList.isEmpty() ? null : serviceList.get(0);
 	}
 }
