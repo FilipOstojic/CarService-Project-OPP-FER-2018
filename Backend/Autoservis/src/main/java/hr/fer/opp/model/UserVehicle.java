@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "UserVehicle")
 public class UserVehicle extends Vehicle {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "User_email", foreignKey = @ForeignKey(name = "Fk_regUser_email"))
 	private User owner;
 
@@ -21,6 +21,14 @@ public class UserVehicle extends Vehicle {
 
 	public UserVehicle(String licensePlate, Model model, String year, User owner) {
 		super(licensePlate, model, year);
+		this.owner = owner;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
 

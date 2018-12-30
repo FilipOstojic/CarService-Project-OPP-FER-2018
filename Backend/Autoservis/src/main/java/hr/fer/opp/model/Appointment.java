@@ -26,15 +26,15 @@ public class Appointment {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mechanic_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
 	private User mechanic;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "vehicle_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
 	private UserVehicle vehicle;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "service_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_service_name"))
 	private Service service;
 

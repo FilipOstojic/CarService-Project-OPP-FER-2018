@@ -53,9 +53,6 @@ public class UserVehicleService {
 		if (!exists(vehicle)) {
 			throw new NullPointerException("Cant update null vehicle.");
 		}
-		if (vehicle.equals(dao.read(vehicle.getLicensePlate()))) {
-			throw new IllegalAddException("No update occured for vehicle.");
-		}
 		dao.update(vehicle);
 	}
 }

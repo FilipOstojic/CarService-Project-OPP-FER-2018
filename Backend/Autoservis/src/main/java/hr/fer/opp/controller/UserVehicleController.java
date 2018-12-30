@@ -36,6 +36,7 @@ public class UserVehicleController {
 	@RequestMapping(value = "/userVehicle", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<UserVehicle> crateUserVehcicles(@RequestBody UserVehicle vehicle) {
+		System.err.println(vehicle.getOwner().getEmail());
 		boolean created = userVehicleService.createRecord(vehicle);
 		if (created) {
 			return new ResponseEntity<UserVehicle>(vehicle, HttpStatus.CREATED);
@@ -47,10 +48,12 @@ public class UserVehicleController {
 	@RequestMapping(value = "/userVehicle", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<UserVehicle> updateUserVehicle(@RequestBody UserVehicle vehicle) {
+		System.err.println(vehicle.getOwner().getEmail());
 		try {
 			userVehicleService.updateRecord(vehicle);
 			return new ResponseEntity<UserVehicle>(vehicle, HttpStatus.OK);
 		} catch (Exception e) {
+			System.err.println(e.getLocalizedMessage());
 			return new ResponseEntity<UserVehicle>(vehicle, HttpStatus.BAD_REQUEST);
 		}
 	}

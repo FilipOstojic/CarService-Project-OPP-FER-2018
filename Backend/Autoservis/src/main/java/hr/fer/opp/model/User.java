@@ -1,8 +1,6 @@
 package hr.fer.opp.model;
 
 import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,21 +47,21 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "roleId", foreignKey = @ForeignKey(name = "Fk_role_id"))
 	private Role role;
 
 	@OneToOne(mappedBy = "mechanic")
 	private Appointment appointment;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
 	@Nullable()
 	private Set<UserVehicle> vehicles;
 
 	@Nullable
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "rentedTo")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "rentedTo")
 	private ServiceVehicle serviceVehicle;
-	
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
