@@ -33,4 +33,17 @@ public class ModelDAOImpl extends GenericDAO<Model> {
 		session.close();
 		return modelList.isEmpty() ? null : modelList.get(0);
 	}
+
+	@SuppressWarnings("unchecked")
+	public Model readByName(String modelName) {
+		Session session = sessionFactory.openSession();
+
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("FROM Model WHERE name = :attribute");
+		query.setParameter("attribute", modelName);
+
+		List<Model> modelList = query.list();
+		session.close();
+		return modelList.isEmpty() ? null : modelList.get(0);
+	}
 }

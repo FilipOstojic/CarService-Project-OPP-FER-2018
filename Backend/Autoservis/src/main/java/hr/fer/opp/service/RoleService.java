@@ -13,7 +13,15 @@ public class RoleService extends GenericService<Role, Integer> {
 		if (role != null) {
 			return role;
 		}
-		throw new NullPointerException("Cant list null role");
+		throw new NullPointerException("Role with " + roleID + " does not exist.");
+	}
+
+	public Role showRecordByName(String roleName) {
+		Role role = dao.readByName(roleName);
+		if (role != null) {
+			return role;
+		}
+		throw new NullPointerException("Role with " + roleName + " does not exist.");
 	}
 
 	public void deleteRecord(Role role) {

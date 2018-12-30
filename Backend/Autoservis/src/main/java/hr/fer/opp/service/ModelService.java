@@ -16,6 +16,14 @@ public class ModelService extends GenericService<Model, Integer> {
 		}
 		throw new NullPointerException("Model with " + modelID + " does not exist.");
 	}
+	
+	public Model showRecord(String modelName) {
+		Model model = dao.readByName(modelName);
+		if (exists(model)) {
+			return model;
+		}
+		throw new NullPointerException("Model with " + modelName + " does not exist.");
+	}
 
 	public void deleteRecord(Model model) {
 		if (exists(model)) {
