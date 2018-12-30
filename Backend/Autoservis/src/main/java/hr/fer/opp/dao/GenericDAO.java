@@ -27,6 +27,11 @@ public abstract class GenericDAO<T> {
 	public abstract List<T> read();
 
 	public abstract T read(String key);
+	
+	public T readByName(String name) {
+		return null;
+	}
+	
 
 	public void update(T record) {
 		Session session = this.sessionFactory.openSession();

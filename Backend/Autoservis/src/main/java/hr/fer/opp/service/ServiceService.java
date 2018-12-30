@@ -3,16 +3,23 @@ package hr.fer.opp.service;
 import org.dom4j.IllegalAddException;
 import hr.fer.opp.model.Service;
 
-
 @org.springframework.stereotype.Service("serviceService")
-public class ServiceService extends GenericService<Service, Integer>{
+public class ServiceService extends GenericService<Service, Integer> {
 
 	public Service showRecord(Integer serviceId) {
 		Service service = dao.read(String.valueOf(serviceId));
 		if (service != null) {
 			return service;
 		}
-		throw new NullPointerException("Cant list null service");
+		throw new NullPointerException("Service with " + serviceId + " does not exist.");
+	}
+
+	public Service showRecordByName(String serviceName) {
+		Service service = dao.readByName(serviceName);
+		if (service != null) {
+			return service;
+		}
+		throw new NullPointerException("Service with " + serviceName + " does not exist.");
 	}
 
 	public void deleteRecord(Service service) {
@@ -30,7 +37,7 @@ public class ServiceService extends GenericService<Service, Integer>{
 		}
 		return false;
 	}
-	
+
 	public void updateRecord(Service service) {
 		Service temp = dao.read(String.valueOf(service.getId()));
 
