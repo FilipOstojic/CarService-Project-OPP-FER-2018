@@ -2,7 +2,6 @@ package hr.fer.opp.service;
 
 import java.util.List;
 
-import org.dom4j.IllegalAddException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,10 +51,7 @@ public class UserService {
 		User temp = dao.read(user.getEmail());
 
 		if (temp == null) {
-			throw new NullPointerException("Cant update null user");
-		}
-		if (temp.equals(user)) {
-			throw new IllegalAddException("No update occured for user");
+			throw new NullPointerException("User with this email does not exist.");
 		}
 		dao.update(user);
 	}
