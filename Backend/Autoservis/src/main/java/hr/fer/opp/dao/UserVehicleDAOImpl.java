@@ -30,4 +30,16 @@ public class UserVehicleDAOImpl extends GenericDAO<UserVehicle> {
 		session.close();
 		return userVehicles.isEmpty() ? null : userVehicles.get(0);
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<UserVehicle> readByEmail(String userEmail) {
+		Session session = sessionFactory.openSession();
+
+		Query query = session.createQuery("FROM UserVehicle WHERE User_email = :attribute");
+		query.setParameter("attribute", userEmail);
+
+		List<UserVehicle> userVehicles = query.list();
+		session.close();
+		return userVehicles;
+	}
 }

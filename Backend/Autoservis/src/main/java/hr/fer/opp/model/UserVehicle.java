@@ -31,5 +31,4 @@ public class UserVehicle extends Vehicle {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-
 }

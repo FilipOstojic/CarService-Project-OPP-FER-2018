@@ -19,6 +19,10 @@ public class AppointmentService {
 		return dao.read();
 	}
 	
+	public List<Appointment> listAllFromUser(String mechEmail) {
+		return dao.readByEmail(mechEmail);
+	}
+	
 	private boolean exists(Appointment record) {
 		List<Appointment> list = dao.read();
 		return list.contains(record);

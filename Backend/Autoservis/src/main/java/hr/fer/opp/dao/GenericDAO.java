@@ -32,6 +32,9 @@ public abstract class GenericDAO<T> {
 		return null;
 	}
 	
+	public List<T> readByEmail(String email) {
+		return null;
+	}
 
 	public void update(T record) {
 		Session session = this.sessionFactory.openSession();

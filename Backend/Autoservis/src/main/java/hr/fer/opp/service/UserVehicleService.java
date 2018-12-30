@@ -2,7 +2,6 @@ package hr.fer.opp.service;
 
 import java.util.List;
 
-import org.dom4j.IllegalAddException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +16,10 @@ public class UserVehicleService {
 	
 	public List<UserVehicle> listAll() {
 		return dao.read();
+	}
+	
+	public List<UserVehicle> listAllFromUser(String userEmail) {
+		return dao.readByEmail(userEmail);
 	}
 	
 	private boolean exists(UserVehicle userVehicle) {

@@ -32,6 +32,16 @@ public class AppointmentController {
 			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(value = "/appointment/{email}", method = RequestMethod.GET)
+	public ResponseEntity<List<Appointment>> listAppointments(@PathVariable("email") String mechEmail) {
+		List<Appointment> list = appointmentService.listAllFromUser(mechEmail);
+		if (list != null) {
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.PUT)
 	@ResponseBody

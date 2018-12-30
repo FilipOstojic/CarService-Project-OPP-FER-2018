@@ -29,4 +29,16 @@ public class AppointmentDAOImpl extends GenericDAO<Appointment>{
 		session.close();
 		return (appointmentList.size() > 0) ? appointmentList.get(0) : null;
 	}
+	
+	@Override
+	public List<Appointment> readByEmail(String mechEmail) {
+		Session session = sessionFactory.openSession();
+
+		Query query = session.createQuery("FROM Appointment WHERE mechanic_id = :attribute");
+		query.setParameter("attribute", mechEmail);
+
+		List<Appointment> mechAppointments = query.list();
+		session.close();
+		return mechAppointments;
+	}
 }
