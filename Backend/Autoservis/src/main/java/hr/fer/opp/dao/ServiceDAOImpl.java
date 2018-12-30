@@ -34,7 +34,7 @@ public class ServiceDAOImpl extends GenericDAO<Service> {
 	public Service readByName(String serviceName) {
 		Session session = sessionFactory.openSession();
 
-		Query query = session.createQuery("FROM Role WHERE name = :attribute");
+		Query query = session.createQuery("FROM Service WHERE name = :attribute");
 		query.setParameter("attribute", serviceName);
 
 		List<Service> serviceList = query.list();

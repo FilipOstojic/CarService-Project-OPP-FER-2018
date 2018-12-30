@@ -1,13 +1,29 @@
 package hr.fer.opp.service;
 
+import java.util.List;
+
 import org.dom4j.IllegalAddException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hr.fer.opp.dao.GenericDAO;
 import hr.fer.opp.model.Appointment;
 
 @Service("appointmentService")
-public class AppointmentService extends GenericService<Appointment, Integer> {
+public class AppointmentService {
 
+	@Autowired
+	protected GenericDAO<Appointment> dao;
+	
+	public List<Appointment> listAll() {
+		return dao.read();
+	}
+	
+	private boolean exists(Appointment record) {
+		List<Appointment> list = dao.read();
+		return list.contains(record);
+	}
+	
 	public Appointment showRecord(Integer appointmentID) {
 		Appointment appointment = dao.read(String.valueOf(appointmentID));
 		if (exists(appointment)) {
@@ -42,5 +58,4 @@ public class AppointmentService extends GenericService<Appointment, Integer> {
 		}
 		dao.update(appointment);
 	}
-
 }

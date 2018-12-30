@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.fer.opp.model.Model;
 import hr.fer.opp.model.ServiceVehicle;
+import hr.fer.opp.service.ModelService;
 import hr.fer.opp.service.ServiceVehicleService;
 
 @RestController
@@ -22,6 +24,9 @@ public class ServiceVehicleController {
 	
 	@Autowired
 	private ServiceVehicleService serviceVehicleService;
+	
+	@Autowired
+	private ModelService modelService;
 
 	@RequestMapping(value = "/serviceVehicle", method = RequestMethod.GET)
 	public ResponseEntity<List<ServiceVehicle>> listServiceVehicles() {
@@ -36,7 +41,11 @@ public class ServiceVehicleController {
 	@RequestMapping(value = "/serviceVehicle", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<ServiceVehicle> crateServiceVehcicles(@RequestBody ServiceVehicle vehicle) {
+		Model model = modelService.showRecordByName(vehicle.getModel().getName());
+		vehicle.setModel(model);
+		System.out.println(model.getId() + "  " + model.getName());
 		boolean created = serviceVehicleService.createRecord(vehicle);
+		
 		if (created) {
 			return new ResponseEntity<ServiceVehicle>(vehicle, HttpStatus.CREATED);
 		} else {

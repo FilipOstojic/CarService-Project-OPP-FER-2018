@@ -23,7 +23,7 @@ public class ServiceVehicleDAOImpl extends GenericDAO<ServiceVehicle> {
 	public ServiceVehicle read(String licensePlate) {
 		Session session = sessionFactory.openSession();
 
-		Query query = session.createQuery("from ServiceVehicle where id = :attribute");
+		Query query = session.createQuery("from ServiceVehicle where licensePlate = :attribute");
 		query.setParameter("attribute", licensePlate);
 
 		List<ServiceVehicle> serviceVehicles = query.list();

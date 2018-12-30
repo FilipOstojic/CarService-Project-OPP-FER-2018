@@ -1,6 +1,5 @@
 package hr.fer.opp.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,7 @@ public abstract class Vehicle {
 	@Column(name = "licensePlate", nullable = false)
 	private String licensePlate;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "modelId", foreignKey = @ForeignKey(name = "Fk_model_id"))
 	private Model model;
 

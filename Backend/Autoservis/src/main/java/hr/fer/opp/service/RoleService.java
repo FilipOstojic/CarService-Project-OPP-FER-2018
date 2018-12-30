@@ -1,13 +1,29 @@
 package hr.fer.opp.service;
 
+import java.util.List;
+
 import org.dom4j.IllegalAddException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hr.fer.opp.dao.GenericDAO;
 import hr.fer.opp.model.Role;
 
 @Service("roleService")
-public class RoleService extends GenericService<Role, Integer> {
+public class RoleService {
 
+	@Autowired
+	protected GenericDAO<Role> dao;
+	
+	public List<Role> listAll() {
+		return dao.read();
+	}
+	
+	private boolean exists(Role role) {
+		List<Role> list = dao.read();
+		return list.contains(role);
+	}
+	
 	public Role showRecord(Integer roleID) {
 		Role role = dao.read(String.valueOf(roleID));
 		if (role != null) {

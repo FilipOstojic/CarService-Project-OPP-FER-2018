@@ -1,14 +1,29 @@
 package hr.fer.opp.service;
 
+import java.util.List;
+
 import org.dom4j.IllegalAddException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hr.fer.opp.dao.GenericDAO;
 import hr.fer.opp.model.UserVehicle;
 
 @Service("userVehicleService")
-public class UserVehicleService extends GenericService<UserVehicle, String> {
+public class UserVehicleService {
 
-	@Override
+	@Autowired
+	protected GenericDAO<UserVehicle> dao;
+	
+	public List<UserVehicle> listAll() {
+		return dao.read();
+	}
+	
+	private boolean exists(UserVehicle userVehicle) {
+		List<UserVehicle> list = dao.read();
+		return list.contains(userVehicle);
+	}
+	
 	public UserVehicle showRecord(String licensePlate) {
 		UserVehicle vehicle = dao.read(licensePlate);
 		if (vehicle != null) {
@@ -17,7 +32,6 @@ public class UserVehicleService extends GenericService<UserVehicle, String> {
 		throw new NullPointerException("Cant list null vehicle");
 	}
 
-	@Override
 	public void deleteRecord(UserVehicle vehicle) {
 		if (exists(vehicle)) {
 			dao.delete(vehicle);
@@ -26,7 +40,6 @@ public class UserVehicleService extends GenericService<UserVehicle, String> {
 		}
 	}
 
-	@Override
 	public boolean createRecord(UserVehicle vehicle) {
 		if (vehicle != null && !exists(vehicle) && vehicle.getLicensePlate().length() > 0) {
 			dao.create(vehicle);
@@ -36,7 +49,6 @@ public class UserVehicleService extends GenericService<UserVehicle, String> {
 		}
 	}
 
-	@Override
 	public void updateRecord(UserVehicle vehicle) {
 		if (!exists(vehicle)) {
 			throw new NullPointerException("Cant update null vehicle.");
@@ -46,5 +58,4 @@ public class UserVehicleService extends GenericService<UserVehicle, String> {
 		}
 		dao.update(vehicle);
 	}
-	
 }
