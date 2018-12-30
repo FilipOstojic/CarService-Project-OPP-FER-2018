@@ -1,6 +1,5 @@
 package hr.fer.opp.service;
 
-import org.dom4j.IllegalAddException;
 import org.springframework.stereotype.Service;
 
 import hr.fer.opp.model.User;
