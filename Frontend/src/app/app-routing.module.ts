@@ -5,7 +5,7 @@ import {HomepageComponent} from './homepage/homepage.component';
 import {ServicesComponent} from './services/services.component';
 import {AboutComponent} from './about/about.component';
 import {ContactsComponent} from './contacts/contacts.component';
-import { MechanicsComponent } from './mechanics/mechanics.component';
+import {MechanicsComponent} from './mechanics/mechanics.component';
 
 
 const routes: Routes = [

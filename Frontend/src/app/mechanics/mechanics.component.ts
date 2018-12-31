@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MECHANICS} from '../mock-mechanics'
+import { DataService} from '../data.service'
 
 @Component({
   selector: 'app-mechanics',
@@ -8,11 +8,19 @@ import { MECHANICS} from '../mock-mechanics'
 })
 export class MechanicsComponent implements OnInit {
 
-  mechanics = MECHANICS;
   
-  constructor() { }
+  
+  data: DataService;
+
+  constructor(private dataService: DataService) {
+      this.data = dataService;
+   }
 
   ngOnInit() {
+  }
+
+  getMechanics() {
+      return this.data.getMechanics();
   }
 
 }

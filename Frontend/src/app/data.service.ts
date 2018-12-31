@@ -9,7 +9,7 @@ import {MECHANICS} from './mock-mechanics';
 export class DataService {
 
   service = SERVICE;
-  mechanics = MECHANICS;
+  mechanic = MECHANICS;
   
   constructor() { }
 
@@ -22,6 +22,6 @@ export class DataService {
   }
 
   getMechanics() {
-    return this.mechanics;
+      return this.mechanic;
   }
 }
