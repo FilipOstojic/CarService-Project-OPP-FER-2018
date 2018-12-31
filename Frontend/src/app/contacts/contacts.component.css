@@ -8,16 +8,24 @@
    border-radius: 5px;
    padding: 10px;
    margin-top: 20px;
-   background-color: rgba(13, 45, 184, 0.952);
+   margin-bottom: 20px;
+   background-color: rgba(112, 228, 35, 0.83);
    color: black;
+   height: 425px;
 
 }
 
 .column {
     float: left;
     width: 50%;
-    margin-top: 6px;
     padding: 20px;
+    height: 50px;
+}
+
+.column img {
+    margin-left: 20%;
+    width: 600px;
+    height: 300px;
 }
 
 .row:after {

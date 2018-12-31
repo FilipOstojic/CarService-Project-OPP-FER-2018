@@ -1,16 +1,11 @@
-body {
-    overflow: scroll;
-    background-color: #f3f3f3;
-}
-
 h1 {
-    margin-left: 40%;
+    text-align: left;
     color: black;
     size: 12vh;
 }
 
 #usluge {
-    margin-left: 35%;
+    margin-left: 5%;
     height: 50%;
     box-sizing: border-box;
 }
@@ -21,4 +16,32 @@ ul {
 
 usluge ul li{
     color: black;
+}
+
+.content {
+    margin-left: 5%;
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 90%;
+    height: 425px;
+    overflow: scroll;
+    background-color: #f3f3f3;
+    }
+    
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px olivedrab;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+    background: yellowgreen; 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
