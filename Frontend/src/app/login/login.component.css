@@ -1,0 +1,50 @@
+body{
+
+    background-color: rgb(73, 143, 190);
+    text-align: center;
+    border: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 60%;
+    margin:auto;
+    margin-top: 50px;
+    color: black;
+}
+
+.header{
+
+    color: black;
+    font: arial;
+    font-size: 150%;
+    font-weight: bold;
+    
+}
+
+.my-form{
+
+    padding: 20px; 
+}
+
+.my-form label{
+
+    display: block;
+}
+
+.my-form input[type="text"]{
+
+    padding: 8px;
+    width: 20%;
+}
+
+.form-group{
+
+    padding: 15px;
+}
+
+.button{
+
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}

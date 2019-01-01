@@ -23,7 +23,7 @@
                 <li class="dropdown">
                     <a routerLink="racun" class="dropbtn">Račun</a>
                         <ul class="dropdown-content">
-                            <li *ngFor="let option of getUserOptions()"><a routingLink="getRoute(option.name)">{{option.name}}</a></li>
+                            <li *ngFor="let option of getUserOptions()"><a [routerLink]="option.name" (click)='performOption(option.name)'>{{option.name}}</a></li>
                         </ul>
                 </li>
             </ul>
@@ -34,7 +34,7 @@
         <router-outlet></router-outlet>
 	</div>
 </body>
-    <footer id="main-footer">
-		<p>Copyright &copy; 2019 LittleSkillzExceptionz</p>
-	</footer>
+<footer id="main-footer">
+	<p>Copyright &copy; 2019 LittleSkillzExceptionz</p>
+</footer>
 </html>

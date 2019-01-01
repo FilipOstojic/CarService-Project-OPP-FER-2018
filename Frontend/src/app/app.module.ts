@@ -8,6 +8,9 @@ import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MechanicsComponent } from './mechanics/mechanics.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { MechanicsComponent } from './mechanics/mechanics.component';
     AboutComponent,
     ServicesComponent,
     ContactsComponent,
-    MechanicsComponent
+    MechanicsComponent,
+    LoginComponent,
+    RegistrationComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
