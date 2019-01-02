@@ -51,6 +51,9 @@ public class User {
 	@JoinColumn(name = "roleId", foreignKey = @ForeignKey(name = "Fk_role_id"))
 	private Role role;
 
+	@Column(name = "confirmed", nullable = false)
+	private boolean confirmed;
+	
 	@OneToOne(mappedBy = "mechanic")
 	private Appointment appointment;
 
@@ -130,6 +133,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 
 	@Override

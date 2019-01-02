@@ -14,7 +14,7 @@ public class UserVehicle extends Vehicle {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "User_email", foreignKey = @ForeignKey(name = "Fk_regUser_email"))
 	private User owner;
-
+	
 	public UserVehicle() {
 		// TODO Auto-generated constructor stub
 	}
