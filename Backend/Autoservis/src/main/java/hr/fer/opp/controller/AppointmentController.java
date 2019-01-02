@@ -1,9 +1,14 @@
 package hr.fer.opp.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.Appointment;
 import hr.fer.opp.service.AppointmentService;
+import hr.fer.opp.util.Util;
 
 @RestController
 @CrossOrigin("*")
@@ -40,6 +46,31 @@ public class AppointmentController {
 			return new ResponseEntity<>(list, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/appointment/pdf/{id}", method = RequestMethod.GET)
+	public ResponseEntity<ByteArrayResource> generatePDF(@PathVariable("id") String appointmentId) {
+		try {
+			//Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
+			System.out.println("usli " + appointmentId);
+			PDDocument document = Util.generatePDF(null);
+			System.out.println("generirano");
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			document.save(byteArrayOutputStream);
+			document.close();
+			
+			byte[] data = byteArrayOutputStream.toByteArray();
+			ByteArrayResource resource = new ByteArrayResource(data);
+			System.out.println("sve ok");
+			return ResponseEntity.ok()
+		            .header(HttpHeaders.CONTENT_DISPOSITION,
+		                  "attachment;filename=pdf" + appointmentId + ".pdf") 
+		            .contentType(MediaType.APPLICATION_PDF).contentLength(data.length)
+		            .body(resource);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(null);
 		}
 	}
 
