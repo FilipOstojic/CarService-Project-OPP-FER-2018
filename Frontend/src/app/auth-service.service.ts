@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AppComponent} from './app.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
-  person: string ='guest';
+  person: string ='serviser';
 
-  constructor( private app: AppComponent) {
+  constructor() {
     
-    this.app = app;
   }
 
   logout(){
 
-   
+    this.person = 'guest';
   }
+  
 }

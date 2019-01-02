@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { USERS } from './mock-users';
 import { DataService } from './data.service';
 import {Router} from '@angular/router';
+import {AuthServiceService} from './auth-service.service';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class AppComponent {
   data: DataService;
   
 
-  constructor(private dataService: DataService, private route: Router) {
+  constructor(private dataService: DataService, private route: Router, private auth: AuthServiceService) {
     this.data = dataService;
     this.route = route;
+    this.auth = auth;
    
   }
 
@@ -30,6 +32,7 @@ export class AppComponent {
     if (option == 'Odjava'){
 
       this.route.navigate(['Pocetna'])
+      this.auth.logout() 
       
 
     }
