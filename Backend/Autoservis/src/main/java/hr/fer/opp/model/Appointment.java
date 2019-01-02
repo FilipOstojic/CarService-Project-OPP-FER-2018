@@ -43,19 +43,23 @@ public class Appointment {
 
 	@Column(name = "repVehicle", nullable = false)
 	private boolean repVehicle;
+	
+	@Column(name = "vehicleStatus", nullable = true)
+	private String vehicleStatus;
 
 	public Appointment() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Appointment(Date date, User mechanic, UserVehicle vehicle, Service service, String description,
-			boolean repVehicle) {
+			boolean repVehicle,String vehicleStatus ) {
 		this.date = date;
 		this.mechanic = mechanic;
 		this.vehicle = vehicle;
 		this.service = service;
 		this.description = description;
 		this.repVehicle = repVehicle;
+		this.vehicleStatus = vehicleStatus;
 	}
 
 	public Date getDate() {
@@ -109,5 +113,15 @@ public class Appointment {
 	public int getId() {
 		return id;
 	}
+
+	public String getVehicleStatus() {
+		return vehicleStatus;
+	}
+
+	public void setVehicleStatus(String vehicleStatus) {
+		this.vehicleStatus = vehicleStatus;
+	}
+	
+	
 
 }
