@@ -46,6 +46,7 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Appointment> crateAppointment(@RequestBody Appointment appointment) {
+		//TODO check vehStatus 
 		boolean created = appointmentService.createRecord(appointment);
 		if (created) {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);
