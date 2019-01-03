@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { USERS } from './mock-users';
 import { DataService } from './data.service';
-import {Router} from '@angular/router';
-import {AuthServiceService} from './auth-service.service';
+import { Router } from '@angular/router';
+import { AuthServiceService } from './auth-service.service';
 
 
 @Component({
@@ -11,34 +11,29 @@ import {AuthServiceService} from './auth-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front-end';
+  title = 'Autoservis LSE';
 
   data: DataService;
-  
+
 
   constructor(private dataService: DataService, private route: Router, private auth: AuthServiceService) {
     this.data = dataService;
     this.route = route;
     this.auth = auth;
-   
   }
 
   getUserOptions() {
     return this.data.getUser().options;
   }
 
-  performOption( option ){
+  performOption(option) {
 
-    if (option == 'Odjava'){
-
+    if (option == 'Odjava') {
       this.route.navigate(['Pocetna'])
-      this.auth.logout() 
-      
-
+      this.auth.logout()
     }
 
-    else{
-
+    else {
       this.route.navigate([option])
     }
   }
