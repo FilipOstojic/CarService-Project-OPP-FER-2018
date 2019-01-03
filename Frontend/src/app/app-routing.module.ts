@@ -12,15 +12,15 @@ import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/Pocetna', pathMatch: 'full'},
-    {path: 'Usluge', component: ServicesComponent},
-    {path: 'Pocetna', component: HomepageComponent},
-    {path: 'O-nama', component: AboutComponent},
-    {path: 'Serviseri', component: MechanicsComponent},
-    {path: 'Kontakt', component: ContactsComponent},
-    {path: 'Prijava', component: LoginComponent},
-    {path: 'Registracija', component: RegistrationComponent},
-    {path: 'Odjava', component: LogoutComponent}
+    {path: '', redirectTo: '/pocetna', pathMatch: 'full'},
+    {path: 'usluge', component: ServicesComponent},
+    {path: 'pocetna', component: HomepageComponent},
+    {path: 'about', component: AboutComponent},
+    {path: 'serviseri', component: MechanicsComponent},
+    {path: 'kontakt', component: ContactsComponent},
+    {path: 'prijava', component: LoginComponent},
+    {path: 'registracija', component: RegistrationComponent},
+    {path: 'odjava', component: LogoutComponent}
 ];
 
 @NgModule({

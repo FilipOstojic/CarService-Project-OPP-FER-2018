@@ -1,40 +1,44 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>LSE Ovlašteni Servis</title>
-</head>
 <body>
-	<header id="main-header">
-		<div class="container">
-            <img class="picture" src="assets/images/LSE.jpeg" alt=""/>
-            <h1 class="text">LSE Ovlašteni Servis</h1>
-            <img class="picture2" src="assets/images/Mercedes_Benz_logo.png" alt=""/> 
-        </div>
-    </header>
-
-	<nav id="navbar">
-        <div id="nav-container">
-            <ul>
-                <li><a routerLink="Pocetna">Početna</a></li>
-                <li><a routerLink="Usluge">Usluge</a></li>
-                <li><a routerLink="O-nama">O Nama</a></li>
-                <li><a routerLink="Serviseri">Serviseri</a></li>
-                <li><a routerLink="Kontakt">Kontakt</a></li>
-                <li class="dropdown">
-                    <a routerLink="racun" class="dropbtn">Račun</a>
-                        <ul class="dropdown-content">
-                            <li *ngFor="let option of getUserOptions()"><a [routerLink]="option.name" (click)='performOption(option.name)'>{{option.name}}</a></li>
-                        </ul>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="#" class="navbar-left"><img src=".././assets/images/Mercedes_Benz_logo.png"></a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['pocetna']">Početna</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['usluge']">Usluge</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['about']">O nama</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['serviseri']">Serviseri</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['kontakt']">Kontakt</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['racun']">Račun</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['prijava']">Prijava</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['registracija']">Registracija</a>
+                </li>
+                <li class="nav-item"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['odjava']">Odjava</a>
                 </li>
             </ul>
         </div>
     </nav>
-    
-    <div class="container">
-        <router-outlet></router-outlet>
-	</div>
+    <router-outlet></router-outlet>
 </body>
-<footer id="main-footer">
-	<p>Copyright &copy; 2019 LittleSkillzExceptionz</p>
-</footer>
 </html>

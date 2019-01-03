@@ -12,6 +12,11 @@ import { AuthServiceService } from './auth-service.service';
 })
 export class AppComponent {
   title = 'Autoservis LSE';
+  isCollapsed = false;
+
+  close(){
+    this.isCollapsed = !this.isCollapsed;
+  }
 
   data: DataService;
 
