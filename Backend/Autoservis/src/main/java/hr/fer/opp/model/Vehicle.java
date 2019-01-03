@@ -18,12 +18,16 @@ public abstract class Vehicle {
 	@Column(name = "licensePlate", nullable = false)
 	private String licensePlate;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "modelId" , foreignKey = @ForeignKey(name = "Fk_model_id"))
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "modelId", foreignKey = @ForeignKey(name = "Fk_model_id"))
 	private Model model;
 
 	@Column(name = "year", nullable = false)
 	private String year;
+
+	public Vehicle() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Vehicle(String licensePlate, Model model, String year) {
 		super();

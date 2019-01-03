@@ -11,13 +11,24 @@ import javax.persistence.Table;
 @Table(name = "UserVehicle")
 public class UserVehicle extends Vehicle {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "User_email" , foreignKey = @ForeignKey(name = "Fk_regUser_email"))   
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "User_email", foreignKey = @ForeignKey(name = "Fk_regUser_email"))
 	private User owner;
+	
+	public UserVehicle() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public UserVehicle(String licensePlate, Model model, String year, User owner) {
 		super(licensePlate, model, year);
 		this.owner = owner;
 	}
 
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 }

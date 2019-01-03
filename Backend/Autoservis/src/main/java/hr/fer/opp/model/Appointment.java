@@ -26,16 +26,16 @@ public class Appointment {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mechanic_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "mechanic_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
 	private User mechanic;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "vehicle_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_userVehicle_licencplate"))
 	private UserVehicle vehicle;
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id", nullable = false , foreignKey = @ForeignKey(name = "Fk_service_name"))
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "service_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_service_name"))
 	private Service service;
 
 	@Column(name = "description", nullable = true)
@@ -43,15 +43,23 @@ public class Appointment {
 
 	@Column(name = "repVehicle", nullable = false)
 	private boolean repVehicle;
+	
+	@Column(name = "vehicleStatus", nullable = true)
+	private String vehicleStatus;
+
+	public Appointment() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Appointment(Date date, User mechanic, UserVehicle vehicle, Service service, String description,
-			boolean repVehicle) {
+			boolean repVehicle,String vehicleStatus ) {
 		this.date = date;
 		this.mechanic = mechanic;
 		this.vehicle = vehicle;
 		this.service = service;
 		this.description = description;
 		this.repVehicle = repVehicle;
+		this.vehicleStatus = vehicleStatus;
 	}
 
 	public Date getDate() {
@@ -101,5 +109,19 @@ public class Appointment {
 	public void setRepVehicle(boolean repVehicle) {
 		this.repVehicle = repVehicle;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getVehicleStatus() {
+		return vehicleStatus;
+	}
+
+	public void setVehicleStatus(String vehicleStatus) {
+		this.vehicleStatus = vehicleStatus;
+	}
+	
+	
 
 }
