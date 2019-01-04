@@ -1,6 +1,7 @@
 package hr.fer.opp.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -52,20 +53,16 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ByteArrayResource> generatePDF(@PathVariable("id") String appointmentId) {
 		try {
-			//Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
-			System.out.println("usli " + appointmentId);
-			PDDocument document = Util.generatePDF(null);
-			System.out.println("generirano");
+			Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
+			PDDocument document = Util.generatePDF(appointment);
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			document.save(byteArrayOutputStream);
 			document.close();
 			
 			byte[] data = byteArrayOutputStream.toByteArray();
 			ByteArrayResource resource = new ByteArrayResource(data);
-			System.out.println("sve ok");
 			return ResponseEntity.ok()
-		            .header(HttpHeaders.CONTENT_DISPOSITION,
-		                  "attachment;filename=pdf" + appointmentId + ".pdf") 
+		            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=form" + appointmentId + ".pdf") 
 		            .contentType(MediaType.APPLICATION_PDF).contentLength(data.length)
 		            .body(resource);
 		} catch (Exception e) {
@@ -78,6 +75,7 @@ public class AppointmentController {
 	@ResponseBody
 	public ResponseEntity<Appointment> crateAppointment(@RequestBody Appointment appointment) {
 		//TODO check vehStatus 
+		appointment.setDateOfApp(new Date());
 		boolean created = appointmentService.createRecord(appointment);
 		if (created) {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);

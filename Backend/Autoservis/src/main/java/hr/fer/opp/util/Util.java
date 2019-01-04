@@ -24,6 +24,7 @@ import javax.servlet.ServletContext;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
@@ -129,19 +130,43 @@ public class Util {
 		 
 		PDPageContentStream contentStream;
 		try {
-			contentStream = new PDPageContentStream(document, page);
-			contentStream.setFont(PDType1Font.COURIER, 12);
-			contentStream.beginText();
-			contentStream.showText("Hello World");
-			contentStream.endText();
-			contentStream.close();
-			 
-			Path path = Paths.get(ClassLoader.getSystemResource("lse.jpg").toURI());
+//			contentStream.setFont(PDType1Font.COURIER, 12);
+//			contentStream.beginText();
+//			contentStream.showText("Hello World");
+//			contentStream.endText();
+//			contentStream.close();
+//			 
+			Path path = Paths.get(ClassLoader.getSystemResource("lse.png").toURI());
 			contentStream = new PDPageContentStream(document, page);
 			PDImageXObject image = PDImageXObject.createFromFile(path.toAbsolutePath().toString(), document);
-			contentStream.drawImage(image, image.getWidth(), image.getHeight());
-			contentStream.close();
+			
+			int offsetW = image.getWidth()/2;
+			int offsetH = image.getHeight() + 2*offsetW;
+			int width = (int) page.getBBox().getWidth();
+			int height = (int) page.getBBox().getHeight();
+			
+			contentStream.drawImage(image, offsetW, height - offsetW - image.getHeight());
+			
+			contentStream.beginText();
 
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
+            contentStream.setLeading(14.5f);
+            
+            contentStream.newLineAtOffset(offsetW, height - offsetH);
+            contentStream.showText("Prijava br. " + Integer.toString(appointment.getId()));
+            contentStream.newLine();
+
+            contentStream.showText(appointment.getDate().toString());
+            contentStream.newLine();
+
+            contentStream.showText(appointment.getMechanic().getEmail());
+            contentStream.newLine();
+
+            contentStream.showText(appointment.getVehicle().getLicensePlate());
+            contentStream.newLine();
+
+            contentStream.endText();
+            contentStream.close();
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
