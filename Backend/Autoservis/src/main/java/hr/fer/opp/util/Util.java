@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -249,6 +250,53 @@ public class Util {
         contentStream.lineTo(width - (int)(1.5*offsetW) - 150, image.getHeight()/2);
         contentStream.stroke();
   
+	}
+
+	public static boolean sendPeriodicEmail(Appointment appointment) {
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("lse.najboljimehanicar@gmail.com", "littleskillzexception");
+			}; 
+		});
+		
+		User user = appointment.getVehicle().getOwner();
+		String email = user.getEmail();
+		
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("LSE Najbolji mehanicar <lse.najboljimehanicar@gmail.com>"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+			message.setSentDate(new Date());
+			message.setSubject("Appointment scheduled for tomorrow!");
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(appointment.getDate());
+			
+			String text = String.format("<h2>Dear %s, your appointment is scheduled for tomorrow</h2>"
+					+ "<p>at %s</p>"
+					+ "<p>Cheers</p>", user.getName(), cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE));
+
+			MimeBodyPart mbp = new MimeBodyPart();
+			mbp.setText(text, "UTF-8", "html");
+			MimeMultipart mp = new MimeMultipart();
+			mp.addBodyPart(mbp);
+			
+			message.setContent(mp);
+			
+			Transport.send(message);
+			
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 

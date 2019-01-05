@@ -1,6 +1,8 @@
 package hr.fer.opp.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,7 +81,7 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Appointment> crateAppointment(@RequestBody Appointment appointment) {
-		//TODO check vehStatus 
+		appointment.setDateOfApply(new Date());
 		boolean created = appointmentService.createRecord(appointment);
 		if (created) {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);
@@ -107,6 +110,27 @@ public class AppointmentController {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Appointment>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@Scheduled(cron = "0 0 8 * * *")
+	public void sendPeriodicEmail() {
+		List<Appointment> appointments = appointmentService.listAll();
+		for (Appointment appointment : appointments) {
+				Date today = new Date();
+			Calendar calToday = Calendar.getInstance();
+			calToday.setTime(today);
+
+			Calendar calDate = Calendar.getInstance();
+			calDate.setTime(appointment.getDate());
+			
+			Calendar calDateOfApply = Calendar.getInstance();
+			calDateOfApply.setTime(appointment.getDateOfApply());
+			
+			if ((calDate.get(Calendar.DATE) - calDateOfApply.get(Calendar.DATE)) >= 3 
+					&& (calDate.get(Calendar.DATE) - calToday.get(Calendar.DATE)) == 1) {
+				Util.sendPeriodicEmail(appointment);
+			}
 		}
 	}
 }

@@ -26,6 +26,10 @@ public class Appointment {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dateOfApply", nullable = false)
+	private Date dateOfApply;
+	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mechanic_id", nullable = false, foreignKey = @ForeignKey(name = "Fk_mechanic_email"))
 	private User mechanic;
@@ -120,6 +124,14 @@ public class Appointment {
 
 	public void setVehicleStatus(String vehicleStatus) {
 		this.vehicleStatus = vehicleStatus;
+	}
+
+	public Date getDateOfApply() {
+		return dateOfApply;
+	}
+
+	public void setDateOfApply(Date dateOfApply) {
+		this.dateOfApply = dateOfApply;
 	}
 
 	@Override
