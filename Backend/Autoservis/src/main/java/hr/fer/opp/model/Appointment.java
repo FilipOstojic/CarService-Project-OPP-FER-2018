@@ -121,7 +121,41 @@ public class Appointment {
 	public void setVehicleStatus(String vehicleStatus) {
 		this.vehicleStatus = vehicleStatus;
 	}
-	
-	
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((mechanic == null) ? 0 : mechanic.hashCode());
+		result = prime * result + ((vehicle == null) ? 0 : vehicle.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Appointment other = (Appointment) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (mechanic == null) {
+			if (other.mechanic != null)
+				return false;
+		} else if (!mechanic.equals(other.mechanic))
+			return false;
+		if (vehicle == null) {
+			if (other.vehicle != null)
+				return false;
+		} else if (!vehicle.equals(other.vehicle))
+			return false;
+		return true;
+	}
 }

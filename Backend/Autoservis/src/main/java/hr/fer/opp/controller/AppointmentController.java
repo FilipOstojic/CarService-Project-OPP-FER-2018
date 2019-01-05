@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.Appointment;
 import hr.fer.opp.service.AppointmentService;
+import hr.fer.opp.service.AutoserviceService;
 import hr.fer.opp.util.Util;
 
 @RestController
@@ -28,6 +29,9 @@ public class AppointmentController {
 
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private AutoserviceService autoserviceService;
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments() {
@@ -52,26 +56,23 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ByteArrayResource> generatePDF(@PathVariable("id") String appointmentId) {
 		try {
-			//Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
-			System.out.println("usli " + appointmentId);
-			PDDocument document = Util.generatePDF(null);
-			System.out.println("generirano");
+			Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
+			PDDocument document = Util.generatePDF(appointment, autoserviceService.showInfo());
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			document.save(byteArrayOutputStream);
 			document.close();
 			
 			byte[] data = byteArrayOutputStream.toByteArray();
 			ByteArrayResource resource = new ByteArrayResource(data);
-			System.out.println("sve ok");
 			return ResponseEntity.ok()
-		            .header(HttpHeaders.CONTENT_DISPOSITION,
-		                  "attachment;filename=pdf" + appointmentId + ".pdf") 
+		            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=form" + appointmentId + ".pdf") 
 		            .contentType(MediaType.APPLICATION_PDF).contentLength(data.length)
 		            .body(resource);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(null);
 		}
+
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.PUT)

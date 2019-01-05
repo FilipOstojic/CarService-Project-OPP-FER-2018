@@ -32,6 +32,7 @@
 				<value>hr.fer.opp.model.Model</value>
 				<value>hr.fer.opp.model.Service</value>
 				<value>hr.fer.opp.model.Vehicle</value>
+				<value>hr.fer.opp.model.Autoservice</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -53,5 +54,5 @@
 	<bean id="serviceVehicleDAOImpl" class="hr.fer.opp.dao.ServiceVehicleDAOImpl" parent="genericDAO"></bean>
 	<bean id="userDAOImpl" class="hr.fer.opp.dao.UserDAOImpl" parent="genericDAO"></bean>
 	<bean id="userVehicleDAOImpl" class="hr.fer.opp.dao.UserVehicleDAOImpl" parent="genericDAO"></bean>
-
+	<bean id="autoserviceDAOImpl" class="hr.fer.opp.dao.AutoserviceDAOImpl" parent="genericDAO"></bean>
 </beans>

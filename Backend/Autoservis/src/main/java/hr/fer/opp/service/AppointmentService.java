@@ -57,9 +57,6 @@ public class AppointmentService {
 		if (!exists(appointment)) {
 			throw new NullPointerException("Cant update null appointment.");
 		}
-		if (appointment.equals(dao.read(String.valueOf(appointment.getId())))) {
-			throw new IllegalAddException("No update occured for appointment.");
-		}
 		dao.update(appointment);
 	}
 }

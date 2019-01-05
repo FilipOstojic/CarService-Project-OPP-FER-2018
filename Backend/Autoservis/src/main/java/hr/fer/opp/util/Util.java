@@ -1,6 +1,7 @@
 package hr.fer.opp.util;
 
 import java.io.IOException;
+
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,10 +28,10 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-import com.itextpdf.text.pdf.PdfDocument;
-
 import hr.fer.opp.model.Appointment;
+import hr.fer.opp.model.Autoservice;
 import hr.fer.opp.model.User;
+import hr.fer.opp.model.UserVehicle;
 
 public class Util {
 	
@@ -122,30 +123,133 @@ public class Util {
 		return (char)(number + ASCII_LOWER);
 	}
 
-	public static PDDocument generatePDF(Appointment appointment) {
+	public static PDDocument generatePDF(Appointment appointment, Autoservice autoservice) {
+		UserVehicle vehicle = appointment.getVehicle();
+		User user = vehicle.getOwner();
+		User mech = appointment.getMechanic();
+		
 		PDDocument document = new PDDocument();
 		PDPage page = new PDPage();
 		document.addPage(page);
-		 
+		
 		PDPageContentStream contentStream;
 		try {
-			contentStream = new PDPageContentStream(document, page);
-			contentStream.setFont(PDType1Font.COURIER, 12);
-			contentStream.beginText();
-			contentStream.showText("Hello World");
-			contentStream.endText();
-			contentStream.close();
-			 
-			Path path = Paths.get(ClassLoader.getSystemResource("lse.jpg").toURI());
+			Path path = Paths.get(ClassLoader.getSystemResource("lse.png").toURI());
 			contentStream = new PDPageContentStream(document, page);
 			PDImageXObject image = PDImageXObject.createFromFile(path.toAbsolutePath().toString(), document);
-			contentStream.drawImage(image, image.getWidth(), image.getHeight());
-			contentStream.close();
-
+			
+			int offsetW = image.getWidth()/2;
+			int offsetH = image.getHeight() + 2*offsetW;
+			int width = (int) page.getBBox().getWidth();
+			int height = (int) page.getBBox().getHeight();
+			
+			contentStream.drawImage(image, offsetW, height - offsetW - image.getHeight());
+			
+			contentStream.setLeading(14.5f);
+			
+			contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 30);
+            contentStream.newLineAtOffset(image.getWidth() + 2*offsetW, (int) (height - image.getHeight()*1.5));
+            contentStream.showText(autoservice.getName());
+            contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.HELVETICA, 10);
+            contentStream.newLineAtOffset(width - 3*offsetW, height - offsetH);
+            contentStream.showText(autoservice.getAddress());
+            contentStream.newLine();
+            contentStream.showText(autoservice.getOib());
+            contentStream.newLine();
+            contentStream.showText(autoservice.getEmail());
+            contentStream.newLine();
+            contentStream.showText(autoservice.getMobile());
+            contentStream.endText();
+            
+            drawRectangle(contentStream, height, width, offsetW, offsetH, image);
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 15);
+            contentStream.newLineAtOffset(offsetW + 20, height - (int)(1.5*offsetH) - 40);
+            contentStream.showText("Ovlašteni serviser:");
+            contentStream.newLineAtOffset(20, -20);
+            contentStream.showText("Ime i prezime: " + mech.getName() + " " + mech.getSurname());
+            contentStream.newLine();
+            contentStream.showText("Email: " + mech.getEmail());
+            contentStream.newLine();
+            contentStream.showText("Broj mobitela: " + mech.getMobile());
+            contentStream.newLineAtOffset(-20, -40);
+            contentStream.showText("Klijent:");
+            contentStream.newLineAtOffset(20, -20);
+            contentStream.showText("Ime i prezime: " + user.getName() + " " + user.getSurname());
+            contentStream.newLine();
+            contentStream.showText("Email: " + user.getEmail());
+            contentStream.newLine();
+            contentStream.showText("Broj mobitela: " + user.getMobile());
+            contentStream.newLineAtOffset(-20, 40);
+            contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 15);
+            contentStream.newLineAtOffset(offsetW + 20, (height - (int)(1.5*offsetH) - offsetW - image.getHeight())/2 + offsetW + image.getHeight() - 40);
+            contentStream.showText("Vozilo: ");
+            contentStream.newLineAtOffset(20, -20);
+            contentStream.showText("Registracija: " + vehicle.getLicensePlate());
+            contentStream.newLine();
+            contentStream.showText("Model: " + vehicle.getModel().getName());
+            contentStream.newLine();
+            contentStream.showText("Godina proizvodnje: " + vehicle.getYear());
+            contentStream.newLineAtOffset(-20, -20);
+            contentStream.showText("Usluga:");
+            contentStream.newLineAtOffset(20, -20);
+            contentStream.showText(appointment.getService().getName());
+            contentStream.newLineAtOffset(-20, -20);
+            contentStream.showText("Opis:");
+            contentStream.newLineAtOffset(20, -20);
+            String description = appointment.getDescription();
+            contentStream.showText(description == null ? "" : description);
+            contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 10);
+            contentStream.newLineAtOffset((int) (1.5*offsetW), image.getHeight());
+            contentStream.showText("Ovlašteni serviser:");
+            contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.TIMES_ROMAN, 10);
+            contentStream.newLineAtOffset(width - (int) (1.5*offsetW) - 150, image.getHeight());
+            contentStream.showText("Klijent:");
+            contentStream.endText();
+            
+            contentStream.close();
 		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 		
 		return document;
 	}
+
+	private static void drawRectangle(PDPageContentStream contentStream, int height, int width, int offsetW,
+			int offsetH, PDImageXObject image) throws IOException {
+		
+		contentStream.moveTo(offsetW, height - (int)(1.5*offsetH));
+        contentStream.lineTo(width - offsetW, height - (int)(1.5*offsetH));
+        contentStream.lineTo(width - offsetW,  offsetW + image.getHeight());
+        contentStream.lineTo(offsetW, offsetW + image.getHeight());
+        contentStream.lineTo(offsetW, height - (int)(1.5*offsetH));
+        contentStream.moveTo(offsetW, (height - (int)(1.5*offsetH) - offsetW - image.getHeight())/2 + offsetW + image.getHeight());
+        contentStream.lineTo(width - offsetW, (height - (int)(1.5*offsetH) - offsetW - image.getHeight())/2 + offsetW + image.getHeight());
+        contentStream.stroke();
+        
+        contentStream.moveTo((int) (1.5*offsetW), image.getHeight()/2);
+        contentStream.lineTo((int) (1.5*offsetW) + 150, image.getHeight()/2);
+        contentStream.stroke();
+        
+        contentStream.moveTo(width - (int)(1.5*offsetW), image.getHeight()/2);
+        contentStream.lineTo(width - (int)(1.5*offsetW) - 150, image.getHeight()/2);
+        contentStream.stroke();
+  
+	}
+
+
 }

@@ -24,7 +24,7 @@ public class AppointmentDAOImpl extends GenericDAO<Appointment>{
 	public Appointment read(String key) {
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from Appointment where id = :attribute");
-		query.setParameter("attribute", key);
+		query.setParameter("attribute", Integer.parseInt(key));
 		List<Appointment> appointmentList = query.list();
 		session.close();
 		return (appointmentList.size() > 0) ? appointmentList.get(0) : null;
