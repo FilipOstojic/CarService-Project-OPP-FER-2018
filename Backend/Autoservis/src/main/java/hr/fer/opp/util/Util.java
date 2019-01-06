@@ -26,6 +26,8 @@ import javax.servlet.ServletContext;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
@@ -133,6 +135,14 @@ public class Util {
 		PDPage page = new PDPage();
 		document.addPage(page);
 		
+		PDFont font;
+		try {
+			font = PDType0Font.load(document, ClassLoader.getSystemResourceAsStream("DejaVuSans.ttf"));
+		} catch (IOException e1) {
+			font = PDType1Font.TIMES_ROMAN;
+			e1.printStackTrace();
+		}
+		
 		PDPageContentStream contentStream;
 		try {
 			Path path = Paths.get(ClassLoader.getSystemResource("lse.png").toURI());
@@ -149,13 +159,13 @@ public class Util {
 			contentStream.setLeading(14.5f);
 			
 			contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 30);
+            contentStream.setFont(font, 30);
             contentStream.newLineAtOffset(image.getWidth() + 2*offsetW, (int) (height - image.getHeight()*1.5));
             contentStream.showText(autoservice.getName());
             contentStream.endText();
             
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.HELVETICA, 10);
+            contentStream.setFont(font, 10);
             contentStream.newLineAtOffset(width - 3*offsetW, height - offsetH);
             contentStream.showText(autoservice.getAddress());
             contentStream.newLine();
@@ -169,7 +179,7 @@ public class Util {
             drawRectangle(contentStream, height, width, offsetW, offsetH, image);
             
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 15);
+            contentStream.setFont(font, 15);
             contentStream.newLineAtOffset(offsetW + 20, height - (int)(1.5*offsetH) - 40);
             contentStream.showText("Ovlašteni serviser:");
             contentStream.newLineAtOffset(20, -20);
@@ -190,7 +200,7 @@ public class Util {
             contentStream.endText();
             
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 15);
+            contentStream.setFont(font, 15);
             contentStream.newLineAtOffset(offsetW + 20, (height - (int)(1.5*offsetH) - offsetW - image.getHeight())/2 + offsetW + image.getHeight() - 40);
             contentStream.showText("Vozilo: ");
             contentStream.newLineAtOffset(20, -20);
@@ -211,13 +221,13 @@ public class Util {
             contentStream.endText();
             
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 10);
+            contentStream.setFont(font, 10);
             contentStream.newLineAtOffset((int) (1.5*offsetW), image.getHeight());
             contentStream.showText("Ovlašteni serviser:");
             contentStream.endText();
             
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_ROMAN, 10);
+            contentStream.setFont(font, 10);
             contentStream.newLineAtOffset(width - (int) (1.5*offsetW) - 150, image.getHeight());
             contentStream.showText("Klijent:");
             contentStream.endText();

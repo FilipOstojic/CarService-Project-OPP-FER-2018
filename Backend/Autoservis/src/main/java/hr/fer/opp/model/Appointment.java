@@ -27,7 +27,7 @@ public class Appointment {
 	private Date date;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dateOfApply", nullable = false)
+	@Column(name = "dateOfApply")
 	private Date dateOfApply;
 	
 	@OneToOne(fetch = FetchType.EAGER)

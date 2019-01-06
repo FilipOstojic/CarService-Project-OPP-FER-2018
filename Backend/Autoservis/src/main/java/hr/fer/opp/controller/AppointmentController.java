@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.Appointment;
+import hr.fer.opp.model.ServiceVehicle;
 import hr.fer.opp.service.AppointmentService;
 import hr.fer.opp.service.AutoserviceService;
+import hr.fer.opp.service.ServiceVehicleService;
 import hr.fer.opp.util.Util;
 
 @RestController
@@ -35,6 +37,9 @@ public class AppointmentController {
 	
 	@Autowired
 	private AutoserviceService autoserviceService;
+	
+	@Autowired
+	private ServiceVehicleService serviceVehicleService;
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments() {
@@ -109,6 +114,29 @@ public class AppointmentController {
 			appointmentService.deleteRecord(appointment);
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 		} catch (Exception e) {
+			return new ResponseEntity<Appointment>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value = "/appointment/finalize/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Appointment> finalizeAppointment(@PathVariable("id") String id) {
+		try {
+			Appointment appointment = appointmentService.showRecord(Integer.valueOf(id));
+			if (appointment.isRepVehicle()) {
+				List<ServiceVehicle> vehicles = serviceVehicleService.listAll();
+				for (ServiceVehicle v : vehicles) {
+					if (v.getRentedTo() == null) {
+						v.setRentedTo(appointment.getVehicle().getOwner());
+						serviceVehicleService.updateRecord(v);
+						break;
+					}
+				}
+			}
+			appointmentService.deleteRecord(appointment);
+			return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<Appointment>(HttpStatus.BAD_REQUEST);
 		}
 	}
