@@ -19,7 +19,7 @@ import hr.fer.opp.service.UserVehicleService;
 @RestController
 @CrossOrigin("*")
 public class UserVehicleController {
-	
+
 	@Autowired
 	private UserVehicleService userVehicleService;
 
@@ -32,7 +32,7 @@ public class UserVehicleController {
 			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@RequestMapping(value = "/userVehicle/{email}", method = RequestMethod.GET)
 	public ResponseEntity<List<UserVehicle>> listVehiclesFromUser(@PathVariable("email") String userEmail) {
 		List<UserVehicle> list = userVehicleService.listAllFromUser(userEmail);
@@ -58,10 +58,12 @@ public class UserVehicleController {
 	@ResponseBody
 	public ResponseEntity<UserVehicle> updateUserVehicle(@RequestBody UserVehicle vehicle) {
 		try {
+			if (!UserVehicle.isValidStatus(vehicle.getVehicleStatus())) {
+				throw new IllegalArgumentException("Illegal vehicle status");
+			}
 			userVehicleService.updateRecord(vehicle);
 			return new ResponseEntity<UserVehicle>(vehicle, HttpStatus.OK);
 		} catch (Exception e) {
-			System.err.println(e.getLocalizedMessage());
 			return new ResponseEntity<UserVehicle>(vehicle, HttpStatus.BAD_REQUEST);
 		}
 	}
