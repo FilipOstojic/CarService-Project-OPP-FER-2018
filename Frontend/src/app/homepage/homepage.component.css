@@ -1,0 +1,16 @@
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+}
+
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
+
+p{
+    margin: 25px 25px;
+}

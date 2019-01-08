@@ -1,3 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+body{
+    background-image:url("assets/images/img1.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: auto;
+    background-position: center top; 
+}

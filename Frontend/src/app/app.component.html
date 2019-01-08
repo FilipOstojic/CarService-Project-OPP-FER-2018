@@ -1,44 +1,67 @@
-<html>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="#" class="navbar-left"><img src=".././assets/images/Mercedes_Benz_logo.png"></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['pocetna']">Početna</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['usluge']">Usluge</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['about']">O nama</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['serviseri']">Serviseri</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['kontakt']">Kontakt</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['racun']">Račun</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['prijava']">Prijava</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['registracija']">Registracija</a>
                 </li>
-                <li class="nav-item"  [routerLinkActive]="['active']">
+                <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['odjava']">Odjava</a>
                 </li>
             </ul>
         </div>
     </nav>
     <router-outlet></router-outlet>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="row text-center-xs">
+                <div class="col-sm-7">
+                    <div class="footer-stack-copyright">
+                        Autoservis LSE © 2018
+                    </div>
+                </div>
+                <div class="col-sm-5 text-right">
+                    <div class="images">
+                        <a><img src=".././assets/images/facebook_img.png"></a>
+                        <a><img src=".././assets/images/twitter_img.png"></a>
+                        <a><img src=".././assets/images/instagram_img.png"></a>
+                        <a><img src=".././assets/images/linkedin_img.png"></a>
+                        <a><img src=".././assets/images/mail_img.png"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
-</html>
