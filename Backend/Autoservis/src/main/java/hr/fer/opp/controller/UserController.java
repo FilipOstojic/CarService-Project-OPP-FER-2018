@@ -54,9 +54,8 @@ public class UserController {
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> crateModel(@RequestBody User user) {
-		user.setPassword(Util.digestPassword(user.getPassword()));
+		System.out.println(user);
 		boolean created = userService.createRecord(user);
-		
 		if (created) {
 			// sto ako slanje mail ne uspije??
 			if (Util.sendEmail(user, servletContext)) {
@@ -90,5 +89,10 @@ public class UserController {
 		} catch (Exception e) {
 			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping(value = "/user/loggedIn", method = RequestMethod.GET)
+	public ResponseEntity<User>  getLoggedIn() {
+		return new ResponseEntity<User>(userService.currentlyLoggedIn(), HttpStatus.OK);
 	}
 }

@@ -67,4 +67,17 @@ public class ServiceVehicleController {
 			return new ResponseEntity<ServiceVehicle>(HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@RequestMapping(value = "/serviceVehicle/free/{licensePlate}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ServiceVehicle> freeServiceVehicle(@PathVariable("licensePlate") String licensePlate) {
+		try {
+			ServiceVehicle vehicle = serviceVehicleService.showRecord(licensePlate);
+			vehicle.setRentedTo(null);
+			serviceVehicleService.updateRecord(vehicle);
+			return new ResponseEntity<ServiceVehicle>(vehicle, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ServiceVehicle>(HttpStatus.BAD_REQUEST);
+		}
+	}
 }
