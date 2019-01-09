@@ -2,69 +2,61 @@
     <form class="content">
       <h1>Registracija</h1>
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">Ime: </label>
+            <label for="name" class="col-4 control-label text-center">Ime: </label>
             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Unesi svoje ime" />
+            <input type="text" class="col-8 form-control" name="name" id="name" placeholder="Unesi svoje ime" />
           </div>
-        </div>
       </div>
 
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">Prezime: </label>
+            <label for="name" class="col-4 control-label text-center">Prezime: </label>
             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Unesi svoje prezime" />
+            <input type="text" class="col-8 form-control" name="surname" id="surname" placeholder="Unesi svoje prezime" />
           </div>
         </div>
-      </div>
+      
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">E-mail: </label>
+            <label for="name" class="col-4 control-label text-center">E-mail: </label>
             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Unesi svoj e-mail" />
+            <input type="text" class="col-8 form-control" name="email" id="email" placeholder="Unesi svoj e-mail" />
           </div>
-        </div>
+
       </div>
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">Broj telefona: </label>
+            <label for="name" class="col-4 control-label text-center">Broj telefona: </label>
             <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Unesi svoj broj telefona" />
+            <input type="text" class="col-8 form-control" name="cellPhone" id="cellPhone" placeholder="Unesi svoj broj telefona" />
           </div>
         </div>
-      </div>
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">Lozinka: </label>
+            <label for="name" class="col-4 control-label text-center">Lozinka: </label>
             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="form-control" name="name" id="name" placeholder="Unesi svoju lozinku" />
+            <input type="password" class="col-8 form-control" name="password" id="password" placeholder="Unesi svoju lozinku" />
           </div>
-        </div>
+        
       </div>
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">Potvrdi lozinku: </label>
+            <label for="name" class="col-4 control-label text-center">Potvrdi lozinku: </label>
             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="form-control" name="name" id="name" placeholder="Potvrdi svoju lozinku" />
+            <input type="password" class="col-8 form-control" name="confPass" id="confPass" placeholder="Potvrdi svoju lozinku" />
           </div>
         </div>
-      </div>
       <div class="form-group">
-        <div class="cols-sm-10">
           <div class="input-group">
-            <label for="name" class="cols-sm-2 control-label">OIB: </label>
+            <label for="name" class="col-4 control-label text-center">OIB: </label>
             <span class="input-group-addon"><i class="fa fa-id-card fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Unesi svoj OIB" />
+            <input type="text" class="col-8 form-control" name="oib" id="oib" placeholder="Unesi svoj OIB" />
           </div>
-        </div>
       </div>
+      <div class="txt text-center">
+          <a class="nav-link" [routerLink]="['/prijava']">Već imate račun?</a>
+        </div>
       <div class="form-group">
         <input class="button" type="submit" value="Registriraj se" style="display: block; margin: 0 auto;">
       </div>

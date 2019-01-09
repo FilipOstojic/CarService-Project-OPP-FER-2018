@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService} from '../data.service'
 
 @Component({
   selector: 'app-mechanics',
@@ -8,19 +7,10 @@ import { DataService} from '../data.service'
 })
 export class MechanicsComponent implements OnInit {
 
-  
-  
-  data: DataService;
 
-  constructor(private dataService: DataService) {
-      this.data = dataService;
-   }
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
-  getMechanics() {
-      return this.data.getMechanics();
-  }
-
 }

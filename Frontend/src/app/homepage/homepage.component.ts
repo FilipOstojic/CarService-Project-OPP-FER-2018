@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-homepage',
@@ -9,17 +8,12 @@ import { DataService } from '../data.service';
 
 export class HomepageComponent implements OnInit {
 
-  data: DataService;
 
-  constructor(private dataService: DataService) {
-      this.data = dataService;
+  constructor() {
    }
 
   ngOnInit() {
   }
 
-  getUserType() {
-      return this.data.getUser().type;
-  }
 
 }
