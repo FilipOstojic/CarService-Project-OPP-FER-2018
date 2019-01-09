@@ -10,7 +10,7 @@ import hr.fer.opp.model.User;
 
 @Component
 public class UserDAOImpl extends GenericDAO<User> {
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> read() {

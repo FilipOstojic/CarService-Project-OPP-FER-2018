@@ -63,7 +63,7 @@ public class Util {
 			// ovdje ce biti problema, bezz http nije prepoznavao kao link
 			// s localhost se u mailu uopce ne prikazuje kao link...
 			StringBuilder sb = new StringBuilder("localhost:8080");
-			sb.append(servletContext.getContextPath()).append("/user/invitation/");
+			sb.append(servletContext.getRealPath("/")).append("user/invitation/");
 			sb.append(email);
 			
 			String text = String.format("<h2>Dear %s, please confirm your email address</h2>"
