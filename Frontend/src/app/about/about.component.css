@@ -1,16 +1,28 @@
-.content {
-    margin: 60px 0px;
-    margin-right: 10%;
-    margin-left: 10%;
-    display: inline-block;
-    display: -moz-inline-box;
-    *display: inline; /* For IE7 */
-    zoom: 1; /* Trigger hasLayout */
-    width: 80%;
-    border: none;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    height: 1200px;
-    background-color: #ffffff;
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+    .content {
+        margin: 20px 0;
     }
-    
+    .h1{
+        margin: 10px 10px;
+        color: #000;
+        font-size: 30px;
+    }
+}
+
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
+
+p{
+    margin: 10px 25px;
+    font-size: 17px;
+}

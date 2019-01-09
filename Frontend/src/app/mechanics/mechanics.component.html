@@ -1,14 +1,12 @@
-<div class="content">   
-   <body>
-        <h1>SERVISERI</h1>
+<div class="container">
+    <div class="content">
+        <h1>Serviseri</h1>
         <ul id="serviseri">
             <li *ngFor="let mechanic of getMechanics()">
-                <ul>
-                    <li id="mechanicFullName">{{mechanic.name}} {{mechanic.surname}}</li>
-                    <li id="mechanicMail">{{mechanic.email}}</li>
-                    <li id="mechanicContact">{{mechanic.mobile}}</li>
-                </ul>
+                {{mechanic.name}} {{mechanic.surname}}
+                {{mechanic.email}}
+                {{mechanic.mobile}}
             </li>
         </ul>
-    </body>
+    </div>
 </div>

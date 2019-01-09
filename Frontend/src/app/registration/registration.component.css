@@ -1,15 +1,19 @@
-* {
-    box-sizing: border-box;
+.content{
+    margin: auto;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+    max-width: 600px;
 }
 
-body{
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
 
-    height: 100vh;
-    background-repeat: no-repeat;
-    background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
-    font-family: 'Oxygen', sans-serif;
-    background-size: cover;
-  
+p{
+    margin: 25px 25px;
 }
 
 
