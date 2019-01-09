@@ -1,59 +1,16 @@
-h1 {
-    text-align: left;
-    color: black;
-    size: 12vh;
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
 }
 
-
-#serviseri {
-    box-sizing: border-box;
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
 }
 
-#mechanicFullName {
-    font-weight: bold;
-    margin-left: 5%;
-}
-
-#mechanicContact {
-    margin-left: 8%;
-}
-
-#mechanicMail {
-    margin-left: 8%;
-}
-
-ul {
-    list-style-type: none;
-}
-
-serviseri ul li{
-    color: black;
-} 
-
-.content {
-    margin-left: 5%;
-    border: none;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 90%;
-    height: 425px;
-    overflow: scroll;
-    background-color: #f3f3f3;
-    }
-    
-/* Scrollbar styles */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px olivedrab;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-border-radius: 10px;
-    background: yellowgreen; 
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+p{
+    margin: 25px 25px;
 }

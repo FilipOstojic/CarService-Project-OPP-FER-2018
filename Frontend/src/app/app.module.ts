@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthServiceService } from './auth-service.service';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core'; 
 
 @NgModule({
   declarations: [
@@ -23,12 +25,17 @@ import { AuthServiceService } from './auth-service.service';
     MechanicsComponent,
     LoginComponent,
     RegistrationComponent,
-    LogoutComponent
+    LogoutComponent,
+    MapComponent
   ],
   imports: [
     NgbModule.forRoot(), 
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      //za generiranje kljuca: https://cloud.google.com/maps-platform/
+      apiKey: 'KEY'
+    })
   ],
   providers: [AuthServiceService],
   bootstrap: [AppComponent]

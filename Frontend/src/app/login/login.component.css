@@ -1,50 +1,51 @@
-body{
-
-    background-color: rgb(73, 143, 190);
-    text-align: center;
-    border: 20px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    width: 60%;
-    margin:auto;
+.container{
     margin-top: 50px;
-    color: black;
 }
 
-.header{
-
-    color: black;
-    font: arial;
-    font-size: 150%;
-    font-weight: bold;
-    
+.content{
+    text-align: center;
+    width: 50%;
+    margin:auto;
+    padding-top: 10px;
+    padding-bottom: 20px; 
+    color: black;   
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
 }
 
-.my-form{
-
-    padding: 20px; 
-}
-
-.my-form label{
-
+.profile-img-card {
+    width: 25%;
+    height: 25%;
+    margin: 20px auto 20px;
     display: block;
+    border-radius: 50%;
 }
 
-.my-form input[type="text"]{
 
-    padding: 8px;
-    width: 20%;
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+    height: 40%;
+    font-size: 16px;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 15px;
 }
 
-.form-group{
 
-    padding: 15px;
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 40%;
+    display: block;
+    margin-bottom: 10px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.button{
-
-    background-color: black;
-    color: white;
-    padding: 10px 15px;
-    border: none;
+.form-control{
+    width: 50%;
 }
+
