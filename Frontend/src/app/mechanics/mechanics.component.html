@@ -1,12 +1,17 @@
 <div class="container">
     <div class="content">
         <h1>Serviseri</h1>
-        <ul id="serviseri">
-            <li *ngFor="let mechanic of getMechanics()">
-                {{mechanic.name}} {{mechanic.surname}}
-                {{mechanic.email}}
-                {{mechanic.mobile}}
-            </li>
-        </ul>
+        <div class="row ">
+            <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechanics">
+                <div class="column-photo">
+                    <img src=".././assets/images/{{mechanic.name}}.jpeg" height="100" width="100">
+                </div>
+                <div class="column">
+                    <div>{{mechanic.name}} {{mechanic.surname}}</div>
+                    <div>{{mechanic.email}}</div>
+                    <div>{{mechanic.mobile}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

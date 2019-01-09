@@ -11,6 +11,27 @@ h1{
     font-size: 40px;
 }
 
+.column-photo{
+    float: left;
+    width: 30%;
+    height: 90%;
+    padding: 10px 20px;
+    margin-left: 5;
+    margin-top: 5;
+}
+
+img{
+    border-radius: 50%;
+}
+
+.column{
+    float: left;
+    width: 70%;
+    padding: 15px 30px;
+    font-size: 80%;
+    text-align: left; 
+}
+
 p{
     margin: 25px 25px;
 }
