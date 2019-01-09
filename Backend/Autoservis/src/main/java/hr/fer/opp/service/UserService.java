@@ -29,6 +29,10 @@ public class UserService implements UserDetailsService {
 		return dao.read();
 	}
 	
+	public List<User> listMechs() {
+		return dao.readByRole("MECH");
+	}
+	
 	private boolean exists(User user) {
 		List<User> list = dao.read();
 		return list.contains(user);

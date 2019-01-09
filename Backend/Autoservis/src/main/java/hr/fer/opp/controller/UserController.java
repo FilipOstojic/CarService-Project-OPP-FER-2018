@@ -30,8 +30,18 @@ public class UserController {
 	private ServletContext servletContext;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> listModels() {
+	public ResponseEntity<List<User>> listUsers() {
 		List<User> list = userService.listAll();
+		if (list != null) {
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/user/mech", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> listMechs() {
+		List<User> list = userService.listMechs();
 		if (list != null) {
 			return new ResponseEntity<>(list, HttpStatus.OK);
 		} else {

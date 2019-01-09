@@ -32,6 +32,10 @@ public abstract class GenericDAO<T> {
 		return null;
 	}
 	
+	public List<T> readByRole(String role) {
+		return null;
+	}
+	
 	public List<T> readByEmail(String email) {
 		return null;
 	}

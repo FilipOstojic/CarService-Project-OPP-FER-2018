@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
+import hr.fer.opp.model.Role;
 import hr.fer.opp.model.User;
 
 @Component
@@ -32,5 +33,26 @@ public class UserDAOImpl extends GenericDAO<User> {
 		List<User> userList = query.list();
 		session.close();
 		return userList.isEmpty() ? null : userList.get(0);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<User> readByRole(String roleName) {
+		Session session = sessionFactory.openSession();
+
+		Query query = session.createQuery("FROM Role WHERE name = :attribute");
+		query.setParameter("attribute", roleName);
+
+		List<Role> roleList = query.list();
+		session.close();
+		Role role = roleList.isEmpty() ? null : roleList.get(0);
+		
+		session = sessionFactory.openSession();
+
+		query = (Query) session.createQuery("from User where role = :attribute");
+		query.setParameter("attribute", role);
+
+		List<User> userList = query.list();
+		session.close();
+		return userList;
 	}
 }

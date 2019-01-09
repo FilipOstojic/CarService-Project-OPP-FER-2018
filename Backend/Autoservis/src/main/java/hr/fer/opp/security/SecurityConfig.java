@@ -47,10 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			  .disable()
 			    .authorizeRequests()
-			      .antMatchers("/role/**").hasRole("ADMIN")
-			      .antMatchers("/model/**").hasRole("ADMIN")
+//			      .antMatchers("/role/**").hasRole("ADMIN")
+//			      .antMatchers("/model/**").hasRole("ADMIN")
 			      .antMatchers("/autoservice/**").hasRole("ADMIN")
-			      .antMatchers("/service/**").hasRole("ADMIN")
 			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
 			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
 			      .antMatchers("/userVehicle/**").hasAnyRole("ADMIN", "USER")
@@ -73,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// pretpostavljam da je ovako lakše s angularom radi
 	}
 	
-//	@Override
+//	@Overridefalse
 //	public void configure(WebSecurity web) throws Exception {
 //	   web.ignoring().antMatchers("/login");
 //	}
