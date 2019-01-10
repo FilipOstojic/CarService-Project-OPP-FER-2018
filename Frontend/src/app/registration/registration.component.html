@@ -1,64 +1,64 @@
 <div class="container">
-    <form class="content">
-      <h1>Registracija</h1>
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">Ime: </label>
-            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="col-8 form-control" name="name" id="name" placeholder="Unesi svoje ime" />
-          </div>
-      </div>
-
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">Prezime: </label>
-            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="col-8 form-control" name="surname" id="surname" placeholder="Unesi svoje prezime" />
-          </div>
-        </div>
-      
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">E-mail: </label>
-            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-            <input type="text" class="col-8 form-control" name="email" id="email" placeholder="Unesi svoj e-mail" />
-          </div>
-
-      </div>
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">Broj telefona: </label>
-            <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-            <input type="text" class="col-8 form-control" name="cellPhone" id="cellPhone" placeholder="Unesi svoj broj telefona" />
-          </div>
-        </div>
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">Lozinka: </label>
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="col-8 form-control" name="password" id="password" placeholder="Unesi svoju lozinku" />
-          </div>
-        
-      </div>
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">Potvrdi lozinku: </label>
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="col-8 form-control" name="confPass" id="confPass" placeholder="Potvrdi svoju lozinku" />
-          </div>
-        </div>
-      <div class="form-group">
-          <div class="input-group">
-            <label for="name" class="col-4 control-label text-center">OIB: </label>
-            <span class="input-group-addon"><i class="fa fa-id-card fa" aria-hidden="true"></i></span>
-            <input type="text" class="col-8 form-control" name="oib" id="oib" placeholder="Unesi svoj OIB" />
-          </div>
-      </div>
-    </form>
-    <div class="txt text-center">
-        <a class="nav-link" [routerLink]="['/prijava']">Već imate račun?</a>
-      </div>
+  <form class="content" #form="ngForm">
+    <h1>Registracija</h1>
     <div class="form-group">
-        <button class="button" (click)="addUser(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value)">Add</button>
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">Ime: </label>
+        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        <input type="text" class="col-8 form-control" name="name" #name placeholder="Unesi svoje ime" />
+      </div>
     </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">Prezime: </label>
+        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+        <input type="text" class="col-8 form-control" name="surname" #surname placeholder="Unesi svoje prezime" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">E-mail: </label>
+        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+        <input type="text" class="col-8 form-control" name="email" #email placeholder="Unesi svoj e-mail" />
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">Broj telefona: </label>
+        <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+        <input type="text" class="col-8 form-control" name="cellPhone" #cellPhone placeholder="Unesi svoj broj telefona" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">Lozinka: </label>
+        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+        <input type="password" class="col-8 form-control" name="password" #password placeholder="Unesi svoju lozinku" />
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">Potvrdi lozinku: </label>
+        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+        <input type="password" class="col-8 form-control" name="confPass" #confPass placeholder="Potvrdi svoju lozinku" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="name" class="col-4 control-label text-center">OIB: </label>
+        <span class="input-group-addon"><i class="fa fa-id-card fa" aria-hidden="true"></i></span>
+        <input type="text" class="col-8 form-control" name="oib" #oib placeholder="Unesi svoj OIB" />
+      </div>
+    </div>
+    <div class="txt text-center">
+      <a class="nav-link" [routerLink]="['/prijava']">Već imate račun?</a>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="button" (click)="addUser(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value,confPass.value)">Registriraj se</button>      
+    </div>
+  </form>
 </div>

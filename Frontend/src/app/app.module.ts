@@ -15,6 +15,7 @@ import { AuthServiceService } from './auth-service.service';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     NgbModule.forRoot(), 
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({

@@ -1,10 +1,12 @@
 <div class="container">
   <div class="content">
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-    <form class="form-signin">
-      <input type="email" id="inputEmail" class="form-control" placeholder="E-mail addresa">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Lozinka">
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Prijavi se</button>
+    <form class="form-signin" #form="ngForm">
+      <input type="email" #email class="form-control" placeholder="E-mail addresa">
+      <input type="password" #password class="form-control" placeholder="Lozinka">
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="login(email.value,password.value)">
+        Prijavi se
+      </button>
     </form>
   </div>
 </div>
