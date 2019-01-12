@@ -59,7 +59,6 @@ public class LoginLogoutController {
 
 	@GetMapping("/logout")
 	public ResponseEntity<Map<String, Object>> logout(HttpServletRequest request, HttpServletResponse response) {
-		System.err.println("AAAAAAAAAA");
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
 		try {
