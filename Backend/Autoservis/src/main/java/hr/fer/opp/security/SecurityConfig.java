@@ -47,19 +47,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			  .disable()
 			    .authorizeRequests()
-//			      .antMatchers("/role/**").hasRole("ADMIN")
-//			      .antMatchers("/model/**").hasRole("ADMIN")
-			      .antMatchers("/autoservice/**").hasRole("ADMIN")
 			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
 			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
 			      .antMatchers("/userVehicle/**").hasAnyRole("ADMIN", "USER")
 			      .antMatchers("/appointment/**").hasAnyRole("ADMIN", "MECH")
-			      .antMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
+//			      .antMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
 			      // ne znam hoce li ovo biti problem kasnije...
-			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
+//			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
 			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
 			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
-
 			      .and()
 			      	.logout()
 			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
