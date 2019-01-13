@@ -1,6 +1,7 @@
 package hr.fer.opp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import hr.fer.opp.service.UserService;
 
@@ -44,8 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf()
-			  .disable()
+		http.cors().configurationSource(configurationSource())
+				.and().csrf().disable()
 //			    .authorizeRequests()
 //			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
 //			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
@@ -55,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
 //			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
 //			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
-//			      .and()
 			      	.logout()
 			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
 //			      	  	.logoutSuccessUrl("vrati na homepage");
@@ -71,6 +74,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	public void configure(WebSecurity web) throws Exception {
 //	   web.ignoring().antMatchers("/login");
 //	}
+	
+	@Bean
+	public CorsConfigurationSource configurationSource() {
+		  UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		  CorsConfiguration config = new CorsConfiguration();
+		  config.addAllowedOrigin("*");
+		  config.setAllowCredentials(true);
+		  config.addAllowedHeader("*");
+		  config.addAllowedMethod(HttpMethod.POST);
+		  source.registerCorsConfiguration("/logout", config);
+		  return source;
+		}
 	
 	public AuthenticationManager getAuthenticationManager() throws Exception {
 		return super.authenticationManager();
