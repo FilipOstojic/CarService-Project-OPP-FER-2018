@@ -4,6 +4,7 @@
 }
 
 .row {
+    margin-top: -25px;
     width:100%;
     padding: 45px 40px;
 }
@@ -19,41 +20,36 @@
     background-color: #f8f9fa;
     border :2px solid #252525;
     display: inline-block;
- 
+
 }
 
 i{
-
     padding: 25px;
-    color: blue;
-    
+    color: blue;  
 }
 
 .btn-position{
-
     width: 50%;
     margin: auto;
     margin-top: 20px; 
 }
 
 .btn-finish{
-
     width: 50%;
     margin: auto;
     margin-top: 20px;
     float: left;
 }
 
-.content{
-    margin: 50px 0;
+.mechanic-content{
+    margin-top: -100px;
     background-color: #f8f9fa;
     border :2px solid #252525;
     border-radius: 8px;
     min-height: auto;
 }
 
-.content input{
-
+.mehcanic-content input{
     position: absolute;
 }
 
@@ -64,11 +60,8 @@ h1{
 }
 
 .checkbox{
-    
-   
     height: 25px;
-    width: 25px;
-    
+    width: 25px; 
 }
 
 label{
@@ -77,26 +70,29 @@ label{
     font-family: 'Oxygen', sans-serif; 
 }
 
-.form-group{
-
-   margin-bottom: 10px;
-   margin-right: 15px;
-   margin-left: 15px;
-   font-size: 120%;
-  
+.form-content {
+    margin-top: -80px;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+    min-height: auto;
 }
 
-.content input:checked ~ .checkbox{
+.form-content input:checked ~ .checkbox{
 
     background-color: #2196F3;
 }
 
-.form-control{
+.form-group{
+   margin-bottom: 10px;
+   margin-right: 15px;
+   margin-left: 15px;
+   font-size: 120%;
+}
 
+.form-control{
     width: 100%;
-    display: inline-block;
-    
-    
+    display: inline-block; 
 }
 
 .column-photo{
