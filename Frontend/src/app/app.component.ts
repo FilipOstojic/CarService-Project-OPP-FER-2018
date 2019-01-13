@@ -9,14 +9,19 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loggedIn : string;
+  childCurrentValue : string = " ";
 
   constructor(private loginService : LoginService) {
    
   }
 
+  getOutputVal(selected : string){
+    if(selected){
+      this.childCurrentValue = selected;
+    }
+  }
+
   ngOnInit(){
-    this.loggedIn = this.loginService.getUsername();
  }
 
 }

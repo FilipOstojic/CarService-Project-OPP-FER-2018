@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthServiceService} from '../auth-service.service'
+import { LogoutService } from '../logout.service';
 
 @Component({
   template:''
 })
 export class LogoutComponent implements OnInit {
 
-  constructor( private auth: AuthServiceService, private router: Router) {
-
-    this.auth = auth;
-    this.router = router;
+  constructor( private logoutService: LogoutService, private router: Router) {
    }
 
   ngOnInit() {
-    this.auth.logout();
+    console.log("LOGOUT CALLED");
+    this.logoutService.logout();
     this.router.navigate(['pocetna']);
   }
 
