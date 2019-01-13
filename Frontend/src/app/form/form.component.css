@@ -8,25 +8,32 @@
     padding: 45px 40px;
 }
 
-.time-mechanic-button {
+
+.time-all {
     border-radius: 8px;
     width: 500px;
     height: 300px;
     font-size: 150px;
     opacity: 0.93;
     transition: 0.2s;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
     display: inline-block;
  
 }
 
-.time-all-button {
-    border-radius: 8px;
-    width: 500px;
-    height: 300px;
-    font-size: 150px;
-    opacity: 0.93;
-    transition: 0.2s;
-    display: inline-block;
+i{
+
+    padding: 25px;
+    color: blue;
+    
+}
+
+.btn-position{
+
+    width: 50%;
+    margin: auto;
+    margin-top: 20px; 
 }
 
 .time-mechanic-button:hover {
