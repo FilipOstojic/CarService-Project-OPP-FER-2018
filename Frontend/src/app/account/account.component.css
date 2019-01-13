@@ -68,17 +68,13 @@ img.resize {
     width: 30%;
     height: 90%;
     padding: 10px 20px;
-    margin-left: 5;
+    margin-left: 10%;
     margin-top: 5;
-}
-
-img{
-    border-radius: 50%;
 }
 
 .column{
     float: left;
-    width: 70%;
+    width: 60%;
     padding: 15px 30px;
     font-size: 80%;
     text-align: left; 
