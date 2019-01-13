@@ -8,19 +8,19 @@
           <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">Ime</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control-plaintext" id="staticName" value={{user.name}} readonly>
+              <input type="text" class="form-control-plaintext" id="staticName" value={{owner.name}} readonly>
             </div>
           </div>
           <div class="form-group row">
             <label for="staticSurname" class="col-sm-2 col-form-label">Prezime</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control-plaintext" id="staticSurname" value={{user.surname}} readonly>
+              <input type="text" class="form-control-plaintext" id="staticSurname" value={{owner.surname}} readonly>
             </div>
           </div>
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-8">
-              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{user.email}} readonly>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{owner.email}} readonly>
             </div>
           </div>
         </form>
@@ -30,13 +30,13 @@
       <div class="form-group row">
         <label for="staticOib" class="col-sm-2 col-form-label">OIB</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control-plaintext" id="staticOib" value={{user.oib}} readonly>
+          <input type="text" class="form-control-plaintext" id="staticOib" value={{owner.oib}} readonly>
         </div>
       </div>
       <div class="form-group row">
         <label for="staticPhone" class="col-sm-2 col-form-label">Broj telefona</label>
-        <div class="col-sm-2">
-          <input type="text" class="form-control-plaintext" id="staticPhone" value={{user.mobile}}>
+        <div class="col-md-2 .sm-4">
+          <input type="text" class="form-control-plaintext" id="staticPhone" value={{owner.mobile}}>
         </div>
         <i class="fa fa-edit"></i>
       </div>
@@ -49,20 +49,31 @@
       <div class="col">
         <h1>Podatci o autima</h1>
       </div>
-      <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2">Dodaj Auto</button></div>
+      <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showForm()">Dodaj Auto</button></div>
       <div class="w-100"></div>
     </div>
-    <div class="row ">
-        <div class="col-md-6 col-sm-12" *ngFor="let car of cars">
-            <div class="column-photo">
-                <img src="..\assets\images\mercedes-car-icon-512.png" height="100" width="100">
-            </div>
-            <div class="column">
-                <div>{{car.licensePlate}}</div>
-                <div>model: {{car.model}}</div>
-                <div>godina: {{car.year}}</div>
-            </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12" *ngFor="let car of cars">
+        <div class="column-photo">
+          <img src="..\assets\images\mercedes-car-icon-512.png" height="100" width="100">
         </div>
+        <div class="column">
+          <div>{{car.licensePlate}}</div>
+          <div>model: {{car.model}}</div>
+          <div>godina: {{car.year}}</div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="formular" *ngIf="addForm">
+  <form>
+    Registarska oznaka: <br><input #licensePlate type="text" name="licensePlate" value="{{newCar.licensePlate}}" /><br>
+    Model: <br><input #model type="text" name="model" value="{{newCar.model}}" /><br>
+    Godina: <br><input #year type="text" name="year" value="{{newCar.year}}" /><br><br>
+    <!--  <input type="submit" value="Save"/> -->
+    <button class="btn btn-warning" (click)="addCar(licensePlate.value, model.value, year.value)">Save</button>
+    <button class="btn btn-danger" (click)="close()">Odustani</button>
+  </form>
 </div>

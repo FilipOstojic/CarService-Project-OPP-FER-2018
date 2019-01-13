@@ -83,3 +83,22 @@ img.resize {
 .fa.fa-edit {
     margin: 12px 0;
 }
+
+.formular {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    height: 300px;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+    border-radius: 8px;
+  }
+
+  form {
+    padding-left: 10%;
+    padding-top: 10px;
+  }
