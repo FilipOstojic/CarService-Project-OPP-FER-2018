@@ -28,9 +28,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item" [routerLinkActive]="['active']">
-                    <label>{{loggedIn}}</label>
-                </li>
+                <div (childToParent)="getOutputVal($event)">{{childCurrentValue}}</div>
                 <li class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['racun']">Račun</a>
                 </li>

@@ -22,7 +22,7 @@ const routes: Routes = [
     {path: 'rezervacija', component: FormComponent},
     {path: 'prijava', component: LoginComponent},
     {path: 'registracija', component: RegistrationComponent},
-    {path: 'odjava', component: LogoutComponent}
+    {path: 'odjava', component: LogoutComponent},
 ];
 
 @NgModule({
