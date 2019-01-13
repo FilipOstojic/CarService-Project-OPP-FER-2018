@@ -1,16 +1,60 @@
 <div class='container'>
+
+  <!-- Forms for choosing type of appoitment -->
   <div class="row">
     <div class = "col-md-6 text-center">
-      <div class="time-all">
+      <div *ngIf="!clicked" class="time-all">
         <span class="icon"><i class="fa fa-calendar"></i></span>
-        <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit">Odaberi termin</button>
+        <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit" (click)="chooseAppoitment()">Odaberi termin</button>
       </div> 
     </div>
     <div class = "col-md-6 text-center">
-      <div class="time-all">
+      <div *ngIf="!clicked" class="time-all">
         <span class="icon"><i class="fa fa-users"></i></span>
-        <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit">Odaberi servisera</button>  
+        <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit" (click)="showMechanics()">Odaberi servisera</button>  
       </div>
     </div>
   </div>
+
+  <!-- Form for choosing mechanic --> 
+  <div *ngIf="mechanic" class="container">
+    <div class="content">
+        <h1>Serviseri</h1>
+        <div class="row ">
+            <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechanics">
+                <div class="column-photo">
+                    <img src=".././assets/images/{{mechanic.name}}.jpeg" height="100" width="100">
+                </div>
+                <div class="column">
+                    <div>{{mechanic.name}} {{mechanic.surname}}</div>
+                    <div>{{mechanic.email}}</div>
+                    <div>{{mechanic.mobile}}</div>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="chooseAppoitment()" type="submit">Odaberi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Form for appoitment -->
+  <form *ngIf="appointment" class="content">
+    <h1>Prijava vozila</h1>
+    <div class="form-group">
+        <label for="name" class="col-4 control-label text-center">Termin: </label>
+        <select></select>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-4 control-label text-center">Usluge: </label>
+        <select></select>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-4 control-label text-center">Opis problema: </label>
+        <textarea type="text" class="col-8 form-control" name="problem" placeholder="Unesi opis problema..."></textarea>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-4 control-label text-center">Zamjensko vozilo: </label>
+        <input type="checkbox" class="checkbox">
+    </div>
+        <button class="btn btn-lg btn-primary btn-block btn-signin btn-finish" type="submit" (click)="finished()">Zavrsi prijavu</button>   
+  </form>
 </div>
