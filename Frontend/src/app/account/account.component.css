@@ -1,0 +1,89 @@
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+    .content {
+        margin: 20px 0;
+    }
+    .h1{
+        margin: 10px 10px;
+        color: #000;
+        font-size: 30px;
+    }
+}
+
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
+
+p{
+    margin: 10px 25px;
+    font-size: 17px;
+}
+
+.media {
+    margin: 20px 0;
+}
+
+.media #profile-img {
+    margin-left: 15%;
+    border-radius: 50%;
+}
+
+.media .form {
+    position: relative;
+    margin-left: 8%;
+}
+
+.form2 {
+    margin-left: 15%;
+}
+
+.span .addBtn {
+    position: relative;
+    float: right;
+    margin-left: 20%;
+}
+
+#add {
+    margin: 15px 0;
+    float: right;
+    margin-right: 10%;
+}
+
+img.resize {
+    width: 30%; 
+    height: auto;
+}
+
+
+.column-photo{
+    float: left;
+    width: 30%;
+    height: 90%;
+    padding: 10px 20px;
+    margin-left: 5;
+    margin-top: 5;
+}
+
+img{
+    border-radius: 50%;
+}
+
+.column{
+    float: left;
+    width: 70%;
+    padding: 15px 30px;
+    font-size: 80%;
+    text-align: left; 
+}
+
+.fa.fa-edit {
+    margin: 12px 0;
+}

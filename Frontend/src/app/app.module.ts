@@ -16,6 +16,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegistrationComponent,
     LogoutComponent,
-    MapComponent
+    MapComponent,
+    AccountComponent
   ],
   imports: [
     NgbModule.forRoot(), 
