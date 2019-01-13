@@ -1,14 +1,19 @@
 package hr.fer.opp.util;
 
 import java.io.IOException;
-
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -37,6 +42,8 @@ import hr.fer.opp.model.User;
 import hr.fer.opp.model.UserVehicle;
 
 public class Util {
+	
+	public static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", new Locale("hr", "HR"));
 	
 	public static boolean sendEmail(User user, ServletContext servletContext) {
 		Properties props = new Properties();
@@ -88,44 +95,6 @@ public class Util {
 		return true;
 	}
 	
-	private static final int SHIFT = 4;
-	private static final int AND_BITS = 0xf;
-	private static final int ASCII_LOWER = 87;
-	private static final int ASCII_NUMBER = 48;
-	
-	public static String digestPassword(String password) {
-		if (password == null || password.isEmpty()) {
-			return "";
-		}
-		String passDigest = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-1");
-			md.update(password.getBytes());
-			passDigest = bytetohex(md.digest());
-		} catch (NoSuchAlgorithmException e) {
-		}
-		return passDigest;
-	}
-	
-	private static String bytetohex(byte[] hex) {
-		StringBuilder sb = new StringBuilder("");
-		int len = hex.length;
-		for (int i = 0; i < len; i++) {
-			char little = numberToChar(hex[i] & AND_BITS);
-			char big = numberToChar((hex[i] >> SHIFT) & AND_BITS);
-			sb.append(big);
-			sb.append(little);
-		}
-		return sb.toString();
-	}
-	
-	private static char numberToChar(int number) {
-		if (number < 10) {
-			return (char)(number + ASCII_NUMBER);
-		}
-		return (char)(number + ASCII_LOWER);
-	}
-
 	public static PDDocument generatePDF(Appointment appointment, Autoservice autoservice) {
 		UserVehicle vehicle = appointment.getVehicle();
 		User user = vehicle.getOwner();
@@ -309,5 +278,109 @@ public class Util {
 		return true;
 	}
 
+	public static List<String> getAvailableAppointments(List<Appointment> appointments) throws ParseException {
+		List<String> available = new ArrayList<>();
+		
+		Calendar calStart = Calendar.getInstance();
+		calStart.add(Calendar.DAY_OF_MONTH, 1);
+		calStart.set(Calendar.HOUR_OF_DAY, 7);
+		calStart.set(Calendar.MINUTE, 0);
+	    calStart.set(Calendar.SECOND, 0);
+	    
+	    Calendar calEnd = (Calendar) calStart.clone();
+	    
+	    while (true) {
+	    	if (available.size() == 120) {
+				break;
+			}
+			if (ChronoUnit.DAYS.between(calStart.toInstant(), calEnd.toInstant()) > 10) {
+				break;
+			}
+			boolean found = false;
+			for (Appointment a : appointments) {
+				Calendar tmp = Calendar.getInstance();
+				tmp.setTime(a.getDate());
+				if (Util.areEqualDates(calEnd, tmp)) {
+					found = true;
+					continue;
+				}
+			}
+		
+			if (!found) {
+				available.add(SDF.format(calEnd.getTime()));
+			}
+			
+			calEnd.add(Calendar.MINUTE, 20);
+			if (calEnd.get(Calendar.HOUR_OF_DAY) == 10 && calEnd.get(Calendar.MINUTE) == 0) {
+				calEnd.add(Calendar.DAY_OF_MONTH, 1);
+				calEnd.set(Calendar.HOUR_OF_DAY, 7);
+			}
+		}
+	    
+	    return available;
+	}
+
+	private static boolean areEqualDates(Calendar first, Calendar second) {
+		if (first.get(Calendar.YEAR) != second.get(Calendar.YEAR)) {
+			return false;
+		}
+		if (first.get(Calendar.MONTH) != second.get(Calendar.MONTH)) {
+			return false;
+		}
+		if (first.get(Calendar.DAY_OF_YEAR) != second.get(Calendar.DAY_OF_YEAR)) {
+			return false;
+		}
+		if (first.get(Calendar.HOUR_OF_DAY) != second.get(Calendar.HOUR_OF_DAY)) {
+			return false;
+		}
+		if (first.get(Calendar.MINUTE) != second.get(Calendar.MINUTE)) {
+			return false;
+		}
+		if (first.get(Calendar.SECOND) != second.get(Calendar.SECOND)) {
+			return false;
+		}
+		return true;
+	}
+
+	public static Map<String, Integer> getAvailable(List<Appointment> appointments) {
+		Map<String, Integer> available = new LinkedHashMap<>();
+		
+		Calendar calStart = Calendar.getInstance();
+		calStart.add(Calendar.DAY_OF_MONTH, 1);
+		calStart.set(Calendar.HOUR_OF_DAY, 7);
+		calStart.set(Calendar.MINUTE, 0);
+	    calStart.set(Calendar.SECOND, 0);
+	    
+	    Calendar calEnd = (Calendar) calStart.clone();
+	    
+	    while (true) {
+	    	if (available.size() == 120) {
+				break;
+			}
+			if (ChronoUnit.DAYS.between(calStart.toInstant(), calEnd.toInstant()) > 10) {
+				break;
+			}
+			
+			String date = SDF.format(calEnd.getTime());
+			available.put(date, 0);
+	
+			for (Appointment a : appointments) {
+				Calendar tmp = Calendar.getInstance();
+				tmp.setTime(a.getDate());
+				if (Util.areEqualDates(calEnd, tmp)) {
+					Integer value = available.get(date);
+					available.put(date, ++value);
+				}
+			}
+			
+			calEnd.add(Calendar.MINUTE, 20);
+			if (calEnd.get(Calendar.HOUR_OF_DAY) == 10 && calEnd.get(Calendar.MINUTE) == 0) {
+				calEnd.add(Calendar.DAY_OF_MONTH, 1);
+				calEnd.set(Calendar.HOUR_OF_DAY, 7);
+			}
+		}
+	    
+	    return available;
+	}
 
 }

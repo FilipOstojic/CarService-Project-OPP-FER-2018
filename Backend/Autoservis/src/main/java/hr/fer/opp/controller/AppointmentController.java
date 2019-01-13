@@ -1,9 +1,12 @@
 package hr.fer.opp.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +25,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.Appointment;
+import hr.fer.opp.model.Service;
 import hr.fer.opp.model.ServiceVehicle;
+import hr.fer.opp.model.User;
+import hr.fer.opp.model.UserVehicle;
+import hr.fer.opp.model.Vehicle;
 import hr.fer.opp.service.AppointmentService;
 import hr.fer.opp.service.AutoserviceService;
 import hr.fer.opp.service.ServiceVehicleService;
+import hr.fer.opp.service.UserService;
 import hr.fer.opp.util.Util;
 
 @RestController
@@ -40,6 +48,9 @@ public class AppointmentController {
 	
 	@Autowired
 	private ServiceVehicleService serviceVehicleService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments() {
@@ -80,13 +91,51 @@ public class AppointmentController {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(null);
 		}
-
+	}
+	
+	@RequestMapping(value = "/appointment/available", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getAvailableAppointments() {
+		List<String> availableAppointments = new ArrayList<>();
+		Map<String, Integer> numOfApp = Util.getAvailable(appointmentService.listAll());
+		int numOfMechs = userService.listMechs().size();
+		
+		for (String date : numOfApp.keySet()) {
+			if (numOfApp.get(date) < numOfMechs) {
+				availableAppointments.add(date);
+			}
+		}
+	
+		return new ResponseEntity<>(availableAppointments, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/appointment/available/{email}", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getUserAvailableAppointments(@PathVariable("email") String mechEmail) {
+		List<String> availableAppointments;
+		try {
+			availableAppointments = Util.getAvailableAppointments(appointmentService.listAllFromUser(mechEmail));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			availableAppointments = null;
+		}
+		return new ResponseEntity<>(availableAppointments, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<Appointment> crateAppointment(@RequestBody Appointment appointment) {
+	public ResponseEntity<Appointment> crateAppointment(@RequestBody Map<String, String> params) {
+		Appointment appointment = new Appointment();
+		try {
+			appointment.setDate(Util.SDF.parse(params.get("date")));
+		} catch (ParseException e) {
+			return new ResponseEntity<Appointment>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		appointment.setDescription(params.get("description"));
+		appointment.setMechanic(new User(params.get("mechanic")));
+		appointment.setRepVehicle(Boolean.parseBoolean(params.get("repVehicle")));
+		appointment.setService(new Service(Integer.parseInt(params.get("service"))));
+		appointment.setVehicle(new UserVehicle(params.get("vehicle")));
 		appointment.setDateOfApply(new Date());
+	
 		boolean created = appointmentService.createRecord(appointment);
 		if (created) {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);

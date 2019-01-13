@@ -26,6 +26,11 @@ public class Service {
 		this.name = name;
 	}
 
+	public Service(int id) {
+		super();
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

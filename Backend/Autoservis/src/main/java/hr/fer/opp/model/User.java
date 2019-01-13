@@ -79,6 +79,10 @@ public class User {
 		this.role = role;
 	}
 
+	public User(String email) {
+		this.email = email;
+	}
+
 	public String getEmail() {
 		return email;
 	}

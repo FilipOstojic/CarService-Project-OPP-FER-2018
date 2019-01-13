@@ -15,9 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.security.SecurityConfig;
@@ -32,7 +32,7 @@ public class LoginLogoutController {
 	private static final String KEY_ERROR = "ERROR";
 	private static final String KEY_STATUS = "STATUS";
 
-	@PostMapping("/login")
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> params,
 			HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> result = new HashMap<>();
@@ -57,8 +57,9 @@ public class LoginLogoutController {
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 
-	@GetMapping("/logout")
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> logout(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Ovo nije moja ideja");
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
 		try {

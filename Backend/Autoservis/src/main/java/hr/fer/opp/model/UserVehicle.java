@@ -30,6 +30,10 @@ public class UserVehicle extends Vehicle {
 		this.owner = owner;
 	}
 
+	public UserVehicle(String licensePlate) {
+		super(licensePlate, null, null);
+	}
+	
 	public User getOwner() {
 		return owner;
 	}

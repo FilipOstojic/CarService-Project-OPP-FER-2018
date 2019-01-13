@@ -44,19 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf()
+		http.cors().and().csrf()
 			  .disable()
-			    .authorizeRequests()
-			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
-			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
-			      .antMatchers("/userVehicle/**").hasAnyRole("ADMIN", "USER")
-			      .antMatchers("/appointment/**").hasAnyRole("ADMIN", "MECH")
+//			    .authorizeRequests()
+//			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
+//			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
+//			      .antMatchers("/userVehicle/**").hasAnyRole("ADMIN", "USER")
 //			      .antMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
-			      // ne znam hoce li ovo biti problem kasnije...
+//			      // ne znam hoce li ovo biti problem kasnije...
 //			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
-			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
-			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
-			      .and()
+//			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
+//			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
+//			      .and()
 			      	.logout()
 			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
 //			      	  	.logoutSuccessUrl("vrati na homepage");
