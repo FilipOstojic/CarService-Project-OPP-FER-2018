@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.User;
+import hr.fer.opp.service.RoleService;
 import hr.fer.opp.service.UserService;
 import hr.fer.opp.util.Util;
 
@@ -28,6 +29,9 @@ public class UserController {
 
 	@Autowired
 	private ServletContext servletContext;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listUsers() {
@@ -61,10 +65,10 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	@RequestMapping(value = "/user/createUser", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity<User> crateModel(@RequestBody User user) {
-		System.out.println(user);
+	public ResponseEntity<User> crateUser(@RequestBody User user) {
+		user.setRole(roleService.showRecordByName("USER"));
 		boolean created = userService.createRecord(user);
 		if (created) {
 			// sto ako slanje mail ne uspije??
@@ -72,6 +76,36 @@ public class UserController {
 				System.out.println("Poslano");
 			}
 			
+			return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/user/createMech", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<User> crateMech(@RequestBody User user) {
+		user.setRole(roleService.showRecordByName("MECH"));
+		boolean created = userService.createRecord(user);
+		if (created) {
+			// sto ako slanje mail ne uspije??
+			if (Util.sendEmail(user, servletContext)) {
+				System.out.println("Poslano");
+			}
+			
+			return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/user/createAdmin", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<User> crateAdmin(@RequestBody User user) {
+		user.setRole(roleService.showRecordByName("ADMIN"));
+		boolean created = userService.createRecord(user);
+		if (created) {
+			Util.sendEmail(user, servletContext);
 			return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);

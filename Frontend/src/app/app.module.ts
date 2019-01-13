@@ -16,7 +16,8 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AccountComponent } from './account/account.component';
+import { FormComponent } from './form/form.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AccountComponent } from './account/account.component';
     RegistrationComponent,
     LogoutComponent,
     MapComponent,
-    AccountComponent
+    FormComponent
   ],
   imports: [
     NgbModule.forRoot(), 

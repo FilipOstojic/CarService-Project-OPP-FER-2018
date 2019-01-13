@@ -170,4 +170,9 @@ public class Appointment {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return id + " " + date + " " + dateOfApply + " " + mechanic + " " + vehicle.getLicensePlate() + " " + service.getName();
+	}
 }
