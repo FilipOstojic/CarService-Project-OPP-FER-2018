@@ -382,5 +382,20 @@ public class Util {
 	    
 	    return available;
 	}
-
+	
+	public static boolean isMechFree(Date date, List<Appointment> appointments) {
+		boolean found = false;
+		for (Appointment a : appointments) {
+			Calendar first = Calendar.getInstance();
+			first.setTime(date);
+			Calendar second = Calendar.getInstance();
+			second.setTime(a.getDate());
+			if (Util.areEqualDates(first, second)) {
+				found = true;
+				break;
+			}
+		}
+		return !found;
+	}
+	
 }

@@ -17,12 +17,12 @@ export class LogoutService {
   name : string = "";
   user : User;
 
-  private logoutURL = 'http://192.168.1.9:8080/loggout';
-  private logedIn = 'http://192.168.1.9:8080/user/loggedIn'
+  private logoutURL = 'http://192.168.93.1:8080/logout';
+  private logedIn = 'http://192.168.93.1:8080/user/loggedIn'
 
-  logout(){
+  logout() : Observable<any>{
     console.log("logout service called");
-    return this.http.get(this.logoutURL,httpOptions)
+    return this.http.post(this.logoutURL,httpOptions)
     .pipe(
       tap(_ => {
         console.log('loged out');

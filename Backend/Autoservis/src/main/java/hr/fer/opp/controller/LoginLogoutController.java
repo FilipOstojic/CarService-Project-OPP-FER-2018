@@ -57,9 +57,29 @@ public class LoginLogoutController {
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> logout(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Ovo nije moja ideja");
+		System.err.println("EEJOOOOS");
+		Map<String, Object> result = new HashMap<String, Object>();
+		HttpStatus status = HttpStatus.OK;
+		try {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if (auth != null) {
+				new SecurityContextLogoutHandler().logout(request, response, auth);
+			}
+			status = HttpStatus.OK;
+		} catch (Exception e) {
+			status = HttpStatus.BAD_REQUEST;
+			result.put(KEY_ERROR, e.getMessage());
+		}
+
+		result.put(KEY_STATUS, status);
+		return new ResponseEntity<Map<String, Object>>(result, status);
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> logoutGet(HttpServletRequest request, HttpServletResponse response) {
+		System.err.println("EEJOOOOS");
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
 		try {

@@ -9,6 +9,13 @@
     padding: 45px 40px;
 }
 
+.termin{
+    width: 500px;
+}
+
+.termin select{
+    width: 500px;
+}
 
 .time-all {
     border-radius: 8px;

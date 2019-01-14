@@ -14,7 +14,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private servicesURL = 'http://192.168.1.9:8080/service';
+  private servicesURL = 'http://192.168.93.1:8080/service';
 
   getServices(): Observable<Service[]> {
     return this.http.get<Service[]>(this.servicesURL)

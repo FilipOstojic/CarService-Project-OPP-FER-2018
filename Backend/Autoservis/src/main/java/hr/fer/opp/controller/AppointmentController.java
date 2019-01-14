@@ -29,7 +29,6 @@ import hr.fer.opp.model.Service;
 import hr.fer.opp.model.ServiceVehicle;
 import hr.fer.opp.model.User;
 import hr.fer.opp.model.UserVehicle;
-import hr.fer.opp.model.Vehicle;
 import hr.fer.opp.service.AppointmentService;
 import hr.fer.opp.service.AutoserviceService;
 import hr.fer.opp.service.ServiceVehicleService;
@@ -124,18 +123,34 @@ public class AppointmentController {
 	@ResponseBody
 	public ResponseEntity<Appointment> crateAppointment(@RequestBody Map<String, String> params) {
 		Appointment appointment = new Appointment();
+		Date date;
 		try {
-			appointment.setDate(Util.SDF.parse(params.get("date")));
+			date = Util.SDF.parse(params.get("date"));
+			appointment.setDate(date);
 		} catch (ParseException e) {
 			return new ResponseEntity<Appointment>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		appointment.setDescription(params.get("description"));
-		appointment.setMechanic(new User(params.get("mechanic")));
 		appointment.setRepVehicle(Boolean.parseBoolean(params.get("repVehicle")));
 		appointment.setService(new Service(Integer.parseInt(params.get("service"))));
 		appointment.setVehicle(new UserVehicle(params.get("vehicle")));
 		appointment.setDateOfApply(new Date());
-	
+		
+		String mechanicEmail = params.get("mechanic");
+		if (mechanicEmail == null || mechanicEmail.equals("null")) {
+			for (User mech : userService.listMechs()) {
+				if (Util.isMechFree(date, appointmentService.listAllFromUser(mech.getEmail()))) {
+					mechanicEmail = mech.getEmail();
+					break;
+				}
+			}
+		}
+		
+		if (mechanicEmail == null) {
+			return new ResponseEntity<Appointment>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		appointment.setMechanic(new User(mechanicEmail));
+		
 		boolean created = appointmentService.createRecord(appointment);
 		if (created) {
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.CREATED);
