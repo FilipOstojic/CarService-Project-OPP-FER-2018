@@ -16,9 +16,9 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   name : string = "";
 
-  private loginURL = 'http://192.168.1.9:8080/login';
+  private loginURL = 'http://192.168.29.1:8080/login';
 
-  private loggedInURL = 'http://192.168.1.9:8080/user/loggedIn';
+  private loggedInURL = 'http://192.168.29.1:8080/user/loggedIn';
 
   login(username:string,password:string) :  Observable<any>{
     console.log("LOGIN CALLED");

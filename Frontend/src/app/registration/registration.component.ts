@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   addUser(name: string, surname: string, email: string, oib: string, mobile: string, password: string, confPass: string): void {
-    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password };
+    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, cars: null};
     var result: Observable<User> = this.registerService.addUser(user);
     if (user.password === confPass) {
       result.subscribe((prod) => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Car } from "../car";
 import { CarService } from '../car.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-account',
@@ -12,20 +13,19 @@ export class AccountComponent implements OnInit {
   owner: User;
   cars: Car[] = [];
   addForm: boolean = false;
-  newCar: Car = null;
+  newCar: Car = {licensePlate:"", model:"", year:""};
 
   constructor(
-    private carService: CarService
+    private carService: CarService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
-    this.owner = { name:"Ivo", surname:"Ivić", email:"ivic.ivo@gmail.com", mobile:"09566442251", oib:"12345678910", password:"454"}
-
-    this.cars = [ {licensePlate:"ZG5959OP", model: "GLA", year: "2017" },
-                  {licensePlate:"ZG5129KL", model: "SLS", year: "2014" },
-                  {licensePlate:"ZD4559MN", model: "G", year: "2018" }
-    ];
-    
+    /** this.loginService.getLoggedIn().subscribe((value) => {
+      this.owner = value;
+    }); */
+    this.owner = {email:"njn", name:"jjn", surname:"mkk", mobile:"8845", oib:"877", password:"88", cars:null};
+    this.cars = this.owner.cars;
   }
 
   showForm() {
@@ -37,8 +37,10 @@ export class AccountComponent implements OnInit {
   }
 
   addCar(licensePlate: string, model: string, year: string) {
-    this.newCar =  new Car(licensePlate, model, year);
-    this.carService.addCar(this.newCar).subscribe( car => {
+    console.log(licensePlate +" " + model + " " +year )
+    this.newCar = new Car(licensePlate, model, year);
+    console.log(this.newCar.licensePlate);
+    this.carService.addCar(this.newCar).subscribe(car => {
       console.log(car);
       this.getCars();
     });
@@ -46,7 +48,10 @@ export class AccountComponent implements OnInit {
   }
 
   getCars() {
-    window.location.reload();
+    console.log("get cars");
+    this.carService.getCars().subscribe(cars => {
+      this.cars = cars;
+    });
   }
 
 }

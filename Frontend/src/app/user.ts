@@ -1,3 +1,5 @@
+import { Car } from './car';
+
 export class User {
     name: string;
     surname : string;
@@ -5,4 +7,5 @@ export class User {
     mobile : string;
     oib : string;
     password : string;
+    cars: Car[];
 }
