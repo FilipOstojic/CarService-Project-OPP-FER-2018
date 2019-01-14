@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user';
-import { AppComponent } from './app.component';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,9 +15,9 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   name : string = "";
 
-  private loginURL = 'http://192.168.1.9:8080/login';
+  private loginURL = 'http://192.168.93.1:8080/login';
 
-  private loggedInURL = 'http://192.168.1.9:8080/user/loggedIn';
+  private loggedInURL = 'http://192.168.93.1:8080/user/loggedIn';
 
   login(username:string,password:string) :  Observable<any>{
     console.log("LOGIN CALLED");

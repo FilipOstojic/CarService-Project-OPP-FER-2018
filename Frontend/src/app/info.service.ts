@@ -14,7 +14,7 @@ export class InfoService {
 
   constructor(private http: HttpClient) { }
 
-  private infoURL = 'http://192.168.1.9:8080/autoservice';
+  private infoURL = 'http://192.168.93.1:8080/autoservice';
 
   
   getInfo(): Observable<Info> {

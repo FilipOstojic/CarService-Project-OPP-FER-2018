@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthServiceService} from '../auth-service.service'
 import { LogoutService } from '../logout.service';
+import { Observable } from 'rxjs';
 
 @Component({
   template:''
@@ -13,8 +14,19 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     console.log("LOGOUT CALLED");
-    this.logoutService.logout();
-    this.router.navigate(['pocetna']);
+    this.logout();
+  }
+
+  logout(){
+    var result: Observable<any> = this.logoutService.logout();
+    result.subscribe((ccc) => {
+      console.log("LOGOUT DONE");
+      this.router.navigate(['/pocetna']);
+    },
+      error => {
+        console.log("ERROR OCCURED")
+      }
+    );
   }
 
 }

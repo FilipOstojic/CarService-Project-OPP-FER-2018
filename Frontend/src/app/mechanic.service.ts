@@ -10,7 +10,7 @@ export class MechanicService {
 
   constructor(private http: HttpClient) { }
 
-  private mechanicsURL = 'http://192.168.1.9:8080/user/mech';
+  private mechanicsURL = 'http://192.168.93.1:8080/user/mech';
 
   getMechanics(): Observable<Mechanic[]> {
     return this.http.get<Mechanic[]>(this.mechanicsURL);

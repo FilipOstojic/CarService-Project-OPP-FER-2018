@@ -50,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().configurationSource(configurationSource())
 				.and().csrf().disable()
+			    .authorizeRequests()
+			    .antMatchers("**").permitAll()
+			    
+			    .and().logout().disable();
 //			    .authorizeRequests()
 //			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
 //			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
@@ -59,8 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
 //			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
 //			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
-			      	.logout()
-			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
+//			      	.logout()
+//			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
 //			      	  	.logoutSuccessUrl("vrati na homepage");
 						
 		// .and().httpBasic();
@@ -82,7 +86,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  config.addAllowedOrigin("*");
 		  config.setAllowCredentials(true);
 		  config.addAllowedHeader("*");
+		  config.addAllowedMethod(HttpMethod.GET);
 		  config.addAllowedMethod(HttpMethod.POST);
+		  config.addAllowedMethod(HttpMethod.PUT);
+		  config.addAllowedMethod(HttpMethod.DELETE);
+		  config.addAllowedMethod(HttpMethod.OPTIONS);
 		  source.registerCorsConfiguration("/logout", config);
 		  return source;
 		}
