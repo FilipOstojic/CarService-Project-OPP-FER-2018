@@ -53,12 +53,18 @@
 
 <div class="formular" *ngIf="addForm">
   <form>
-    Registarska oznaka: <br><input #licensePlate type="text" name="licensePlate" value="{{newCar.licensePlate}}" /><br>
-    Model: <br><input #model type="text" name="model" value="{{newCar.model}}" /><br>
-    Godina: <br><input #year type="text" name="year" value="{{newCar.year}}" /><br><br>
+    <div>Registarska oznaka:</div>
+    <input #licensePlate type="text" name="licensePlate" />
+    <div>Model</div> 
+    <select #model name="model" id="model">
+        <option *ngFor="let model of models">
+            {{model.name}}
+        </option>
+    </select>
+    <div>Godina</div>
+    <input #year type="text" name="year" /><br><br>
     <!--  <input type="submit" value="Save"/> -->
-    <button class="btn btn-warning" (click)="addCar(licensePlate.value, model.value, year.value)">Save</button>
-    <button class="btn btn-danger" (click)="close()">Odustani</button>
+    <button class="btn btn-outline-dark" (click)="addCar(licensePlate.value, model.value, year.value)">Save</button>
+    <button class="btn btn-outline-dark" (click)="close()">Odustani</button>
   </form>
->>>>>>> 4d08fca2fb222e468c809f44a8a28f5617dc811e
 </div>

@@ -1,9 +1,10 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Car } from "../car";
 import { CarService } from '../car.service';
 import { LoginService } from '../login.service';
+import { Model } from '../model';
+import { ModelService } from '../model.service';
 
 @Component({
   selector: 'app-account',
@@ -13,20 +14,26 @@ import { LoginService } from '../login.service';
 export class AccountComponent implements OnInit {
   owner: User;
   cars: Car[] = [];
+  models : Model[] = [];
   addForm: boolean = false;
-  newCar: Car = {licensePlate:"", model:"", year:""};
+  newCar: Car = null;
 
   constructor(
     private carService: CarService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private modelService : ModelService
   ) { }
 
   ngOnInit() {
-    /** this.loginService.getLoggedIn().subscribe((value) => {
-      this.owner = value;
-    }); */
-    this.owner = {email:"njn", name:"jjn", surname:"mkk", mobile:"8845", oib:"877", password:"88", cars:null};
-    this.cars = this.owner.cars;
+    this.getModels();
+    console.log(this.models.length)
+  }
+
+  getModels() {
+    const models = this.modelService.getModels();
+    models.subscribe((models) => {
+      this.models = models;
+    });
   }
 
   showForm() {
@@ -38,10 +45,8 @@ export class AccountComponent implements OnInit {
   }
 
   addCar(licensePlate: string, model: string, year: string) {
-    console.log(licensePlate +" " + model + " " +year )
-    this.newCar = new Car(licensePlate, model, year);
-    console.log(this.newCar.licensePlate);
-    this.carService.addCar(this.newCar).subscribe(car => {
+    this.newCar =  new Car(licensePlate, model, year);
+    this.carService.addCar(this.newCar).subscribe( car => {
       console.log(car);
       this.getCars();
     });
@@ -49,10 +54,7 @@ export class AccountComponent implements OnInit {
   }
 
   getCars() {
-    console.log("get cars");
-    this.carService.getCars().subscribe(cars => {
-      this.cars = cars;
-    });
+    window.location.reload();
   }
 
 }

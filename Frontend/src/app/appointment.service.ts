@@ -14,7 +14,7 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) { }
 
-  private getAppURL = 'http://192.168.93.1:8080/appointment/available';
+  private getAppURL = 'http://192.168.1.3:8080/appointment/available';
 
   getAllAppointments() : Observable<string[]>{
     console.log("getAllAppointments CALLED");

@@ -17,8 +17,8 @@ export class LogoutService {
   name : string = "";
   user : User;
 
-  private logoutURL = 'http://192.168.93.1:8080/logout';
-  private logedIn = 'http://192.168.93.1:8080/user/loggedIn'
+  private logoutURL = 'http://192.168.1.3:8080/logout';
+  private logedIn = 'http://192.168.1.3:8080/user/loggedIn'
 
   logout() : Observable<any>{
     console.log("logout service called");

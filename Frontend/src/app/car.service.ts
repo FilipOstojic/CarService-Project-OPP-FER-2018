@@ -12,7 +12,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class CarService {
 
-  private carsUrl = 'http://10.129.137.63:8080/userVehicle';  // URL to web api
+  private carsUrl = 'http://192.168.1.3:8080/userVehicle';  // URL to web api
 
   constructor(
     private http: HttpClient) { }

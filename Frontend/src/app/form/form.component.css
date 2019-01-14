@@ -86,7 +86,6 @@ label{
 }
 
 .form-content input:checked ~ .checkbox{
-
     background-color: #2196F3;
 }
 

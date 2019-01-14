@@ -16,7 +16,7 @@ export class RegisterService {
   constructor(private http: HttpClient ) { }
 
   
-  private usersURL = 'http://192.168.93.1:8080/user';
+  private usersURL = 'http://192.168.1.3:8080/user';
 
   addUser(user: User): Observable<User> {
     console.log("SERVICE ADD CALLED");
