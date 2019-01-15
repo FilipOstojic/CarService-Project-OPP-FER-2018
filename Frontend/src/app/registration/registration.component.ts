@@ -30,11 +30,12 @@ export class RegistrationComponent implements OnInit {
       password: [null, Validators.required],
       confPass: [null, Validators.required],
       cellPhone: [null, Validators.required],
-      oib: [null, Validators.required],
+      oib: [null, Validators.required]
     });
   }
 
   onSubmit(name: string, surname: string, email: string, oib: string, mobile: string, password: string, confPass: string): void {
+    console.log("REGISTRIRAJ SE")
     this.formSumitAttempt = true;
     if (this.form.valid) {
       console.log('form submitted');
@@ -48,9 +49,10 @@ export class RegistrationComponent implements OnInit {
         error => {
           console.log("ERROR OCCURED")
         });
-      }else{
-      this.registerError=true;
-    }
+      } else {
+        this.registerError = true;
+        console.log("ERROR OCCURED")
+      }
     }
   }
 

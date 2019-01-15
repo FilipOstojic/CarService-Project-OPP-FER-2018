@@ -6,7 +6,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">Ime: </label>
         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="text" class="col-8 form-control" name="name" #name placeholder="Unesi svoje ime" />
+        <input type="text" class="col-8 form-control" name="name" #name placeholder="Unesi svoje ime" formControlName="name"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
           [displayError]="isFieldValid('name')" 
@@ -18,7 +18,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">Prezime: </label>
         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-        <input type="text" class="col-8 form-control" name="surname" #surname placeholder="Unesi svoje prezime" />
+        <input type="text" class="col-8 form-control" name="surname" #surname placeholder="Unesi svoje prezime" formControlName="surname"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
           [displayError]="isFieldValid('surname')" 
@@ -30,7 +30,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">E-mail: </label>
         <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-        <input type="text" class="col-8 form-control" name="email" #email placeholder="Unesi svoj e-mail" />
+        <input type="text" class="col-8 form-control" name="email" #email placeholder="Unesi svoj e-mail" formControlName="email"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
       [displayError]="isFieldValid('email')" 
@@ -41,7 +41,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">Lozinka: </label>
         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-        <input type="password" class="col-8 form-control" name="password" #password placeholder="Unesi svoju lozinku" />
+        <input type="password" class="col-8 form-control" name="password" #password placeholder="Unesi svoju lozinku" formControlName="password"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
       [displayError]="isFieldValid('password')" 
@@ -52,7 +52,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">Potvrdi lozinku: </label>
         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-        <input type="password" class="col-8 form-control" name="confPass" #confPass placeholder="Potvrdi svoju lozinku" />
+        <input type="password" class="col-8 form-control" name="confPass" #confPass placeholder="Potvrdi svoju lozinku" formControlName="confPass"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
       [displayError]="isFieldValid('confPass')" 
@@ -63,7 +63,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">Broj telefona: </label>
         <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
-        <input type="text" class="col-8 form-control" name="cellPhone" #cellPhone placeholder="Unesi svoj broj telefona" />
+        <input type="text" class="col-8 form-control" name="cellPhone" #cellPhone placeholder="Unesi svoj broj telefona" formControlName="cellPhone"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
       [displayError]="isFieldValid('cellPhone')" 
@@ -74,7 +74,7 @@
       <div class="input-group">
         <label for="name" class="col-4 control-label text-center">OIB: </label>
         <span class="input-group-addon"><i class="fa fa-id-card fa" aria-hidden="true"></i></span>
-        <input type="text" class="col-8 form-control" name="oib" #oib placeholder="Unesi svoj OIB" />
+        <input type="text" class="col-8 form-control" name="oib" #oib placeholder="Unesi svoj OIB" formControlName="oib"/>
       </div>
       <app-field-error class="text-center" style="font-size: 90%"
       [displayError]="isFieldValid('oib')" 
@@ -85,9 +85,9 @@
       <a class="nav-link" [routerLink]="['/prijava']">Već imate račun?</a>
     </div>
     <div>
-        <app-field-error 
+        <app-field-error class="text-center"
         [displayError]="registerError" 
-        errorMsg="Unesite ispravne podatke">
+        errorMsg="Passwordi nisu isti">
       </app-field-error >
       <button type="submit" class="button" (click)="onSubmit(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value,confPass.value)">Registriraj
         se</button>
