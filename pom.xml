@@ -166,15 +166,15 @@
 			<plugins>
 				<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+					    <goals>
+						<goal>repackage</goal>
+					    </goals>
+					</execution>
+		    		</executions>
 				</plugin>
 			</plugins>
-			<executions>
-				<execution>
-				    <goals>
-				        <goal>repackage</goal>
-				    </goals>
-				</execution>
-		    	</executions>
 		</pluginManagement>
 	</build>
 
