@@ -1,0 +1,14 @@
+DIJAGRAM AKTIVNOSTI- PRIJAVA KORISNIKA
+
+Dijagram aktivnosti prijave korisnika prikazuje komunikaciju korisnika, poslužitelja i baze podataka. Korisnik unosi podatke potrebne za prijavu, poslužitelj ih potom prenosi upitom u bazu u kojoj se provjerava njihova valjanost te taj odgovor vraæa poslužitelju. Ukoliko su podaci valjani, poslužitelj prijavljuje korisnika u sustav te ima moguænosti ovisno o tipu korisnika (ovlašteni serviser, registrirani korisnik ili administrator). Ukoliko podaci nisu valjani, poslužitelj obavještava korisnika o tome te ima moguænost ponovnog unosa podataka.
+
+
+DIJAGRAM AKTIVNOSTI- PRIJAVA VOZILA NA PREGLED
+
+Dijagram aktivnosti prijave vozila na pregled takoðer prijazuje komunikaciju korisnika, poslužitelja i baze podataka. Korisnik odabire pregled svih slobodnih termina ili termina odreðenog servisera. Ukoliko je odabrao pregled svih slobodnih termina, poslužitelj šalje upit o svim slobodnim terminima, a baza ih dohvaæa i vraæa poslužitelju. 
+Ukoliko je korisnik odabrao pregled termina odreðenog servisera, poslužitelj šalje upit o serviserima koje baza onda dohvaæa, a poslužitelj prikazuje. Korisnik odabire servisera, poslužitelj zatim šalje upit o njegovim slobodnim terminima, a baza ih dohvaæa i vraæa poslužitelju.
+Nakon dohvaæanja slobodnih termina iz baze, u sluèaju odabira prikaza svih slobodnih termina, kao i u sluèaju odabira prikaza slobodnih termina odreðenog servisera, ukoliko ima slobodnih termina, poslužitelj prikazuje prijavu koju korisnik zatim popunjava, poslužitelj šalje zahtjev za pohranom, a baza sprema. Dok ukoliko nema slobodnih termina poslužitelj ispisuje odgovarajuæu poruku i prijava se prekida.
+
+DIJAGRAM STANJA- PRIHVAT VOZILA
+
+Dijagram stanja prikazuje prihvat vozila od strane ovlaštenog servisera. Serviser odabirom pregleda prijave vozila vidi korisnikovu prijavu. Ima moguænost preæi u stanje izmjene podataka prijave ili prihvata odnosno generirati obrazac. Ukoliko odabere izmjenu podataka, nakon željene promjene prelazi u poèetno stanje pregleda prijave.
