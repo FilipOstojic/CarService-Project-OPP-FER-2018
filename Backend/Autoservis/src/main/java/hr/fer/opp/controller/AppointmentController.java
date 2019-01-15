@@ -63,16 +63,22 @@ public class AppointmentController {
 	
 	@RequestMapping(value = "/appointment/{email}", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments(@PathVariable("email") String mechEmail) {
-		List<Appointment> list = appointmentService.listAllFromUser(mechEmail);
-		if (list != null) {
-			return new ResponseEntity<>(list, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		List<Appointment> list = new ArrayList<>();
+		Calendar today = Calendar.getInstance();
+		today.setTime(new Date());
+		for (Appointment a : appointmentService.listAllFromUser(mechEmail)) {
+			Calendar tmp = Calendar.getInstance();
+			tmp.setTime(a.getDate());
+			if (Util.areEqualDay(today, tmp)) {
+				list.add(a);
+			}
 		}
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/appointment/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ByteArrayResource> generatePDF(@PathVariable("id") String appointmentId) {
+		System.out.println("ušao");
 		try {
 			Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
 			PDDocument document = Util.generatePDF(appointment, autoserviceService.showInfo());
@@ -90,6 +96,15 @@ public class AppointmentController {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(null);
 		}
+	}
+	
+	@RequestMapping(value = "/appointment/id/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Appointment> getAppointment(@PathVariable("id") String appointmentId) {
+		Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
+		if (appointment == null) {
+			return new ResponseEntity<Appointment>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/appointment/available", method = RequestMethod.GET)

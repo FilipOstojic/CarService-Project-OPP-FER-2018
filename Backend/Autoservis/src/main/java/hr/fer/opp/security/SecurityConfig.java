@@ -50,10 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().configurationSource(configurationSource())
 				.and().csrf().disable()
-			    .authorizeRequests()
-			    .antMatchers("**").permitAll()
-			    
-			    .and().logout().disable();
 //			    .authorizeRequests()
 //			      .antMatchers("/serviceVehicle/**").hasRole("ADMIN")
 //			      .antMatchers("/serviceVehicle/free/**").hasRole("MECH")
@@ -63,9 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			      .antMatchers(HttpMethod.GET, "/user/loggedIn").hasRole("USER")
 //			      .antMatchers(HttpMethod.POST, "/user").hasAnyRole("ADMIN", "USER", "MECH")
 //			      .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyRole("ADMIN", "USER", "MECH")
-//			      	.logout()
-//			      	  .logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
-//			      	  	.logoutSuccessUrl("vrati na homepage");
+			      	.logout().disable();
 						
 		// .and().httpBasic();
 		// ako se odkomentira ovo iznad i iduca metoda onda se

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { Car } from "../car";
+import { Car } from '../car';
 import { CarService } from '../car.service';
 import { LoginService } from '../login.service';
+import { DatasharingService } from '../datasharing.service';
 import { Model } from '../model';
 import { ModelService } from '../model.service';
+
 
 @Component({
   selector: 'app-account',
@@ -12,28 +14,29 @@ import { ModelService } from '../model.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  owner: User;
+  owner: User = { "name": "", "surname": "", "oib": "", "email": "", "mobile": "", "password": "", role:null};
   cars: Car[] = [];
   models : Model[] = [];
   addForm: boolean = false;
-  newCar: Car = null;
+  newCar: Car = {licensePlate:"", model:null, year:"", owner:null};
+  isUser: boolean;
 
   constructor(
     private carService: CarService,
-    private loginService: LoginService,
+    private datasharingService : DatasharingService,
     private modelService : ModelService
-  ) { }
-
-  ngOnInit() {
-    this.getModels();
-    console.log(this.models.length)
+  ) {
+    this.datasharingService.loggedInUser.subscribe(value => {
+      this.owner = value;
+    });
+    this.datasharingService.isUser.subscribe( value => {
+      this.isUser = value;
+    })
   }
 
-  getModels() {
-    const models = this.modelService.getModels();
-    models.subscribe((models) => {
-      this.models = models;
-    });
+  ngOnInit() {
+    this.getCars();
+    this.getModels();
   }
 
   showForm() {
@@ -44,9 +47,11 @@ export class AccountComponent implements OnInit {
     this.addForm = false;
   }
 
-  addCar(licensePlate: string, model: string, year: string) {
-    this.newCar =  new Car(licensePlate, model, year);
-    this.carService.addCar(this.newCar).subscribe( car => {
+  addCar(licensePlate: string, id:number, year: string, email:string) {
+    console.log(licensePlate +" " + id + " " +year )
+    this.newCar = new Car(licensePlate, new Model(id), year, email);
+    console.log(this.newCar.licensePlate);
+    this.carService.addCar(this.newCar).subscribe(car => {
       console.log(car);
       this.getCars();
     });
@@ -54,7 +59,16 @@ export class AccountComponent implements OnInit {
   }
 
   getCars() {
-    window.location.reload();
+    console.log("get cars");
+    this.carService.getCars(this.owner.email).subscribe(cars => {
+      this.cars = cars;
+    });    
   }
 
+  getModels() {
+    const models = this.modelService.getModels();
+    models.subscribe((models) => {
+      this.models = models;
+    });
+  }
 }

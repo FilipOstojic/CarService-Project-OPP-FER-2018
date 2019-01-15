@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
 import { User } from '../user';
 import { RegisterService } from '../register.service';
 import { Router } from '@angular/router';
@@ -12,15 +11,14 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   error : boolean = false;
-  //addUser(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value)
-
+  
   constructor(private registerService: RegisterService, private router: Router) { }
 
   ngOnInit() {
   }
 
   addUser(name: string, surname: string, email: string, oib: string, mobile: string, password: string, confPass: string): void {
-    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, cars: null};
+    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role : null};
     var result: Observable<User> = this.registerService.addUser(user);
     if (user.password === confPass) {
       result.subscribe((prod) => {

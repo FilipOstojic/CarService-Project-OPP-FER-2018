@@ -8,8 +8,7 @@ import { Info } from '../info';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  information: Info;
-
+  information: Info = {name: "", address : "", email: "", mobile : "", oib : ""};
   constructor(private infoService: InfoService) { }
 
   ngOnInit() {
@@ -19,7 +18,6 @@ export class ContactsComponent implements OnInit {
   getInfo() {
     const information = this.infoService.getInfo();
     information.subscribe((information) => {
-
       this.information = information;
     })
   }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 import { Mechanic } from './mechanic';
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ export class MechanicService {
 
   constructor(private http: HttpClient) { }
 
-  private mechanicsURL = 'http://192.168.1.3:8080/user/mech';
+  private mechanicsURL = '/user/mech';
 
   getMechanics(): Observable<Mechanic[]> {
     return this.http.get<Mechanic[]>(this.mechanicsURL);

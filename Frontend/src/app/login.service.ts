@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { User } from './user';
-import { AppComponent } from './app.component';
+import { DatasharingService } from './datasharing.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,20 +13,21 @@ const httpOptions = {
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
-  name : string = "";
-
-  private loginURL = 'http://192.168.1.3:8080/login';
-
-  private loggedInURL = 'http://192.168.1.3:8080/user/loggedIn';
+  constructor(private http: HttpClient, private datasharingService : DatasharingService) { }
+  
+  private loginURL = '/login';
+  private loggedInURL = '/user/loggedIn';
 
   login(username:string,password:string) :  Observable<any>{
     console.log("LOGIN CALLED");
     return this.http.post(this.loginURL, {username,password}, httpOptions)
       .pipe(
         tap(_ => {
+          this.getLoggedIn().subscribe(value => {
+            this.datasharingService.login(value);
+            sessionStorage.setItem("currentUser", JSON.stringify(value));
+          });   
           console.log('logging in ' + username);
-          this.name=username; 
         }),
         catchError(
           (error: any, caught: Observable<any>) => {
@@ -34,10 +35,6 @@ export class LoginService {
           }
       )
       );
-  }
-
-  getUsername():string{
-    return this.name;
   }
 
   getLoggedIn() : Observable<User>{

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Info } from './info';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +14,7 @@ export class InfoService {
 
   constructor(private http: HttpClient) { }
 
-  private infoURL = 'http://192.168.1.3:8080/autoservice';
+  private infoURL = '/autoservice';
 
   
   getInfo(): Observable<Info> {

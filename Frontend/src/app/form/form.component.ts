@@ -4,6 +4,11 @@ import {Router} from '@angular/router';
 import { AppointmentService } from '../appointment.service';
 import { ServiceService } from '../service.service';
 import { Service } from '../service';
+import { Appointment } from '../appointment';
+import { User } from '../user';
+import { Car } from '../car';
+import { DatasharingService } from '../datasharing.service';
+import { CarService } from '../car.service';
 
 @Component({
   selector: 'app-form',
@@ -12,6 +17,8 @@ import { Service } from '../service';
 })
 export class FormComponent implements OnInit {
 
+  cars: Car[] = [];
+  owner: User = { "name": "", "surname": "", "oib": "", "email": "", "mobile": "", "password": "", role:null};
   mechanics:Mechanic[] = [];
   services: Service[] = [];
   appointments : string[] = [];
@@ -19,8 +26,29 @@ export class FormComponent implements OnInit {
   mechanic=false;
   appointment=false;
 
-  constructor( private router:Router , private appointmentService : AppointmentService, private servicesService : ServiceService) {
-    this.router=router;
+  constructor(
+    private router : Router, 
+    private carService: CarService, 
+    private datasharingService : DatasharingService, 
+    private appointmentService : AppointmentService, 
+    private servicesService : ServiceService
+  ) {
+    this.datasharingService.loggedInUser.subscribe(value => {
+      this.owner = value;
+    });
+  }
+
+  ngOnInit() {
+    this.getAppointmets();
+    this.getServices();
+    this.getCars();
+      
+    this.mechanics = [{name:'Ante', surname:'Žužul', email:'ante.zuzul@mehanicar.hr', mobile:'0981234567', oib:'76113742199', password:'1234'},
+    {name:'Karlo', surname:'Fruhwirth', email:'karlo.fruhwirth@mehanicar.hr', mobile:'0981234566', oib:'76113742198', password:'1234'},
+    {name:'Marko', surname:'Jelović', email:'marko.jelovic@mehanicar.hr', mobile:'0981234565', oib:'76113742197', password:'1234'},
+    {name:'Filip', surname:'Ostojić', email:'filip.ostojic@mehanicar.hr', mobile:'0981234564', oib:'76113742196', password:'1234'},
+    {name:'Jozo', surname:'Ćaćić', email:'jozo.cacic@mehanicar.hr', mobile:'0981234563', oib:'76113742195', password:'1234'},
+    {name:'Nikolina', surname:'Mijoc', email:'nikolina.mijoc@mehanicar.hr', mobile:'0981234562', oib:'76113742194', password:'1234'}];
   }
 
   getAppointmets() {
@@ -37,18 +65,11 @@ export class FormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.getAppointmets();
-    this.getServices();
-    console.log(this.appointments.length);
-    this.mechanics = [{name:'Ante', surname:'Žužul', email:'ante.zuzul@mehanicar.hr', mobile:'0981234567', oib:'76113742199', password:'1234'},
-    {name:'Karlo', surname:'Fruhwirth', email:'karlo.fruhwirth@mehanicar.hr', mobile:'0981234566', oib:'76113742198', password:'1234'},
-    {name:'Marko', surname:'Jelović', email:'marko.jelovic@mehanicar.hr', mobile:'0981234565', oib:'76113742197', password:'1234'},
-    {name:'Filip', surname:'Ostojić', email:'filip.ostojic@mehanicar.hr', mobile:'0981234564', oib:'76113742196', password:'1234'},
-    {name:'Jozo', surname:'Ćaćić', email:'jozo.cacic@mehanicar.hr', mobile:'0981234563', oib:'76113742195', password:'1234'},
-    {name:'Nikolina', surname:'Mijoc', email:'nikolina.mijoc@mehanicar.hr', mobile:'0981234562', oib:'76113742194', password:'1234'}];
+  getCars() {
+    this.carService.getCars(this.owner.email).subscribe(cars => {
+      this.cars = cars;
+    });    
   }
-
 
   showMechanics(){
 
@@ -67,11 +88,15 @@ export class FormComponent implements OnInit {
     this.mechanic = false
   }
 
-  finished(){
-
+  finished(date:string, licensePlate:string, serviceId:string, desc:string, repVehicle:string){
     this.clicked=false;
     this.mechanic=false;
     this.appointment=false; 
+
+    const app = new Appointment(date, desc, null, repVehicle, serviceId, licensePlate);
+    this.appointmentService.addAppointment(app).subscribe(value => {
+      console.log(value);
+    });
 
     this.router.navigateByUrl('/pocetna');
   }

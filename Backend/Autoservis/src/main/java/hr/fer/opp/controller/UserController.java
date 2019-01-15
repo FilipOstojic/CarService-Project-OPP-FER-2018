@@ -68,14 +68,11 @@ public class UserController {
 	@RequestMapping(value = "/user/createUser", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> crateUser(@RequestBody User user) {
+		System.out.println(user);
 		user.setRole(roleService.showRecordByName("USER"));
 		boolean created = userService.createRecord(user);
 		if (created) {
-			// sto ako slanje mail ne uspije??
-			if (Util.sendEmail(user, servletContext)) {
-				System.out.println("Poslano");
-			}
-			
+			Util.sendEmail(user, servletContext);
 			return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);

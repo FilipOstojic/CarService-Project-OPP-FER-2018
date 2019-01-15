@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -15,16 +15,17 @@ export class RegisterService {
 
   constructor(private http: HttpClient ) { }
 
-  
-  private usersURL = 'http://192.168.1.3:8080/user';
+  private usersURL = '/user/createUser';
 
   addUser(user: User): Observable<User> {
-    console.log("SERVICE ADD CALLED");
+    console.log("USER ADD CALLED");
+    console.log(JSON.stringify(user));
     return this.http.put(this.usersURL, user, httpOptions)
       .pipe(
         tap(_ => console.log('added user' + user.name)),
         catchError(
           (error: any, caught: Observable<any>) => {
+            console.log(error);
               throw error;
           }
       )

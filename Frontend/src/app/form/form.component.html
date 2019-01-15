@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <!-- Form for appoitment -->
+    <!-- Form for appointment -->
     <form *ngIf="appointment" class="form-content">
         <h1>Prijava vozila</h1>
         <div class="form-group">
@@ -52,22 +52,34 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="name" class="col-4 control-label text-center">Auto: </label>
+            <select #car name="car" id="car">
+                <option *ngFor="let car of cars" value="{{car.licensePlate}}">
+                    {{car.licensePlate}} {{car.model.name}} {{car.year}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="name" class="col-4 control-label text-center">Usluge: </label>
             <select #service name="service" id="service">
-                <option *ngFor="let service of services">
+                <option *ngFor="let service of services" value="{{service.id}}">
                     {{service.name}}
                 </option>
             </select>
         </div>
         <div class="form-group">
             <label for="name" class="col-4 control-label text-center">Opis problema: </label>
-            <textarea type="text" class="col-8 form-control" name="problem" placeholder="Unesi opis problema..."></textarea>
+            <textarea #desc type="text" class="col-8 form-control" name="problem" placeholder="Unesi opis problema..."></textarea>
         </div>
         <div class="form-group">
-            <label for="name" class="col-4 control-label text-center">Zamjensko vozilo: </label>
-            <input type="checkbox" class="checkbox">
+            <label for="name" class="col-4 control-label text-center">Želite li zamjensko vozilo: </label>
+            <select #repVehicle name="service" id="service">
+                <option value="true">DA</option>
+                <option value="false">NE</option>
+            </select>
         </div>
-        <button class="btn btn-lg btn-primary btn-block btn-signin btn-finish" type="submit" (click)="finished()">Završi
+        <button class="btn btn-lg btn-primary btn-block btn-signin btn-finish" type="submit" 
+                    (click)="finished(termin.value, car.value, service.value, desc.value, repVehicle.value)">Završi
             prijavu</button>
     </form>
 </div>

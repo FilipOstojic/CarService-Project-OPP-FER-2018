@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './user';
-import { LoginService } from './login.service';
-import { Observable, of } from 'rxjs';
+import { DatasharingService } from './datasharing.service';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +8,24 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  childCurrentValue : string = " ";
+  isCollapsed = true;
+  loggedIn : User = { "name": "", "surname": "", "oib": "", "email": "", "mobile": "", "password": "", role:null};
+  isLoggedIn : boolean;
+  isUser : boolean;
 
-  constructor(private loginService : LoginService) {
-   
-  }
-
-  getOutputVal(selected : string){
-    if(selected){
-      this.childCurrentValue = selected;
-    }
+  constructor(private datasharingService : DatasharingService) {
+    this.datasharingService.loggedInUser.subscribe( value => {
+      this.loggedIn = value;
+    });
+    this.datasharingService.isLoggedIn.subscribe( value => {
+      this.isLoggedIn = value;
+    })
+    this.datasharingService.isUser.subscribe( value => {
+      this.isUser = value;
+    })
   }
 
   ngOnInit(){
- }
+  }
 
 }

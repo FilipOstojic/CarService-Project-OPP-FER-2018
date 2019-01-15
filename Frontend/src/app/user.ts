@@ -1,4 +1,4 @@
-import { Car } from './car';
+import { Role } from './role';
 
 export class User {
     name: string;
@@ -7,5 +7,9 @@ export class User {
     mobile : string;
     oib : string;
     password : string;
-    cars: Car[];
+    role : Role;
+
+    constructor(email:string) {
+        this.email = email;
+    }
 }

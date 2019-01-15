@@ -1,9 +1,8 @@
 package hr.fer.opp.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
@@ -35,6 +34,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.springframework.core.io.ClassPathResource;
 
 import hr.fer.opp.model.Appointment;
 import hr.fer.opp.model.Autoservice;
@@ -106,7 +106,7 @@ public class Util {
 		
 		PDFont font;
 		try {
-			font = PDType0Font.load(document, ClassLoader.getSystemResourceAsStream("DejaVuSans.ttf"));
+			font = PDType0Font.load(document, new ClassPathResource("DejaVuSans.ttf").getInputStream());
 		} catch (IOException e1) {
 			font = PDType1Font.TIMES_ROMAN;
 			e1.printStackTrace();
@@ -114,9 +114,19 @@ public class Util {
 		
 		PDPageContentStream contentStream;
 		try {
-			Path path = Paths.get(ClassLoader.getSystemResource("lse.png").toURI());
 			contentStream = new PDPageContentStream(document, page);
-			PDImageXObject image = PDImageXObject.createFromFile(path.toAbsolutePath().toString(), document);
+			
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+		    byte[] data = new byte[1024];
+		    InputStream is = new ClassPathResource("lse.png").getInputStream();
+		    while ((nRead = is.read(data, 0, data.length)) != -1) {
+		        buffer.write(data, 0, nRead);
+		    }
+		 
+		    buffer.flush();
+		    byte[] byteArray = buffer.toByteArray();
+			PDImageXObject image = PDImageXObject.createFromByteArray(document, byteArray, null);
 			
 			int offsetW = image.getWidth()/2;
 			int offsetH = image.getHeight() + 2*offsetW;
@@ -135,7 +145,7 @@ public class Util {
             
             contentStream.beginText();
             contentStream.setFont(font, 10);
-            contentStream.newLineAtOffset(width - 3*offsetW, height - offsetH);
+            contentStream.newLineAtOffset(width - 4*offsetW, height - offsetH);
             contentStream.showText(autoservice.getAddress());
             contentStream.newLine();
             contentStream.showText(autoservice.getOib());
@@ -202,7 +212,7 @@ public class Util {
             contentStream.endText();
             
             contentStream.close();
-		} catch (IOException | URISyntaxException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
@@ -337,6 +347,19 @@ public class Util {
 			return false;
 		}
 		if (first.get(Calendar.SECOND) != second.get(Calendar.SECOND)) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean areEqualDay(Calendar first, Calendar second) {
+		if (first.get(Calendar.YEAR) != second.get(Calendar.YEAR)) {
+			return false;
+		}
+		if (first.get(Calendar.MONTH) != second.get(Calendar.MONTH)) {
+			return false;
+		}
+		if (first.get(Calendar.DAY_OF_YEAR) != second.get(Calendar.DAY_OF_YEAR)) {
 			return false;
 		}
 		return true;

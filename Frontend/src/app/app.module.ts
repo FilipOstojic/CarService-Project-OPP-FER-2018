@@ -11,13 +11,11 @@ import { MechanicsComponent } from './mechanics/mechanics.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LogoutComponent } from './logout/logout.component';
-import { AuthServiceService } from './auth-service.service';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AccountComponent } from './account/account.component';
 
 @NgModule({
@@ -46,7 +44,6 @@ import { AccountComponent } from './account/account.component';
       apiKey: 'KEY'
     })
   ],
-  providers: [AuthServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { User } from './user';
-import { AppComponent } from './app.component';
+import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { DatasharingService } from './datasharing.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,19 +12,18 @@ const httpOptions = {
 })
 export class LogoutService {
 
-  constructor(private http: HttpClient) { }
-  name : string = "";
-  user : User;
+  private logoutURL = '/logout';
 
-  private logoutURL = 'http://192.168.1.3:8080/logout';
-  private logedIn = 'http://192.168.1.3:8080/user/loggedIn'
+  constructor(private http: HttpClient, private datasharingService : DatasharingService) { }
 
-  logout() : Observable<any>{
+  logout(){
     console.log("logout service called");
-    return this.http.post(this.logoutURL,httpOptions)
+    return this.http.post(this.logoutURL, httpOptions)
     .pipe(
       tap(_ => {
-        console.log('loged out');
+        this.datasharingService.logout();
+        sessionStorage.removeItem("currentUser");
+        console.log('logged out');
       }),
       catchError(
         (error: any, caught: Observable<any>) => {
@@ -35,9 +33,4 @@ export class LogoutService {
     )
     );
   }
-
-  getLoggedIn() : Observable<User>{
-    return this.http.get<User>(this.logedIn);
-  }
-
 }

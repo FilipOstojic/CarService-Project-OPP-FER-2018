@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthServiceService} from '../auth-service.service'
 import { LogoutService } from '../logout.service';
 import { Observable } from 'rxjs';
 

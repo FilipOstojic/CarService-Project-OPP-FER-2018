@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { User } from './user';
+import { Appointment } from './appointment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +15,8 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) { }
 
-  private getAppURL = 'http://192.168.1.3:8080/appointment/available';
+  private getAppURL = '/appointment/available';
+  private addAppURL = '/appointment/';
 
   getAllAppointments() : Observable<string[]>{
     console.log("getAllAppointments CALLED");
@@ -44,5 +46,18 @@ export class AppointmentService {
           }
       )
       );
+  }
+
+  addAppointment(appointment:Appointment): Observable<any> {
+    console.log(JSON.stringify(appointment));
+    return this.http.put(this.addAppURL, appointment, httpOptions).pipe(
+      tap(_ => console.log("appoinment added")),
+      catchError(
+        (error: any, caught: Observable<any>) => {
+          console.log("appoinment nije dodan");
+            throw error;
+        }
+    )
+    );
   }
 }
