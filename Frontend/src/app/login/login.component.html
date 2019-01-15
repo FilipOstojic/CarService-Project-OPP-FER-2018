@@ -1,10 +1,26 @@
 <div class="container">
   <div class="content">
-    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-    <form class="form-signin" #form="ngForm">
-      <input type="email" #email class="form-control" placeholder="E-mail addresa">
-      <input type="password" #password class="form-control" placeholder="Lozinka">
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="login(email.value,password.value)">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" method="post" />
+    <form ngNativeValidate class="form-signin" [formGroup]="form">
+      <div class="form-group" [ngClass]="displayFieldCss('email')">
+        <input type="email" class="form-control required" placeholder="E-mail addresa" #email formControlName="email">
+        <app-field-error 
+          [displayError]="isFieldValid('email')" 
+          errorMsg="Unesite valjan email">
+        </app-field-error>
+      </div>
+      <div class="form-group" [ngClass]="displayFieldCss('password')">
+          <input type="password" #password class="form-control required " placeholder="Lozinka" formControlName="password">
+          <app-field-error 
+          [displayError]="isFieldValid('password')" 
+          errorMsg="Unesite lozinku">
+        </app-field-error >
+      </div>
+        <app-field-error 
+          [displayError]="loginError" 
+          errorMsg="Unesite ispravne podatke">
+        </app-field-error >
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="onSubmit(email.value,password.value)">
         Prijavi se
       </button>
     </form>

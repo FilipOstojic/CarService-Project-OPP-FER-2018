@@ -80,7 +80,11 @@ label{
    margin-left: 15px;  
 }
 
-
+button{
+    margin:0 auto;
+    display:block;
+    margin-bottom: 5px;
+}
 
 .button{
 

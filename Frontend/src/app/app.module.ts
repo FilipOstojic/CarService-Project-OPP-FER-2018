@@ -14,9 +14,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core'; 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { AccountComponent } from './account/account.component';
+import { FieldErrorComponent } from './field-error/field-error.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,11 @@ import { AccountComponent } from './account/account.component';
     LogoutComponent,
     MapComponent,
     FormComponent,
-    AccountComponent
+    AccountComponent,
+    FieldErrorComponent
   ],
   imports: [
+    FormsModule,ReactiveFormsModule ,
     NgbModule.forRoot(), 
     BrowserModule,
     FormsModule,
