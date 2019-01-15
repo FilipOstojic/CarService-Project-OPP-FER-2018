@@ -18,6 +18,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { AccountComponent } from './account/account.component';
 import { FieldErrorComponent } from './field-error/field-error.component';
+import { MecInfoComponent } from '../app/mec-info/mec-info.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FieldErrorComponent } from './field-error/field-error.component';
     MapComponent,
     FormComponent,
     AccountComponent,
-    FieldErrorComponent
+    FieldErrorComponent,
+    MecInfoComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule ,

@@ -18,7 +18,7 @@ export class AppointmentService {
   private getAppURL = '/appointment/available';
   private addAppURL = '/appointment/';
 
-  getAllAppointments() : Observable<string[]>{
+  getAllAppointments(): Observable<string[]> {
     console.log("getAllAppointments CALLED");
     return this.http.get(this.getAppURL, httpOptions)
       .pipe(
@@ -28,36 +28,50 @@ export class AppointmentService {
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log("JEBOTE MRTVI ERROR");
-              throw error;
+            throw error;
           }
-      )
+        )
       );
   }
 
-  getMechAppointments(email : string) : Observable<User>{
+  getMechAppointments(email: string): Observable<String[]> {
     console.log("getMechAppointments CALLED");
-    return this.http.get(this.getAppURL+"/"+email,httpOptions)
+    return this.http.get(this.getAppURL + "/" + email, httpOptions)
       .pipe(
         tap(_ => console.log('MECH ALL')),
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log("JEBOTE MRTVI ERROR");
-              throw error;
+            throw error;
           }
-      )
+        )
       );
   }
 
-  addAppointment(appointment:Appointment): Observable<any> {
+  getMechAppointmentsApp(email: string): Observable<Appointment[]> {
+    console.log("getMechAppointmentsApp CALLED");
+    return this.http.get(this.addAppURL + "/" + email, httpOptions)
+      .pipe(
+        tap(_ => console.log('MECH ALL')),
+        catchError(
+          (error: any, caught: Observable<any>) => {
+            console.log("JEBOTE MRTVI ERROR");
+            throw error;
+          }
+        )
+      );
+  }
+
+  addAppointment(appointment: Appointment): Observable<any> {
     console.log(JSON.stringify(appointment));
     return this.http.put(this.addAppURL, appointment, httpOptions).pipe(
       tap(_ => console.log("appoinment added")),
       catchError(
         (error: any, caught: Observable<any>) => {
           console.log("appoinment nije dodan");
-            throw error;
+          throw error;
         }
-    )
+      )
     );
   }
 }

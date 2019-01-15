@@ -31,6 +31,9 @@
                 <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['racun']">Račun({{loggedIn.name}})</a>
                 </li>
+                <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['mechInfo']">Mech Info({{loggedIn.name}})</a>
+                </li>
                 <li *ngIf="!isLoggedIn" class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['prijava']">Prijava</a>
                 </li>

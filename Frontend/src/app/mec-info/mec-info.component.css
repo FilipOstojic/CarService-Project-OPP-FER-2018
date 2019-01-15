@@ -1,0 +1,32 @@
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+    .content {
+        margin: 20px 0;
+    }
+    .h1{
+        margin: 10px 10px;
+        color: #000;
+        font-size: 30px;
+    }
+}
+
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
+
+p{
+    margin: 10px 25px;
+    font-size: 17px;
+}
+
+.media {
+    margin: 20px 0;
+}
