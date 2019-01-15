@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   private formSumitAttempt: boolean;
-  private loginError : boolean;
+  loginError : boolean;
 
   constructor(private router: Router, private loginService: LoginService, private formBuilder: FormBuilder) { }
 
