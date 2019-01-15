@@ -1,0 +1,11 @@
+Dijagram komponenti prikazuje strukturu sustava pomoću komponenti od kojih je sustav sastavljen.U našem sustavu backend je izgrađen u Javi, baza podataka u SQL-u i Frontend pomoću Angular frameworka. Korisnik unosom URL-a u preglednik ili pritiskom na jednu od poveznica na web stranici web aplikacije ukazuje web serveru na koju stranicu da navigira ili koju funkciju da obavi.
+Ovo su komponente frontenda:
+Homepage - glavna komponenta koja služi za navigiranje i prikaz sadržaja stranice na kojoj se trenutačno nalazimo
+About - komponenta pomoću koje dohvaćamo i ispisujemo sadržaj "O nama"
+Contacts - komponenta pomoću koje dohvaćamo sadržaj "Kontakt" i uz to našu lokaciju preko Google mapsa
+Login - komponenta za prijavu u sustav
+Registration - komponenta za stvaranje korisničkog računa
+Logout - komponenta pomoću koje se odjavljujemo iz sustava
+field error - komponenta koja provjerava ispravnost podataka
+Logout - komponenta za odjavu iz sustava
+
