@@ -12,9 +12,9 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/autoservice" />
-		<property name="username" value="admin" />
-		<property name="password" value="password" />
+		<property name="url" value="jdbc:postgresql://manny.db.elephantsql.com:5432/bdcpmisv" />
+		<property name="username" value="bdcpmisv" />
+		<property name="password" value="tBNSREqlieVB9GnKQfefWd55LOkswiDS" />
 	</bean>
 
 
