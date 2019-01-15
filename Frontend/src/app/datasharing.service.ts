@@ -35,6 +35,7 @@ export class DatasharingService {
   login(user:User){
     this.loggedInUser.next(user);
     this.determineRole(user);
+    console.log(JSON.stringify(user));
     this.isLoggedIn.next(true);
   }
 

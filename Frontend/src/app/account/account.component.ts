@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit {
     });
     this.datasharingService.isUser.subscribe( value => {
       this.isUser = value;
-    })
+    });
   }
 
   ngOnInit() {

@@ -12,7 +12,8 @@ export class AppComponent {
   loggedIn : User = { "name": "", "surname": "", "oib": "", "email": "", "mobile": "", "password": "", role:null};
   isLoggedIn : boolean;
   isUser : boolean;
-
+  isMech : boolean;
+  
   constructor(private datasharingService : DatasharingService) {
     this.datasharingService.loggedInUser.subscribe( value => {
       this.loggedIn = value;
@@ -22,7 +23,10 @@ export class AppComponent {
     })
     this.datasharingService.isUser.subscribe( value => {
       this.isUser = value;
-    })
+    });
+    this.datasharingService.isMech.subscribe( value => {
+      this.isMech = value;
+    });
   }
 
   ngOnInit(){
