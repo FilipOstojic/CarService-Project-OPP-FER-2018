@@ -168,6 +168,13 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				</plugin>
 			</plugins>
+			<executions>
+				<execution>
+				    <goals>
+				        <goal>repackage</goal>
+				    </goals>
+				</execution>
+		    	</executions>
 		</pluginManagement>
 	</build>
 
