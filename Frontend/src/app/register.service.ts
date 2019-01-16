@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 
@@ -13,16 +13,17 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  private usersURL = '/user/createUser';
+  private createUserURL = '/user/createUser';
+  private userURL = '/user';
 
   addUser(user: User): Observable<User> {
     console.log("USER ADD CALLED");
     console.log(JSON.stringify(user));
-    return this.http.put(this.usersURL, user, httpOptions)
+    return this.http.put(this.createUserURL, user, httpOptions)
       .pipe(
-        tap(_ => console.log('added user' + user.name)),
+        tap(_ => console.log('added user ' + user.name)),
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log(error);
@@ -32,23 +33,41 @@ export class RegisterService {
       );
   }
 
+  editUser(user: User): Observable<User> {
+    console.log("EDIT ADD CALLED");
+    console.log(JSON.stringify(user));
+    return this.http.post(this.userURL, user, httpOptions)
+      .pipe(
+        tap(_ => console.log('edited user ' + user.name)),
+        catchError(
+          (error: any, caught: Observable<any>) => {
+            console.log(error);
+              throw error;
+          }
+      )
+      );
+  }
+
+  removeUser(user: User) : Observable<User> {
+    console.log("REMOVE ADD CALLED");
+    console.log(JSON.stringify(user));
+
+    return this.http.delete(this.userURL + "/" + user.email, httpOptions)
+      .pipe(
+        tap(_ => console.log('removed user ' + user.name)),
+        catchError(
+          (error: any, caught: Observable<any>) => {
+            console.log("nije dobro");
+              throw error;
+          }
+      )
+      ); 
+  }
+
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersURL)
+    return this.http.get<User[]>(this.userURL)
       .pipe(
         tap(_ => console.log('fetched users'))
       );
   }
-
-  updateUser(user: User): Observable<any> {
-    console.log("SERVICE UPDATE CALLED");
-   return this.http.post(this.usersURL, user, httpOptions)
-     .pipe(
-       tap(_ => console.log('updated user' + user.name)),
-       catchError(
-         (error: any, caught: Observable<any>) => {
-             throw error;
-         }
-     )
-     );
- }
 }

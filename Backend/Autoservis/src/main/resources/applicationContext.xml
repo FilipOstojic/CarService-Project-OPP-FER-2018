@@ -12,9 +12,9 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://manny.db.elephantsql.com:5432/bdcpmisv" />
-		<property name="username" value="bdcpmisv" />
-		<property name="password" value="tBNSREqlieVB9GnKQfefWd55LOkswiDS" />
+		<property name="url" value="jdbc:postgresql://35.205.50.246/postgres" />
+		<property name="username" value="postgres" />
+		<property name="password" value="lse-najboljimehanicar" />
 	</bean>
 
 

@@ -1,6 +1,8 @@
 package hr.fer.opp.model;
 
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,7 +59,7 @@ public class User {
 	@OneToOne(mappedBy = "mechanic")
 	private Appointment appointment;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.REMOVE)
 	@Nullable()
 	private Set<UserVehicle> vehicles;
 

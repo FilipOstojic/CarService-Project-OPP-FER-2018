@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,9 @@ public class UserVehicle extends Vehicle {
 	@Column(name = "vehicleStatus", nullable = true)
 	private String vehicleStatus;
 
+	@OneToOne(mappedBy="vehicle")
+    private Appointment appointment; 
+	
 	public UserVehicle() {
 		// TODO Auto-generated constructor stub
 	}

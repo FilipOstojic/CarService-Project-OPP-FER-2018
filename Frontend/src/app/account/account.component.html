@@ -8,6 +8,8 @@
           <div><h4>Email:</h4><h3>{{owner.email}}</h3></div>
             <div><h4>Mobitel:</h4><h3>{{owner.mobile}}</h3></div>
       </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="showEditAccount()">Uredi račun</button><br>
+      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="deleteAccount()">Izbriši račun</button>
     </div>
   </div>
 </div>
@@ -29,6 +31,7 @@
           <div>{{car.licensePlate}}</div>
           <div>model: {{car.model.name}}</div>
           <div>godina: {{car.year}}</div>
+          <button class="btn btn-outline-dark" (click)="delCar(car.licensePlate)">Izbriši vozilo</button>
         </div>
       </div>
     </div>
@@ -50,5 +53,34 @@
     <!--  <input type="submit" value="Save"/> -->
     <button class="btn btn-outline-dark" (click)="addCar(licensePlate.value, model.value, year.value, owner.email)">Dodaj</button>
     <button class="btn btn-outline-dark" (click)="close()">Odustani</button>
+  </form>
+</div>
+
+<div class="formular" *ngIf="editAccountForm">
+  <form>
+    <div>Ime;</div>
+    <input #ime type="text" name="ime" value="{{owner.name}}"/>
+  
+    <div>Prezime:</div> 
+    <input #prezime type="text" name="prezime" value="{{owner.surname}}"/>
+
+    <div>Email:</div>
+    <input #email type="text" name="email" value="{{owner.email}}"/>
+
+    <div>Password:</div>
+    <input #password type="password" name="password"/>
+
+    <div>Potvrdi password:</div>
+    <input #confPassword type="password" name="confPassword"/>
+
+    <div>Broj telefona:</div>
+    <input #mobitel type="text" name="mobitel" value="{{owner.mobile}}"/>
+
+    <div>OIB:</div>
+    <input #oib type="text" name="oib" value="{{owner.oib}}"/>
+
+    <button class="btn btn-outline-dark" 
+      (click)="editAccount(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+    <button class="btn btn-outline-dark" (click)="closeEdit()">Odustani</button>
   </form>
 </div>

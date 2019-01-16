@@ -6,6 +6,10 @@ import { LoginService } from '../login.service';
 import { DatasharingService } from '../datasharing.service';
 import { Model } from '../model';
 import { ModelService } from '../model.service';
+import { RegisterService } from '../register.service';
+import { Observable } from 'rxjs';
+import { LogoutService } from '../logout.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,13 +22,17 @@ export class AccountComponent implements OnInit {
   cars: Car[] = [];
   models : Model[] = [];
   addForm: boolean = false;
+  editAccountForm: boolean = false;
   newCar: Car = {licensePlate:"", model:null, year:"", owner:null};
   isUser: boolean;
 
   constructor(
     private carService: CarService,
     private datasharingService : DatasharingService,
-    private modelService : ModelService
+    private modelService : ModelService,
+    private registerService : RegisterService,
+    private router : Router, 
+    private logoutService: LogoutService 
   ) {
     this.datasharingService.loggedInUser.subscribe(value => {
       this.owner = value;
@@ -47,6 +55,31 @@ export class AccountComponent implements OnInit {
     this.addForm = false;
   }
 
+  closeEdit() {
+    this.editAccountForm = false;
+  }
+
+  showEditAccount() {
+    this.editAccountForm = true;
+  }
+
+  deleteAccount() {
+    var result: Observable<User> = this.registerService.removeUser(this.owner);
+    result.subscribe((prod) => {
+      console.log("DELETE DONE");
+    },
+      error => {
+        console.log("ERROR OCCURED")
+    });
+    this.logoutService.logout().subscribe((prod) => {
+      console.log("LOGOUT DONE");
+    },
+      error => {
+        console.log("ERROR OCCURED")
+    });
+    this.router.navigate(['/pocetna']);
+  }
+
   addCar(licensePlate: string, id:number, year: string, email:string) {
     console.log(licensePlate +" " + id + " " +year )
     this.newCar = new Car(licensePlate, new Model(id), year, email);
@@ -56,6 +89,15 @@ export class AccountComponent implements OnInit {
       this.getCars();
     });
     this.close();
+  }
+
+  delCar(licensePlate: string) {
+    console.log("called delete of " + licensePlate)
+    this.carService.delCar(licensePlate).subscribe(car => {
+      console.log(JSON.stringify(car));
+      this.getCars();
+    });
+    this.getCars();
   }
 
   getCars() {
@@ -69,6 +111,19 @@ export class AccountComponent implements OnInit {
     const models = this.modelService.getModels();
     models.subscribe((models) => {
       this.models = models;
+    });
+  }
+
+  editAccount(name: string, surname: string, email: string, oib: string, mobile: string, password: string, confPass: string): void {
+    console.log("REGISTRIRAJ SE")
+    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password,"role":this.owner.role};
+    var result: Observable<User> = this.registerService.editUser(user);
+    result.subscribe((prod) => {
+      console.log("EDIT DONE");
+      this.closeEdit();
+    },
+      error => {
+        console.log("ERROR OCCURED")
     });
   }
 }

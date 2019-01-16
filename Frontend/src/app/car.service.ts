@@ -28,6 +28,13 @@ export class CarService {
     );
   }
 
+  delCar(licensePlate:string): Observable<any> {
+    return this.http.delete(this.carsUrl + licensePlate, httpOptions).pipe(
+      tap(_ => console.log("del car " + licensePlate)),
+      catchError(this.handleError<any>('delCar'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
