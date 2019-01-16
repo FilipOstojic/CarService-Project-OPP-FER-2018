@@ -198,6 +198,8 @@ public class Util {
             contentStream.newLineAtOffset(20, -20);
             String description = appointment.getDescription();
             contentStream.showText(description == null ? "" : description);
+            contentStream.newLineAtOffset(-20, -20);
+            contentStream.showText("Zamjensko vozilo: " + (appointment.isRepVehicle() ? "DA" : "NE"));
             contentStream.endText();
             
             contentStream.beginText();

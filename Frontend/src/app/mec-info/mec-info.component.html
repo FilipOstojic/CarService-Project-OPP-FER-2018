@@ -38,12 +38,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <!--input sa svim tim al no vidis da dohvati odabrani app i -->
-        {{selectedAppointment.date}} {{selectedAppointment.name}}
+        <p>{{selectedAppointment.date}}</p>
+        <p>{{selectedAppointment.vehicle.licensePlate}}</p>
+        <p>{{selectedAppointment.service.name}}</p>
+        <p>Opis problema:</p>
+        <div class="form-group">
+            <textarea #desc type="text" class="col-8 form-control" name="problem">{{selectedAppointment.description}}</textarea>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-        <button type="button" class="btn btn-light" (click)="editApp(selectedAppointment.id)">Edit</button>
+        <button type="button" class="btn btn-light" (click)="editApp(desc.value, selectedAppointment.id)">Spremi</button>
       </div>
     </ng-template>
 </div>

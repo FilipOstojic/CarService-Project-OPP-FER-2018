@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Appointment } from './appointment';
+import { AppointmentReal } from './appointment-real';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -68,6 +69,31 @@ export class AppointmentService {
       catchError(
         (error: any, caught: Observable<any>) => {
           console.log("appoinment nije dodan");
+          throw error;
+        }
+      )
+    );
+  }
+
+  updateAppointment(appointment: AppointmentReal): Observable<any> {
+    console.log(JSON.stringify(appointment));
+    return this.http.post(this.addAppURL, appointment, httpOptions).pipe(
+      tap(_ => console.log("appoinment updated")),
+      catchError(
+        (error: any, caught: Observable<any>) => {
+          console.log("appointment not updated");
+          throw error;
+        }
+      )
+    );
+  }
+
+  getAppointment(id:number): Observable<AppointmentReal> {
+    return this.http.get(this.addAppURL + "id/" + id, httpOptions).pipe(
+      tap(_ => console.log("appoinment fetched")),
+      catchError(
+        (error: any, caught: Observable<any>) => {
+          console.log("appointment not fetched");
           throw error;
         }
       )

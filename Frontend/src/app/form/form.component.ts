@@ -4,12 +4,12 @@ import {Router} from '@angular/router';
 import { AppointmentService } from '../appointment.service';
 import { ServiceService } from '../service.service';
 import { Service } from '../service';
-import { Appointment } from '../appointment';
 import { User } from '../user';
 import { Car } from '../car';
 import { DatasharingService } from '../datasharing.service';
 import { CarService } from '../car.service';
 import { MechanicService } from '../mechanic.service';
+import { Appointment } from '../appointment';
 
 @Component({
   selector: 'app-form',

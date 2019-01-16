@@ -185,7 +185,6 @@ public class AppointmentController {
 			appointmentService.updateRecord(appointment);
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -1,5 +1,3 @@
-import { Service } from './service';
-
 export class Appointment {
     id : number;
     date : string;  

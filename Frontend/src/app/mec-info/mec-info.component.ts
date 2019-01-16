@@ -4,6 +4,7 @@ import { Appointment } from '../appointment';
 import { AppointmentService } from '../appointment.service';
 import { DatasharingService } from '../datasharing.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppointmentReal } from '../appointment-real';
 
 @Component({
   selector: 'app-mec-info',
@@ -15,8 +16,8 @@ export class MecInfoComponent implements OnInit {
   selectedAppointment : Appointment;
   appointments: Appointment[] = [];
   updateForm: boolean = false;
-  newAppointment: Appointment = { date: "", description: "", id: null, mechanic: null, repVehicle: "false", service: null, vehicle: null };
   isMech: boolean;
+  newAppointment : AppointmentReal = null;
 
   constructor(
     private appointmentService: AppointmentService,
@@ -36,7 +37,7 @@ export class MecInfoComponent implements OnInit {
   }
 
   getAppointments() {
-    console.log("get appointmentss");
+    console.log("get appointments");
     this.appointmentService.getMechAppointmentsApp(this.mech.email).subscribe((appointments) => {
       appointments.forEach(element => {
         element.date = element.date.substr(11,8);
@@ -45,14 +46,20 @@ export class MecInfoComponent implements OnInit {
     });
   }
 
-  editApp(id:string){
-    console.log(id);
-    this.modalService.dismissAll();
+  editApp(desc:string, id:number){
+    this.appointmentService.getAppointment(id).subscribe(value => {
+      this.newAppointment = value;
+      this.newAppointment.description = desc;
+      this.appointmentService.updateAppointment(this.newAppointment).subscribe(data => {
+        this.getAppointments();
+        this.modalService.dismissAll();
+      });
+    });
   }
 
   openVerticallyCentered(content, app : Appointment) {
     this.selectedAppointment = app;
     this.modalService.open(content, { centered: true });
   }
-
+  
 }
