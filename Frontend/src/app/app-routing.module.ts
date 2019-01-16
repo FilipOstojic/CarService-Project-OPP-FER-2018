@@ -14,6 +14,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { MecInfoComponent } from './mec-info/mec-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
+import { AdminInfoComponent } from './admin-info/admin-info.component';
 
 
 const routes: Routes = [
@@ -29,8 +30,9 @@ const routes: Routes = [
   { path: 'registracija', component: RegistrationComponent },
   { path: 'odjava', component: LogoutComponent },
   { path: 'racun', component: AccountComponent },
-  { path: 'mechInfo', component: MecInfoComponent},
-  { path: 'serviceInfo', component: ServiceInfoComponent}
+  { path: 'mechInfo', component: MecInfoComponent },
+  { path: 'serviceInfo', component: ServiceInfoComponent },
+  { path: 'adminInfo', component: AdminInfoComponent }
 ];
 
 @NgModule({

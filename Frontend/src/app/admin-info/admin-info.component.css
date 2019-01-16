@@ -1,0 +1,41 @@
+.content{
+    margin: 50px 0;
+    background-color: #f8f9fa;
+    border :2px solid #252525;
+    border-radius: 8px;
+}
+
+h1{
+    margin: 10px 10px;
+    color: #000;
+    font-size: 40px;
+}
+
+.column-photo{
+    float: left;
+    width: 30%;
+    height: 90%;
+    padding: 10px 20px;
+    margin-left: 5;
+    margin-top: 5;
+}
+
+img{
+    border-radius: 50%;
+}
+
+.column{
+    float: left;
+    width: 70%;
+    padding: 15px 30px;
+    font-size: 80%;
+    text-align: left; 
+}
+
+p{
+    margin: 25px 25px;
+}
+
+#add {
+    float: right;
+}
