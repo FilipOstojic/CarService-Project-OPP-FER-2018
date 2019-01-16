@@ -26,6 +26,7 @@ export class FormComponent implements OnInit {
   clicked=false;
   mechanic=false;
   appointment=false;
+  mechEmail : string = "null";
 
   constructor(
     private router : Router, 
@@ -61,6 +62,7 @@ export class FormComponent implements OnInit {
 
   getMechAppointments(email:string) {
     const appointments = this.appointmentService.getMechAppointments(email);
+    this.mechEmail = email;
     appointments.subscribe((appointments) => {
       this.appointments = appointments;
     });
@@ -110,7 +112,7 @@ export class FormComponent implements OnInit {
     this.mechanic=false;
     this.appointment=false; 
 
-    const app = new Appointment(date, desc, null, repVehicle, new Service(serviceId), licensePlate);
+    const app = new Appointment(date, desc, this.mechEmail, repVehicle, serviceId, licensePlate);
     this.appointmentService.addAppointment(app).subscribe(value => {
       console.log(value);
     });
