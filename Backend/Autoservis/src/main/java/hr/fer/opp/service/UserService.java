@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.fer.opp.dao.GenericDAO;
+import hr.fer.opp.model.Role;
 import hr.fer.opp.model.User;
 import hr.fer.opp.security.UserPrincipal;
 
@@ -27,10 +28,6 @@ public class UserService implements UserDetailsService {
 	
 	public List<User> listAll() {
 		return dao.read();
-	}
-	
-	public List<User> listMechs() {
-		return dao.readByRole("MECH");
 	}
 	
 	private boolean exists(User user) {
@@ -127,5 +124,9 @@ public class UserService implements UserDetailsService {
 		Authentication ac = sc.getAuthentication();
 		if (ac == null) return false;
 		return ac.isAuthenticated();
+	}
+
+	public List<User> listAll(Role role) {
+		return dao.readByRole(role);
 	}
 }

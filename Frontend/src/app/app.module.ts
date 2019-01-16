@@ -19,6 +19,7 @@ import { FormComponent } from './form/form.component';
 import { AccountComponent } from './account/account.component';
 import { FieldErrorComponent } from './field-error/field-error.component';
 import { MecInfoComponent } from '../app/mec-info/mec-info.component';
+import { ServiceInfoComponent } from './service-info/service-info.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MecInfoComponent } from '../app/mec-info/mec-info.component';
     FormComponent,
     AccountComponent,
     FieldErrorComponent,
-    MecInfoComponent
+    MecInfoComponent,
+    ServiceInfoComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule ,

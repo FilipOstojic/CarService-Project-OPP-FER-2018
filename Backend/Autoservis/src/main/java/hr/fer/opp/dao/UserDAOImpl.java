@@ -36,19 +36,10 @@ public class UserDAOImpl extends GenericDAO<User> {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<User> readByRole(String roleName) {
+	public List<User> readByRole(Role role) {
 		Session session = sessionFactory.openSession();
 
-		Query query = session.createQuery("FROM Role WHERE name = :attribute");
-		query.setParameter("attribute", roleName);
-
-		List<Role> roleList = query.list();
-		session.close();
-		Role role = roleList.isEmpty() ? null : roleList.get(0);
-		
-		session = sessionFactory.openSession();
-
-		query = (Query) session.createQuery("from User where role = :attribute");
+		Query query = (Query) session.createQuery("from User where role = :attribute");
 		query.setParameter("attribute", role);
 
 		List<User> userList = query.list();

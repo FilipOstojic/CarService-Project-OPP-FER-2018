@@ -26,6 +26,9 @@
                 <li *ngIf="isLoggedIn && isUser" class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['rezervacija']">Rezervacija</a>
                 </li>
+                <li *ngIf="isLoggedIn && isAdmin" class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['serviceInfo']">Servis</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li *ngIf="isLoggedIn && isUser" class="nav-item" [routerLinkActive]="['active']">

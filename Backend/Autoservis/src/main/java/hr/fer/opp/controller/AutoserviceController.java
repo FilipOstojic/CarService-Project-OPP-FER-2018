@@ -37,6 +37,7 @@ public class AutoserviceController {
 			autoserviceService.updateRecord(autoservice);
 			return new ResponseEntity<Autoservice>(autoservice, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<Autoservice>(autoservice, HttpStatus.BAD_REQUEST);
 		}
 	}

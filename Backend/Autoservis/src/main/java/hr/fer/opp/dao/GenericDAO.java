@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import hr.fer.opp.model.Role;
+
 public abstract class GenericDAO<T> {
 
 	@Autowired
@@ -32,7 +34,7 @@ public abstract class GenericDAO<T> {
 		return null;
 	}
 	
-	public List<T> readByRole(String role) {
+	public List<T> readByRole(Role role) {
 		return null;
 	}
 	

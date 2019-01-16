@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="content">
+      <h1>Podatci o servisu</h1>
+    <div class="media">
+      <div class="formular">
+        <form>
+          <div>Ime servisa:</div>
+          <input #ime type="text" name="ime" value="{{autoservice.name}}"/>
+        
+          <div>Adresa:</div> 
+          <input #adresa type="text" name="adresa" value="{{autoservice.address}}"/>
+      
+          <div>Email:</div>
+          <input #email type="text" name="email" value="{{autoservice.email}}"/>
+
+          <div>Broj telefona:</div>
+          <input #mobitel type="text" name="mobitel" value="{{autoservice.mobile}}"/>
+      
+          <div>OIB:</div>
+          <input #oib type="text" name="oib" value="{{autoservice.oib}}"/>
+      
+          <button class="btn btn-lg btn-primary btn-block btn-signin" 
+            (click)="editInfo(ime.value, adresa.value, email.value, oib.value, mobitel.value)">Spremi promjene</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

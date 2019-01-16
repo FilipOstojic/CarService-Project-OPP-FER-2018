@@ -31,6 +31,7 @@ import hr.fer.opp.model.User;
 import hr.fer.opp.model.UserVehicle;
 import hr.fer.opp.service.AppointmentService;
 import hr.fer.opp.service.AutoserviceService;
+import hr.fer.opp.service.RoleService;
 import hr.fer.opp.service.ServiceVehicleService;
 import hr.fer.opp.service.UserService;
 import hr.fer.opp.util.Util;
@@ -51,6 +52,9 @@ public class AppointmentController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoleService roleService;
+	
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments() {
 		List<Appointment> list = appointmentService.listAll();
@@ -111,7 +115,7 @@ public class AppointmentController {
 	public ResponseEntity<List<String>> getAvailableAppointments() {
 		List<String> availableAppointments = new ArrayList<>();
 		Map<String, Integer> numOfApp = Util.getAvailable(appointmentService.listAll());
-		int numOfMechs = userService.listMechs().size();
+		int numOfMechs = userService.listAll(roleService.showRecordByName("MECH")).size();
 		
 		for (String date : numOfApp.keySet()) {
 			if (numOfApp.get(date) < numOfMechs) {
@@ -153,7 +157,7 @@ public class AppointmentController {
 		
 		String mechanicEmail = params.get("mechanic");
 		if (mechanicEmail == null || mechanicEmail.equals("null")) {
-			for (User mech : userService.listMechs()) {
+			for (User mech : userService.listAll(roleService.showRecordByName("MECH"))) {
 				if (Util.isMechFree(date, appointmentService.listAllFromUser(mech.getEmail()))) {
 					mechanicEmail = mech.getEmail();
 					break;

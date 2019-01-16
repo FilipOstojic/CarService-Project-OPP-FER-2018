@@ -45,7 +45,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/user/mech", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listMechs() {
-		List<User> list = userService.listMechs();
+		List<User> list = userService.listAll(roleService.showRecordByName("MECH"));
 		if (list != null) {
 			return new ResponseEntity<>(list, HttpStatus.OK);
 		} else {

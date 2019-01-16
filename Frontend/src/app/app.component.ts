@@ -13,6 +13,7 @@ export class AppComponent {
   isLoggedIn : boolean;
   isUser : boolean;
   isMech : boolean;
+  isAdmin : boolean;
   
   constructor(private datasharingService : DatasharingService) {
     this.datasharingService.loggedInUser.subscribe( value => {
@@ -26,6 +27,9 @@ export class AppComponent {
     });
     this.datasharingService.isMech.subscribe( value => {
       this.isMech = value;
+    });
+    this.datasharingService.isAdmin.subscribe( value => {
+      this.isAdmin = value;
     });
   }
 
