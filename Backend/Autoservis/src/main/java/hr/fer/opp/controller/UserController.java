@@ -1,8 +1,10 @@
 package hr.fer.opp.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,15 +56,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/invitation/{email}", method = RequestMethod.GET)
-	public ResponseEntity<User> confirmEmail(@PathVariable("email") String email) {
+	public void confirmEmail(@PathVariable("email") String email, HttpServletResponse response) throws IOException {
 		try {
 			User user = userService.showRecord(email);
 			user.setConfirmed(true);
 			userService.updateRecord(user);
-			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
+		response.sendRedirect("/prijava");
 	}
 
 	@RequestMapping(value = "/user/createUser", method = RequestMethod.PUT)
