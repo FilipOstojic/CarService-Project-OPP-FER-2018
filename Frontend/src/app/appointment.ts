@@ -1,16 +1,15 @@
 import { Service } from './service';
-import { Mechanic } from './mechanic';
 
 export class Appointment {
     id : number;
     date : string;  
     description: string;
-    mechanic : Mechanic;
+    mechanic : string;
     repVehicle: string;
-    service : Service;
+    service : string;
     vehicle : string;
 
-    constructor(date:string, desc:string, mech:Mechanic, repVehicle:string, service:Service, vehicle:string){
+    constructor(date:string, desc:string, mech:string, repVehicle:string, service:string, vehicle:string){
         this.date = date;
         this.description = desc;
         this.mechanic = mech;
