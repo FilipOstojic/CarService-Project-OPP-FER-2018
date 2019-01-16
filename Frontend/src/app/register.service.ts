@@ -27,14 +27,14 @@ export class RegisterService {
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log(error);
-              throw error;
+            throw error;
           }
-      )
+        )
       );
   }
 
   editUser(user: User): Observable<User> {
-    console.log("EDIT ADD CALLED");
+    console.log("service: edit user");
     console.log(JSON.stringify(user));
     return this.http.post(this.userURL, user, httpOptions)
       .pipe(
@@ -42,13 +42,13 @@ export class RegisterService {
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log(error);
-              throw error;
+            throw error;
           }
-      )
+        )
       );
   }
 
-  removeUser(user: User) : Observable<User> {
+  removeUser(user: User): Observable<User> {
     console.log("REMOVE ADD CALLED");
     console.log(JSON.stringify(user));
 
@@ -58,10 +58,10 @@ export class RegisterService {
         catchError(
           (error: any, caught: Observable<any>) => {
             console.log("nije dobro");
-              throw error;
+            throw error;
           }
-      )
-      ); 
+        )
+      );
   }
 
   getUsers(): Observable<User[]> {

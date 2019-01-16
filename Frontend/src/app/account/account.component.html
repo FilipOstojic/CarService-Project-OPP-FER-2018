@@ -4,12 +4,25 @@
     <div class="media">
       <img id="profile-img" class="img-thumbnail" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
       <div class="media-body">
-          <div><h4>Ime i prezime:</h4><h3>{{owner.name}} {{owner.surname}}</h3></div>
-          <div><h4>Email:</h4><h3>{{owner.email}}</h3></div>
-            <div><h4>Mobitel:</h4><h3>{{owner.mobile}}</h3></div>
+        <div>
+          <h4>Ime i prezime:</h4>
+          <h3>{{owner.name}} {{owner.surname}}</h3>
+        </div>
+        <div>
+          <h4>Email:</h4>
+          <h3>{{owner.email}}</h3>
+        </div>
+        <div>
+          <h4>Mobitel:</h4>
+          <h3>{{owner.mobile}}</h3>
+        </div>
       </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="showEditAccount()">Uredi račun</button><br>
-      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="deleteAccount()">Izbriši račun</button>
+      <div id="bt">
+        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="showEditAccount()">Uredi
+          račun</button><br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="deleteAccount()">Izbriši
+          račun</button>
+      </div>
     </div>
   </div>
 </div>
@@ -42,11 +55,11 @@
   <form>
     <div>Registarska oznaka:</div>
     <input #licensePlate type="text" name="licensePlate" />
-    <div>Model</div> 
+    <div>Model</div>
     <select #model name="model" id="model">
-        <option *ngFor="let model of models" value="{{model.id}}">
-            {{model.name}}
-        </option>
+      <option *ngFor="let model of models" value="{{model.id}}">
+        {{model.name}}
+      </option>
     </select>
     <div>Godina</div>
     <input #year type="text" name="year" /><br><br>
@@ -56,31 +69,32 @@
   </form>
 </div>
 
-<div class="formular" *ngIf="editAccountForm">
+<div class="formular2" *ngIf="editAccountForm">
   <form>
-    <div>Ime;</div>
-    <input #ime type="text" name="ime" value="{{owner.name}}"/>
-  
-    <div>Prezime:</div> 
-    <input #prezime type="text" name="prezime" value="{{owner.surname}}"/>
+    <div>Ime:</div>
+    <input #ime type="text" name="ime" value="{{owner.name}}" />
+
+    <div>Prezime:</div>
+    <input #prezime type="text" name="prezime" value="{{owner.surname}}" />
 
     <div>Email:</div>
-    <input #email type="text" name="email" value="{{owner.email}}"/>
+    <input #email type="text" name="email" value="{{owner.email}}" readonly />
 
     <div>Password:</div>
-    <input #password type="password" name="password"/>
+    <input #password type="password" name="password" />
 
     <div>Potvrdi password:</div>
-    <input #confPassword type="password" name="confPassword"/>
+    <input #confPassword type="password" name="confPassword" />
 
     <div>Broj telefona:</div>
-    <input #mobitel type="text" name="mobitel" value="{{owner.mobile}}"/>
+    <input #mobitel type="text" name="mobitel" value="{{owner.mobile}}" />
 
     <div>OIB:</div>
-    <input #oib type="text" name="oib" value="{{owner.oib}}"/>
+    <input #oib type="text" name="oib" value="{{owner.oib}}" />
 
-    <button class="btn btn-outline-dark" 
-      (click)="editAccount(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
-    <button class="btn btn-outline-dark" (click)="closeEdit()">Odustani</button>
+    <div id="btn">
+      <button class="btn btn-outline-dark" (click)="editAccount(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+      <button class="btn btn-outline-dark" (click)="closeEdit()">Odustani</button>
+    </div>
   </form>
 </div>
