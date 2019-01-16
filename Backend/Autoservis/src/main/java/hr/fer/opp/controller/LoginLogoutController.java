@@ -59,7 +59,6 @@ public class LoginLogoutController {
 
 	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> logout(HttpServletRequest request, HttpServletResponse response) {
-		System.err.println("EEJOOOOS");
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
 		try {
@@ -79,7 +78,6 @@ public class LoginLogoutController {
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> logoutGet(HttpServletRequest request, HttpServletResponse response) {
-		System.err.println("EEJOOOOS");
 		Map<String, Object> result = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
 		try {

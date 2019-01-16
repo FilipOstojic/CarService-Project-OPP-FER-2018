@@ -69,7 +69,7 @@ public class Util {
 			
 			// ovdje ce biti problema, bezz http nije prepoznavao kao link
 			// s localhost se u mailu uopce ne prikazuje kao link...
-			StringBuilder sb = new StringBuilder("localhost:8080");
+			StringBuilder sb = new StringBuilder("http://najbolji-mehanicar.us-east-2.elasticbeanstalk.com/");
 			sb.append(servletContext.getRealPath("/")).append("user/invitation/");
 			sb.append(email);
 			

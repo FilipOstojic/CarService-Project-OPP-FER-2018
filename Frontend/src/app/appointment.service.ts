@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { User } from './user';
 import { Appointment } from './appointment';
 
 const httpOptions = {
@@ -15,7 +14,7 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) { }
 
-  private getAppURL = '/appointment/available';
+  private getAppURL = '/appointment/available/';
   private addAppURL = '/appointment/';
 
   getAllAppointments(): Observable<string[]> {
@@ -34,14 +33,14 @@ export class AppointmentService {
       );
   }
 
-  getMechAppointments(email: string): Observable<String[]> {
+  getMechAppointments(email: string): Observable<string[]> {
     console.log("getMechAppointments CALLED");
-    return this.http.get(this.getAppURL + "/" + email, httpOptions)
+    return this.http.get(this.getAppURL + email, httpOptions)
       .pipe(
         tap(_ => console.log('MECH ALL')),
         catchError(
           (error: any, caught: Observable<any>) => {
-            console.log("JEBOTE MRTVI ERROR");
+            console.log("ERROR");
             throw error;
           }
         )
@@ -50,7 +49,7 @@ export class AppointmentService {
 
   getMechAppointmentsApp(email: string): Observable<Appointment[]> {
     console.log("getMechAppointmentsApp CALLED");
-    return this.http.get(this.addAppURL + "/" + email, httpOptions)
+    return this.http.get(this.addAppURL + email, httpOptions)
       .pipe(
         tap(_ => console.log('MECH ALL')),
         catchError(

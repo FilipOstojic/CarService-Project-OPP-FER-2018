@@ -5,7 +5,7 @@
         <div class="col-md-6 col-12 text-center">
             <div *ngIf="!clicked" class="time-all">
                 <span class="icon"><i class="fa fa-calendar"></i></span>
-                <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit" (click)="chooseAppoitment()">
+                <button class="btn btn-lg btn-primary btn-block btn-signin btn-position" type="submit" (click)="chooseAppointment()">
                     Odaberi termin
                 </button>
             </div>
@@ -33,7 +33,7 @@
                         <div>{{mechanic.name}} {{mechanic.surname}}</div>
                         <div>{{mechanic.email}}</div>
                         <div>{{mechanic.mobile}}</div>
-                        <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="chooseAppoitment()" type="submit">Odaberi</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="chooseMechAppointment(mechanic.email)" type="submit">Odaberi</button>
                     </div>
                 </div>
             </div>

@@ -33,10 +33,17 @@ export class MecInfoComponent implements OnInit {
   }
 
   getAppointments() {
-    console.log("get appointments");
+    console.log("get appointmentss");
     this.appointmentService.getMechAppointmentsApp(this.mech.email).subscribe((appointments) => {
+      appointments.forEach(element => {
+        element.date = element.date.substr(11,8);
+      });
       this.appointments = appointments;
     });
+  }
+
+  editApp(id:string){
+
   }
 
 }
