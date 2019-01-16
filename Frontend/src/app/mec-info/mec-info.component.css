@@ -16,6 +16,10 @@
     }
 }
 
+.row{
+    margin: 10px 10px;
+}
+
 h1{
     margin: 10px 10px;
     color: #000;

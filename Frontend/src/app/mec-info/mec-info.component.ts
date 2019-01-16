@@ -3,6 +3,7 @@ import { User } from '../user';
 import { Appointment } from '../appointment';
 import { AppointmentService } from '../appointment.service';
 import { DatasharingService } from '../datasharing.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-mec-info',
@@ -11,6 +12,7 @@ import { DatasharingService } from '../datasharing.service';
 })
 export class MecInfoComponent implements OnInit {
   mech: User = { "name": "", "surname": "", "oib": "", "email": "", "mobile": "", "password": "", role: null };
+  selectedAppointment : Appointment;
   appointments: Appointment[] = [];
   updateForm: boolean = false;
   newAppointment: Appointment = { date: "", description: "", id: null, mechanic: null, repVehicle: "false", service: null, vehicle: null };
@@ -18,7 +20,8 @@ export class MecInfoComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private datasharingService: DatasharingService
+    private datasharingService: DatasharingService,
+    private modalService: NgbModal
   ) { 
     this.datasharingService.loggedInUser.subscribe(value => {
       this.mech = value;
@@ -43,7 +46,13 @@ export class MecInfoComponent implements OnInit {
   }
 
   editApp(id:string){
+    console.log(id);
+    this.modalService.dismissAll();
+  }
 
+  openVerticallyCentered(content, app : Appointment) {
+    this.selectedAppointment = app;
+    this.modalService.open(content, { centered: true });
   }
 
 }
