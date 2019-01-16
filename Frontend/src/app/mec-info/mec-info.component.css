@@ -30,3 +30,13 @@ p{
 .media {
     margin: 20px 0;
 }
+
+.media #profile-img {
+    margin-left: 5%;
+    border-radius: 50%;
+}
+
+.media-body {
+    position: relative;
+    margin-left: 5%;
+}
