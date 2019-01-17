@@ -31,6 +31,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+                <li *ngIf="isLoggedIn && isAdmin" class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['adminInfo']">Admin({{loggedIn.name}})</a>
+                </li>
                 <li *ngIf="isLoggedIn && isUser" class="nav-item" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['racun']">Račun({{loggedIn.name}})</a>
                 </li>
@@ -55,7 +58,7 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-sm-7 text-center-sm" >
+                <div class="col-sm-7 text-center-sm">
                     <div class="footer-stack-copyright">
                         Autoservis LSE © 2018
                     </div>

@@ -20,6 +20,8 @@ import { AccountComponent } from './account/account.component';
 import { FieldErrorComponent } from './field-error/field-error.component';
 import { MecInfoComponent } from '../app/mec-info/mec-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
+import { AdminInfoComponent } from './admin-info/admin-info.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ServiceInfoComponent } from './service-info/service-info.component';
     AccountComponent,
     FieldErrorComponent,
     MecInfoComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
+    AdminInfoComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule ,
@@ -49,7 +52,8 @@ import { ServiceInfoComponent } from './service-info/service-info.component';
     AgmCoreModule.forRoot({
       //za generiranje kljuca: https://cloud.google.com/maps-platform/
       apiKey: 'KEY'
-    })
+    }),
+    AngularFontAwesomeModule
   ],
   bootstrap: [AppComponent]
 })
