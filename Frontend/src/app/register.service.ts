@@ -16,7 +16,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   private createUserURL = '/user/createUser';
-  private userURL = '/user/user';
+  private userURL = '/user';
 
   addUser(user: User): Observable<User> {
     console.log("USER ADD CALLED");
@@ -65,7 +65,7 @@ export class RegisterService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userURL)
+    return this.http.get<User[]>(this.userURL + "/user")
       .pipe(
         tap(_ => console.log('fetched users'))
       );
