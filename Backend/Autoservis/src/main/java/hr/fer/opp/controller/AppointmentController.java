@@ -68,8 +68,7 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment/{email}", method = RequestMethod.GET)
 	public ResponseEntity<List<Appointment>> listAppointments(@PathVariable("email") String mechEmail) {
 		List<Appointment> list = new ArrayList<>();
-		Calendar today = Calendar.getInstance();
-		today.setTime(new Date());
+		Calendar today = Calendar.getInstance(Util.LOCALE);
 		for (Appointment a : appointmentService.listAllFromUser(mechEmail)) {
 			Calendar tmp = Calendar.getInstance();
 			tmp.setTime(a.getDate());
@@ -82,7 +81,6 @@ public class AppointmentController {
 	
 	@RequestMapping(value = "/appointment/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ByteArrayResource> generatePDF(@PathVariable("id") String appointmentId) {
-		System.out.println("ušao");
 		try {
 			Appointment appointment = appointmentService.showRecord(Integer.valueOf(appointmentId));
 			PDDocument document = Util.generatePDF(appointment, autoserviceService.showInfo());
@@ -219,7 +217,6 @@ public class AppointmentController {
 			appointmentService.deleteRecord(appointment);
 			return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return new ResponseEntity<Appointment>(HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -114,9 +114,14 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> updateModel(@RequestBody User user) {
 		try {
+			if (user.getPassword() == null || user.getPassword().equals("")) {
+				user.setPassword(null);
+			}
 			userService.updateRecord(user);
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+			User u = userService.showRecord(user.getEmail());
+			return new ResponseEntity<User>(u, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
 		}
 	}

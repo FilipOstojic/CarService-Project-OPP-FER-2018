@@ -117,10 +117,9 @@ export class AccountComponent implements OnInit {
   editAccount(name: string, surname: string, email: string, oib: string, mobile: string, password: string, confPass: string): void {
     console.log("edit acc")
     let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password,"role":this.owner.role};
-    var result: Observable<User> = this.registerService.editUser(user);
-    result.subscribe((prod) => {
+    this.registerService.editUser(user).subscribe((prod) => {
       console.log("EDIT DONE");
-      //this.owner = prod;
+      this.owner = prod;
       this.closeEdit();
     },
       error => {

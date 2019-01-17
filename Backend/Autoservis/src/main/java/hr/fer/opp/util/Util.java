@@ -43,7 +43,8 @@ import hr.fer.opp.model.UserVehicle;
 
 public class Util {
 	
-	public static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", new Locale("hr", "HR"));
+	public static final Locale LOCALE = new Locale("hr", "HR");
+	public static final SimpleDateFormat SDF = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", LOCALE);
 	
 	public static boolean sendEmail(User user, ServletContext servletContext) {
 		Properties props = new Properties();
