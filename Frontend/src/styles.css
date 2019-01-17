@@ -34,6 +34,10 @@ body{
     color: white;
  }
 
+ .row.footer{
+    margin-top:25px;
+}
+
  .images img{
     height:30px;
     padding: 4px;
