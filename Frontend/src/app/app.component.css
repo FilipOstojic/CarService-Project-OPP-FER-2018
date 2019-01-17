@@ -12,6 +12,10 @@
     font-weight: bold;
 }
 
+body{
+    height: 100%;
+}
+
 .background img{
     max-width: 100%;
     top:-10px;
@@ -21,23 +25,6 @@
     opacity: 0.7;
 }
 
-.images img{
-    height:30px;
-    padding: 4px;
-}
-.row{
-    margin-top:25px;
-}
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 80px;
-    width: 100%;
-    background-color: #252525;
-    color: white;
- }
  body{
     height: 100%;
 	color:#555;

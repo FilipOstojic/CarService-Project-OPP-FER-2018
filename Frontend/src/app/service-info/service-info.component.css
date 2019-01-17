@@ -16,6 +16,14 @@
     }
 }
 
+input{
+    width: 90%;
+}
+
+form{
+    margin: auto 10px;
+}
+
 h1{
     margin: 10px 10px;
     color: #000;

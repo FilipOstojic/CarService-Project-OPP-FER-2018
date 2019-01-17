@@ -23,3 +23,22 @@ body{
 .modal-backdrop.in {
     opacity: 0.5;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    background-color: #252525;
+    color: white;
+ }
+
+ .row.footer{
+    margin-top:25px;
+}
+
+ .images img{
+    height:30px;
+    padding: 4px;
+}

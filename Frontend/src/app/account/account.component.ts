@@ -10,6 +10,7 @@ import { RegisterService } from '../register.service';
 import { Observable } from 'rxjs';
 import { LogoutService } from '../logout.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AccountComponent implements OnInit {
     private modelService : ModelService,
     private registerService : RegisterService,
     private router : Router, 
-    private logoutService: LogoutService 
+    private logoutService: LogoutService,
+    private modalService: NgbModal
   ) {
     this.datasharingService.loggedInUser.subscribe(value => {
       this.owner = value;
@@ -53,6 +55,10 @@ export class AccountComponent implements OnInit {
 
   close() {
     this.addForm = false;
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 
   closeEdit() {
@@ -78,6 +84,7 @@ export class AccountComponent implements OnInit {
         console.log("ERROR OCCURED")
     });
     this.router.navigate(['/pocetna']);
+    this.modalService.dismissAll();
   }
 
   addCar(licensePlate: string, id:number, year: string, email:string) {
