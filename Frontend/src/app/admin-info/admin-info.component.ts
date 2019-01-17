@@ -6,6 +6,7 @@ import { RegisterService } from '../register.service';
 import { MechanicService } from '../mechanic.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-info',
@@ -24,6 +25,7 @@ export class AdminInfoComponent implements OnInit {
   form: FormGroup;
   private formSumitAttempt: boolean;
   registerError : boolean ;
+  sameUser : boolean;
 
 
   constructor(
@@ -87,10 +89,20 @@ export class AdminInfoComponent implements OnInit {
       console.log('form submitted');
       let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role: null };
       if (user.password === confPass) {
+
+        var result: Observable<User> = this.userService.addUser(user);
+      result.subscribe((prod) => {
+        console.log("ADD DONE");
         this.userService.addUser(user).subscribe(value => {
           this.getAllUsers();
         });
         this.closeForm();
+      },
+        error => {
+          console.log(error);
+          console.log("ERROR SAME OCCURED");
+          this.sameUser = true;
+        });
       }else {
         this.registerError = true;
         console.log("ERROR OCCURED")
