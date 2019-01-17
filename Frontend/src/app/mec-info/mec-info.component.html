@@ -23,9 +23,11 @@
     <h1>Današnji servisi</h1>
     <div class="row ">
       <div class="col-md-12 col-sm-12" *ngFor="let app of appointments">
-        {{app.date}} :  {{app.service.name}}
+         <div class="col-8">{{app.date}} :  {{app.service.name}}</div>
+         <div class="col-4">
         <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content,app)">Pregledaj prijavu</button>
         <a href="/appointment/pdf/{{app.id}}">Generiraj obrazac</a>
+        </div>
       </div>
     </div>
   </div>
@@ -38,12 +40,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedAppointment.date}}</p>
-        <p>{{selectedAppointment.vehicle.licensePlate}}</p>
-        <p>{{selectedAppointment.service.name}}</p>
-        <p>Opis problema:</p>
+        <p><b>Vrijeme: </b>{{selectedAppointment.date}}</p>
+        <p><b>Vozilo :</b>{{selectedAppointment.vehicle.licensePlate}}</p>
+        <p><b>Servis: </b>{{selectedAppointment.service.name}}</p>
+        <p><b>Opis problema:</b></p>
         <div class="form-group">
-            <textarea #desc type="text" class="col-8 form-control" name="problem">{{selectedAppointment.description}}</textarea>
+            <textarea #desc type="text" class="col-8 form-control" name="problem" >{{selectedAppointment.description}}</textarea>
         </div>
       </div>
       <div class="modal-footer">

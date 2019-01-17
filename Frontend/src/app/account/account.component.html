@@ -20,11 +20,26 @@
       <div id="bt">
         <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="showEditAccount()">Uredi
           račun</button><br>
-        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="deleteAccount()">Izbriši
+        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="openVerticallyCentered(content)">Izbriši
           račun</button>
       </div>
     </div>
   </div>
+  <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Izbriši račun</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>Jeste li sigurni da želite izbrisati račun ?</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">NE</button>
+        <button type="button" class="btn btn-outline-primary" (click)="deleteAccount()">DA</button>
+      </div>
+    </ng-template>
 </div>
 <div *ngIf="isUser" class="container">
   <div class="content">
