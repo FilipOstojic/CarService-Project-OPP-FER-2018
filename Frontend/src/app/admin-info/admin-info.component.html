@@ -1,36 +1,98 @@
 <div class="container">
-    <div class="content">
-        <h1>Serviseri</h1>
-        <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showMechForm()">Dodaj servisera</button></div>
-        <div class="w-100"></div>
-        <div class="row ">
-            <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechs">
-                <div class="column">
-                    <div>{{mechanic.name}} {{mechanic.surname}}</div>
-                    <div>{{mechanic.email}}</div>
-                    <div>{{mechanic.mobile}}</div>
-                    <button class="btn btn-outline-dark" (click)="deleteUser(mechanic)"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-outline-dark" (click)="editMechanic(mechanic)"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
+  <div class="content">
+    <h1>Serviseri</h1>
+    <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showMechForm()">Dodaj
+        servisera</button></div>
+    <div class="w-100"></div>
+    <div class="row ">
+      <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechs">
+        <div class="column">
+          <div>{{mechanic.name}} {{mechanic.surname}}</div>
+          <div>{{mechanic.email}}</div>
+          <div>{{mechanic.mobile}}</div>
+          <button class="btn btn-outline-dark" (click)="deleteUser(mechanic)"><i class="fa fa-pencil"></i></button>
+          <button class="btn btn-outline-dark" (click)="editMechanic(mechanic)"><i class="fa fa-times"></i></button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="content">
-        <h1>Korisnici</h1>
-        <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showUserForm()">Dodaj korisnika</button></div>
-        <div class="w-100"></div>
-        <div class="row ">
-            <div class="col-md-4 col-sm-12" *ngFor="let user of users">
-                <div class="column">
-                    <div>{{user.name}} {{user.surname}}</div>
-                    <div>{{user.email}}</div>
-                    <div>{{user.mobile}}</div>
-                    <button class="btn btn-outline-dark" (click)="deleteUser(user)"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-outline-dark" (click)="editUser(user)"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
+  <div class="content">
+    <h1>Korisnici</h1>
+    <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showUserForm()">Dodaj
+        korisnika</button></div>
+    <div class="w-100"></div>
+    <div class="row ">
+      <div class="col-md-4 col-sm-12" *ngFor="let user of users">
+        <div class="column">
+          <div>{{user.name}} {{user.surname}}</div>
+          <div>{{user.email}}</div>
+          <div>{{user.mobile}}</div>
+          <button class="btn btn-outline-dark" (click)="deleteUser(user)"><i class="fa fa-pencil"></i></button>
+          <button class="btn btn-outline-dark" (click)="editUser(user)"><i class="fa fa-times"></i></button>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="formular" *ngIf="addMechForm">
+  <form>
+    <div>Ime:</div>
+    <input #ime type="text" name="ime" placeholder="unesite ime" />
+
+    <div>Prezime:</div>
+    <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
+
+    <div>Email:</div>
+    <input #email type="text" name="email" placeholder="unesite email" />
+
+    <div>Password:</div>
+    <input #password type="password" name="password" placeholder="unesite password" />
+
+    <div>Potvrdi password:</div>
+    <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
+
+    <div>Broj telefona:</div>
+    <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
+
+    <div>OIB:</div>
+    <input #oib type="text" name="oib" placeholder="unesite OIB" />
+
+    <div id="btn">
+      <button class="btn btn-outline-dark" (click)="addMech(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+      <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
+    </div>
+  </form>
+</div>
+
+<div class="formular" *ngIf="addUserForm">
+  <form>
+    <div>Ime:</div>
+    <input #ime type="text" name="ime" placeholder="unesite ime" />
+
+    <div>Prezime:</div>
+    <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
+
+    <div>Email:</div>
+    <input #email type="text" name="email" placeholder="unesite email" />
+
+    <div>Password:</div>
+    <input #password type="password" name="password" placeholder="unesite password" />
+
+    <div>Potvrdi password:</div>
+    <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
+
+    <div>Broj telefona:</div>
+    <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
+
+    <div>OIB:</div>
+    <input #oib type="text" name="oib" placeholder="unesite OIB" />
+
+    <div id="btn">
+      <button class="btn btn-outline-dark" (click)="addUser(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+      <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
+    </div>
+  </form>
 </div>

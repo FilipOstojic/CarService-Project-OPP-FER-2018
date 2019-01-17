@@ -11,32 +11,32 @@ import { MechanicService } from '../mechanic.service';
   styleUrls: ['./admin-info.component.css']
 })
 export class AdminInfoComponent implements OnInit {
-  admin:User;
-  isAdmin:boolean;
+  admin: User;
+  isAdmin: boolean;
   addMechForm: boolean = false;
   addUserForm: boolean = false;
   users: User[];
   mechs: Mechanic[];
 
   constructor(
-    private datasharingService : DatasharingService,
+    private datasharingService: DatasharingService,
     private userService: RegisterService,
     private mechService: MechanicService
   ) {
     this.datasharingService.loggedInUser.subscribe(value => {
       this.admin = value;
     });
-    this.datasharingService.isAdmin.subscribe( value => {
+    this.datasharingService.isAdmin.subscribe(value => {
       this.isAdmin = value;
     });
-   }
+  }
 
   ngOnInit() {
     this.getMechs();
     this.getAllUsers();
   }
 
-  
+
   private getMechs() {
     this.mechService.getMechanics().subscribe(mechs => {
       this.mechs = mechs;
@@ -49,16 +49,32 @@ export class AdminInfoComponent implements OnInit {
     })
   }
 
-  public showMechForm(){
+  public showMechForm() {
     this.addMechForm = true;
   }
 
-  public showUserForm(){
+  public showUserForm() {
     this.addUserForm = true;
   }
 
   public closeForm() {
     this.addMechForm = false;
     this.addUserForm = false;
+  }
+
+  addUser(name: string, surname: string, email: string, mobile: string, oib: string, password: string) {
+    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role: null };
+    this.userService.addUser(user).subscribe(value => {
+      this.getAllUsers();
+    });
+    this.closeForm();
+  }
+
+  addMech(name: string, surname: string, email: string, mobile: string, oib: string, password: string) {
+    let mech: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role: null };
+    this.mechService.addMechanic(mech).subscribe(value => {
+      this.getMechs();
+    });
+    this.closeForm();
   }
 }
