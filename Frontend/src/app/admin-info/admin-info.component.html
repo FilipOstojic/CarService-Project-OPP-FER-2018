@@ -193,6 +193,10 @@
                 [displayError]="registerError" 
                 errorMsg="Passwordi nisu isti">
               </app-field-error >
+              <app-field-error class="text-center"
+                [displayError]="sameUser" 
+                errorMsg="Već postoji takav korisnik ">
+              </app-field-error >
             <button class="btn btn-outline-dark" (click)="onSubmit(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value,confPass.value)">Spremi</button>
             <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
         </div>
