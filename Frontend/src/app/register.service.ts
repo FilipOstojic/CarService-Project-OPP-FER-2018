@@ -16,7 +16,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   private createUserURL = '/user/createUser';
-  private userURL = '/user';
+  private userURL = '/user/user';
 
   addUser(user: User): Observable<User> {
     console.log("USER ADD CALLED");
