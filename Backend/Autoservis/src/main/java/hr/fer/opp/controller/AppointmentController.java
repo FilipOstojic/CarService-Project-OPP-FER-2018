@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.fer.opp.model.Appointment;
+import hr.fer.opp.model.Role;
 import hr.fer.opp.model.Service;
 import hr.fer.opp.model.ServiceVehicle;
 import hr.fer.opp.model.User;
@@ -113,7 +114,7 @@ public class AppointmentController {
 	public ResponseEntity<List<String>> getAvailableAppointments() {
 		List<String> availableAppointments = new ArrayList<>();
 		Map<String, Integer> numOfApp = Util.getAvailable(appointmentService.listAll());
-		int numOfMechs = userService.listAll(roleService.showRecordByName("MECH")).size();
+		int numOfMechs = userService.listAll(roleService.showRecordByName(Role.MECH)).size();
 		
 		for (String date : numOfApp.keySet()) {
 			if (numOfApp.get(date) < numOfMechs) {

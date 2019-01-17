@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import hr.fer.opp.model.Role;
 import hr.fer.opp.model.User;
 import hr.fer.opp.service.RoleService;
 import hr.fer.opp.service.UserService;
@@ -47,7 +48,17 @@ public class UserController {
 	
 	@RequestMapping(value = "/user/mech", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listMechs() {
-		List<User> list = userService.listAll(roleService.showRecordByName("MECH"));
+		List<User> list = userService.listAll(roleService.showRecordByName(Role.MECH));
+		if (list != null) {
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/user/user", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> listOnlyUsers() {
+		List<User> list = userService.listAll(roleService.showRecordByName(Role.USER));
 		if (list != null) {
 			return new ResponseEntity<>(list, HttpStatus.OK);
 		} else {
@@ -69,8 +80,7 @@ public class UserController {
 	@RequestMapping(value = "/user/createUser", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> crateUser(@RequestBody User user) {
-		System.out.println(user);
-		user.setRole(roleService.showRecordByName("USER"));
+		user.setRole(roleService.showRecordByName(Role.USER));
 		boolean created = userService.createRecord(user);
 		if (created) {
 			Util.sendEmail(user, servletContext);
@@ -83,7 +93,7 @@ public class UserController {
 	@RequestMapping(value = "/user/createMech", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> crateMech(@RequestBody User user) {
-		user.setRole(roleService.showRecordByName("MECH"));
+		user.setRole(roleService.showRecordByName(Role.MECH));
 		boolean created = userService.createRecord(user);
 		if (created) {
 			// sto ako slanje mail ne uspije??
@@ -100,7 +110,7 @@ public class UserController {
 	@RequestMapping(value = "/user/createAdmin", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> crateAdmin(@RequestBody User user) {
-		user.setRole(roleService.showRecordByName("ADMIN"));
+		user.setRole(roleService.showRecordByName(Role.ADMIN));
 		boolean created = userService.createRecord(user);
 		if (created) {
 			Util.sendEmail(user, servletContext);

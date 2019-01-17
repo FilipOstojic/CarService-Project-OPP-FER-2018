@@ -13,6 +13,10 @@ import javax.persistence.Table;
 @Table(name = "Role")
 public class Role {
 
+	public static final String USER = "USER";
+	public static final String ADMIN = "ADMIN";
+	public static final String MECH = "MECH";
+	
 	@Id
 	@GeneratedValue
 	private int id;
