@@ -5,6 +5,7 @@ import { DatasharingService } from '../datasharing.service';
 import { RegisterService } from '../register.service';
 import { MechanicService } from '../mechanic.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-info',
@@ -20,12 +21,16 @@ export class AdminInfoComponent implements OnInit {
   mechs: Mechanic[];
   selectedMech : Mechanic;
   selectedUser : User;
+  form: FormGroup;
+  private formSumitAttempt: boolean;
+  registerError : boolean ;
+
 
   constructor(
     private datasharingService: DatasharingService,
     private userService: RegisterService,
     private mechService: MechanicService,
-    private modalService: NgbModal
+    private modalService: NgbModal,private formBuilder: FormBuilder
   ) {
     this.datasharingService.loggedInUser.subscribe(value => {
       this.admin = value;
@@ -36,6 +41,15 @@ export class AdminInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      name: [null, Validators.required],
+      surname: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required],
+      confPass: [null, Validators.required],
+      cellPhone: [null, Validators.required],
+      oib: [null, Validators.required]
+    });
     this.getMechs();
     this.getAllUsers();
   }
@@ -66,12 +80,22 @@ export class AdminInfoComponent implements OnInit {
     this.addUserForm = false;
   }
 
-  addUser(name: string, surname: string, email: string, mobile: string, oib: string, password: string) {
-    let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role: null };
-    this.userService.addUser(user).subscribe(value => {
-      this.getAllUsers();
-    });
-    this.closeForm();
+  onSubmit(name: string, surname: string, email: string, oib: string,mobile: string, password: string, confPass: string) :void{
+    console.log("DODAJ SERVISERA")
+    this.formSumitAttempt = true;
+    if (this.form.valid) {
+      console.log('form submitted');
+      let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password, role: null };
+      if (user.password === confPass) {
+        this.userService.addUser(user).subscribe(value => {
+          this.getAllUsers();
+        });
+        this.closeForm();
+      }else {
+        this.registerError = true;
+        console.log("ERROR OCCURED")
+      }
+    }
   }
 
   addMech(name: string, surname: string, email: string, mobile: string, oib: string, password: string) {
@@ -95,5 +119,20 @@ export class AdminInfoComponent implements OnInit {
   openVerticallyCenteredMech(content, mech : Mechanic) {
     this.selectedMech = mech;
     this.modalService.open(content, { centered: true });
+  }
+
+  isFieldValid(field: string) {
+    return (
+      (!this.form.get(field).valid && this.form.get(field).touched) ||
+      (this.form.get(field).untouched && this.formSumitAttempt)
+    );
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field),
+      'is-invalid':this.isFieldValid(field)
+    };
   }
 }

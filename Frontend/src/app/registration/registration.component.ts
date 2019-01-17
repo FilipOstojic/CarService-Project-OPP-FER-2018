@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
     this.formSumitAttempt = true;
     if (this.form.valid) {
       console.log('form submitted');
-      let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password,"role":null};
+      let user: User = { "name": name, "surname": surname, "oib": oib, "email": email, "mobile": mobile, "password": password,"role": {"id" : 2,"name":"MECH"}};
       if (user.password === confPass) {
       var result: Observable<User> = this.registerService.addUser(user);
       result.subscribe((prod) => {
