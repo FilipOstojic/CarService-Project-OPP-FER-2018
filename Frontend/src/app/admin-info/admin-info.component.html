@@ -114,89 +114,81 @@
 </div>
 
 <div class="formular" *ngIf="addMechForm">
-    <form ngNativeValidate  [formGroup]="form">
+    <form ngNativeValidate [formGroup]="form">
         <div class="form-group" [ngClass]="displayFieldCss('name')">
-        <div class="input-group">
-                <label for="name" class="col-4 control-label">Ime: </label>
-                <input type="text" class="col-8 form-control" name="name" #name placeholder="Unesite ime" formControlName="name"/>
-            </div>
-            <app-field-error class="text-center" style="font-size: 90%"
-          [displayError]="isFieldValid('name')" 
-          errorMsg="Unesite ime">
-        </app-field-error>
-    </div>
-
-    <div class="form-group " [ngClass]="displayFieldCss('surname')">
             <div class="input-group">
-              <label for="name" class="col-4 control-label">Prezime: </label>
-              <input type="text" class="col-8 form-control" name="surname" #surname placeholder="Unesite prezime" formControlName="surname"/>
+                <label for="name" class="col-4 control-label">Ime: </label>
+                <input type="text" class="col-8 form-control" name="name" #name placeholder="Unesite ime"
+                    formControlName="name" />
             </div>
-            <app-field-error class="text-center" style="font-size: 90%"
-                [displayError]="isFieldValid('surname')" 
-                errorMsg="Unesite prezime">
-              </app-field-error>
-          </div>
-          <div class="form-group" [ngClass]="displayFieldCss('email')">
-                <div class="input-group">
-                  <label for="name" class="col-4 control-label">E-mail: </label>
-                  <input type="text" class="col-8 form-control" name="email" #email placeholder="Unesite e-mail" formControlName="email"/>
-                </div>
-                <app-field-error class="text-center" style="font-size: 90%"
-                [displayError]="isFieldValid('email')" 
-                errorMsg="Unesite email">
-              </app-field-error>
-              </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('name')" errorMsg="Unesite ime">
+            </app-field-error>
+        </div>
 
-              <div class="form-group" [ngClass]="displayFieldCss('password')">
-                    <div class="input-group">
-                      <label for="name" class="col-4 control-label ">Lozinka: </label>
-                      <input type="password" class="col-8 form-control" name="password" #password placeholder="Unesite lozinku" formControlName="password"/>
-                    </div>
-                    <app-field-error class="text-center" style="font-size: 90%"
-                    [displayError]="isFieldValid('password')" 
-                    errorMsg="Unesite lozinku">
-                  </app-field-error>
-                  </div>
-                  <div class="form-group" [ngClass]="displayFieldCss('confPass')">
-                    <div class="input-group">
-                      <label for="name" class="col-4 control-label">Potvrdi lozinku: </label>
-                      <input type="password" class="col-8 form-control" name="confPass" #confPass placeholder="Potvrdite lozinku" formControlName="confPass"/>
-                    </div>
-                    <app-field-error class="text-center" style="font-size: 90%"
-                    [displayError]="isFieldValid('confPass')" 
-                    errorMsg="Unesite lozinku">
-                  </app-field-error>
-                  </div>
-                  <div class="form-group" [ngClass]="displayFieldCss('cellPhone')">
-                    <div class="input-group">
-                      <label for="name" class="col-4 control-label">Broj telefona: </label>
-                      <input type="text" class="col-8 form-control" name="cellPhone" #cellPhone placeholder="Unesite broj telefona" formControlName="cellPhone"/>
-                    </div>
-                    <app-field-error class="text-center" style="font-size: 90%"
-                    [displayError]="isFieldValid('cellPhone')" 
-                    errorMsg="Unesite mobitel">
-                  </app-field-error>
-                  </div>
-                  <div class="form-group"  [ngClass]="displayFieldCss('oib')">
-                    <div class="input-group">
-                      <label for="name" class="col-4 control-label">OIB: </label>
-                      <input type="text" class="col-8 form-control" name="oib" #oib placeholder="Unesite OIB" formControlName="oib"/>
-                    </div>
-                    <app-field-error class="text-center" style="font-size: 90%"
-                    [displayError]="isFieldValid('oib')" 
-                    errorMsg="Unesite OIB">
-                  </app-field-error>
-                  </div>
+        <div class="form-group " [ngClass]="displayFieldCss('surname')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label">Prezime: </label>
+                <input type="text" class="col-8 form-control" name="surname" #surname placeholder="Unesite prezime"
+                    formControlName="surname" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('surname')"
+                errorMsg="Unesite prezime">
+            </app-field-error>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss('email')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label">E-mail: </label>
+                <input type="text" class="col-8 form-control" name="email" #email placeholder="Unesite e-mail"
+                    formControlName="email" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('email')" errorMsg="Unesite email">
+            </app-field-error>
+        </div>
+
+        <div class="form-group" [ngClass]="displayFieldCss('password')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label ">Lozinka: </label>
+                <input type="password" class="col-8 form-control" name="password" #password placeholder="Unesite lozinku"
+                    formControlName="password" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('password')"
+                errorMsg="Unesite lozinku">
+            </app-field-error>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss('confPass')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label">Potvrdi lozinku: </label>
+                <input type="password" class="col-8 form-control" name="confPass" #confPass placeholder="Potvrdite lozinku"
+                    formControlName="confPass" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('confPass')"
+                errorMsg="Unesite lozinku">
+            </app-field-error>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss('cellPhone')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label">Broj telefona: </label>
+                <input type="text" class="col-8 form-control" name="cellPhone" #cellPhone placeholder="Unesite broj telefona"
+                    formControlName="cellPhone" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('cellPhone')"
+                errorMsg="Unesite mobitel">
+            </app-field-error>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss('oib')">
+            <div class="input-group">
+                <label for="name" class="col-4 control-label">OIB: </label>
+                <input type="text" class="col-8 form-control" name="oib" #oib placeholder="Unesite OIB" formControlName="oib" />
+            </div>
+            <app-field-error class="text-center" style="font-size: 90%" [displayError]="isFieldValid('oib')" errorMsg="Unesite OIB">
+            </app-field-error>
+        </div>
 
         <div id="btn">
-                <app-field-error class="text-center"
-                [displayError]="registerError" 
-                errorMsg="Passwordi nisu isti">
-              </app-field-error >
-              <app-field-error class="text-center"
-                [displayError]="sameUser" 
-                errorMsg="Već postoji takav korisnik ">
-              </app-field-error >
+            <app-field-error class="text-center" [displayError]="registerError" errorMsg="Passwordi nisu isti">
+            </app-field-error>
+            <app-field-error class="text-center" [displayError]="sameUser" errorMsg="Već postoji takav korisnik ">
+            </app-field-error>
             <button class="btn btn-outline-dark" (click)="onSubmit(name.value,surname.value,email.value,oib.value,cellPhone.value,password.value,confPass.value)">Spremi</button>
             <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
         </div>
