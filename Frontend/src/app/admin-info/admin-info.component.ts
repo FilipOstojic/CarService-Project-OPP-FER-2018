@@ -4,6 +4,7 @@ import { Mechanic } from '../mechanic';
 import { DatasharingService } from '../datasharing.service';
 import { RegisterService } from '../register.service';
 import { MechanicService } from '../mechanic.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-admin-info',
@@ -17,11 +18,14 @@ export class AdminInfoComponent implements OnInit {
   addUserForm: boolean = false;
   users: User[];
   mechs: Mechanic[];
+  selectedMech : Mechanic;
+  selectedUser : User;
 
   constructor(
     private datasharingService: DatasharingService,
     private userService: RegisterService,
-    private mechService: MechanicService
+    private mechService: MechanicService,
+    private modalService: NgbModal
   ) {
     this.datasharingService.loggedInUser.subscribe(value => {
       this.admin = value;
@@ -76,5 +80,20 @@ export class AdminInfoComponent implements OnInit {
       this.getMechs();
     });
     this.closeForm();
+  }
+
+  openVerticallyCenteredUser(content, user : User) {
+    this.selectedUser = user;
+    this.modalService.open(content, { centered: true });
+  }
+
+  deleteMech(mech : Mechanic){
+    console.log("del "+ mech.email);
+    this.modalService.dismissAll();
+  }
+
+  openVerticallyCenteredMech(content, mech : Mechanic) {
+    this.selectedMech = mech;
+    this.modalService.open(content, { centered: true });
   }
 }

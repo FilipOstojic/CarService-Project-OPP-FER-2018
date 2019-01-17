@@ -1,98 +1,174 @@
 <div class="container">
-  <div class="content">
-    <h1>Serviseri</h1>
-    <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showMechForm()">Dodaj
-        servisera</button></div>
-    <div class="w-100"></div>
-    <div class="row ">
-      <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechs">
-        <div class="column">
-          <div>{{mechanic.name}} {{mechanic.surname}}</div>
-          <div>{{mechanic.email}}</div>
-          <div>{{mechanic.mobile}}</div>
-          <button class="btn btn-outline-dark" (click)="deleteUser(mechanic)"><i class="fa fa-pencil"></i></button>
-          <button class="btn btn-outline-dark" (click)="editMechanic(mechanic)"><i class="fa fa-times"></i></button>
+    <div class="content">
+        <h1>Serviseri</h1>
+        <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showMechForm()">Dodaj
+                servisera</button></div>
+        <div class="w-100"></div>
+        <div class="row ">
+            <div class="col-md-4 col-sm-12" *ngFor="let mechanic of mechs">
+                <div class="column">
+                    <div>{{mechanic.name}} {{mechanic.surname}}</div>
+                    <div>{{mechanic.email}}</div>
+                    <div>{{mechanic.mobile}}</div>
+                    <button class="btn btn-outline-dark" (click)="openVerticallyCenteredMech(editMech,mechanic)"><i
+                            class="fa fa-pencil"></i></button>
+                    <button class="btn btn-outline-dark" (click)="openVerticallyCenteredMech(delMech,mechanic)"><i
+                            class="fa fa-times"></i></button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <ng-template #editMech let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Uredi servisera</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><b>Ime : </b>
+                <input type="text" #Mechname value="{{selectedMech.name}}"></p>
+            <p><b>Prezime : </b> <input type="text" #Mechsurname value="{{selectedMech.surname}}"></p>
+            <p><b>Email :</b><input type="text" #Mechemail value="{{selectedMech.email}}"></p>
+            <p><b>Mobitel :</b><input type="text" #Mechmobile value="{{selectedMech.mobile}}"></p>
+            <p><b>OIB: </b><input type="text" #Mechoib value="{{selectedMech.oib}}"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            <button type="button" class="btn btn-light" (click)="editMech(selectedMech)">Spremi</button>
+        </div>
+    </ng-template>
+
+    <ng-template #delMech let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Izbriši račun</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><b>Jeste li sigurni da želite izbrisati servisera ?</b>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">NE</button>
+            <button type="button" class="btn btn-outline-primary" (click)="deleteMech(selectedMech)">DA</button>
+        </div>
+    </ng-template>
 </div>
 <div class="container">
-  <div class="content">
-    <h1>Korisnici</h1>
-    <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showUserForm()">Dodaj
-        korisnika</button></div>
-    <div class="w-100"></div>
-    <div class="row ">
-      <div class="col-md-4 col-sm-12" *ngFor="let user of users">
-        <div class="column">
-          <div>{{user.name}} {{user.surname}}</div>
-          <div>{{user.email}}</div>
-          <div>{{user.mobile}}</div>
-          <button class="btn btn-outline-dark" (click)="deleteUser(user)"><i class="fa fa-pencil"></i></button>
-          <button class="btn btn-outline-dark" (click)="editUser(user)"><i class="fa fa-times"></i></button>
+    <div class="content">
+        <h1>Korisnici</h1>
+        <div class="col"><button id="add" type="submit" class="btn btn-primary mb-2" (click)="showUserForm()">Dodaj
+                korisnika</button></div>
+        <div class="w-100"></div>
+        <div class="row ">
+            <div class="col-md-4 col-sm-12" *ngFor="let user of users">
+                <div class="column">
+                    <div>{{user.name}} {{user.surname}}</div>
+                    <div>{{user.email}}</div>
+                    <div>{{user.mobile}}</div>
+                    <button class="btn btn-outline-dark" (click)="openVerticallyCenteredUser(editUsr,user)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-outline-dark" (click)="openVerticallyCenteredUser(delUsr,user)"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+
+    <ng-template #editUsr let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Uredi korisnika</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><b>Ime: </b>{{selectedUser.name}}</p>
+            <p><b>Prezime: </b>{{selectedUser.surname}}</p>
+            <p><b>Email :</b>{{selectedUser.email}}</p>
+            <p><b>Mobitel :</b>{{selectedUser.mobile}}</p>
+            <p><b>OIB: </b>{{selectedUser.oib}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            <button type="button" class="btn btn-light" (click)="editUser(selectedUser)">Spremi</button>
+        </div>
+    </ng-template>
+
+    <ng-template #delUsr let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Izbriši račun</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p><b>Jeste li sigurni da želite izbrisati korisnika ?</b>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">NE</button>
+            <button type="button" class="btn btn-outline-primary" (click)="deleteUser(selectedUser)">DA</button>
+        </div>
+    </ng-template>
 </div>
 
 <div class="formular" *ngIf="addMechForm">
-  <form>
-    <div>Ime:</div>
-    <input #ime type="text" name="ime" placeholder="unesite ime" />
+    <form>
+        <div>Ime:</div>
+        <input #ime type="text" name="ime" placeholder="unesite ime" />
 
-    <div>Prezime:</div>
-    <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
+        <div>Prezime:</div>
+        <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
 
-    <div>Email:</div>
-    <input #email type="text" name="email" placeholder="unesite email" />
+        <div>Email:</div>
+        <input #email type="text" name="email" placeholder="unesite email" />
 
-    <div>Password:</div>
-    <input #password type="password" name="password" placeholder="unesite password" />
+        <div>Password:</div>
+        <input #password type="password" name="password" placeholder="unesite password" />
 
-    <div>Potvrdi password:</div>
-    <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
+        <div>Potvrdi password:</div>
+        <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
 
-    <div>Broj telefona:</div>
-    <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
+        <div>Broj telefona:</div>
+        <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
 
-    <div>OIB:</div>
-    <input #oib type="text" name="oib" placeholder="unesite OIB" />
+        <div>OIB:</div>
+        <input #oib type="text" name="oib" placeholder="unesite OIB" />
 
-    <div id="btn">
-      <button class="btn btn-outline-dark" (click)="addMech(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
-      <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
-    </div>
-  </form>
+        <div id="btn">
+            <button class="btn btn-outline-dark" (click)="addMech(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+            <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
+        </div>
+    </form>
 </div>
 
 <div class="formular" *ngIf="addUserForm">
-  <form>
-    <div>Ime:</div>
-    <input #ime type="text" name="ime" placeholder="unesite ime" />
+    <form>
+        <div>Ime:</div>
+        <input #ime type="text" name="ime" placeholder="unesite ime" />
 
-    <div>Prezime:</div>
-    <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
+        <div>Prezime:</div>
+        <input #prezime type="text" name="prezime" placeholder="unesite prezime" />
 
-    <div>Email:</div>
-    <input #email type="text" name="email" placeholder="unesite email" />
+        <div>Email:</div>
+        <input #email type="text" name="email" placeholder="unesite email" />
 
-    <div>Password:</div>
-    <input #password type="password" name="password" placeholder="unesite password" />
+        <div>Password:</div>
+        <input #password type="password" name="password" placeholder="unesite password" />
 
-    <div>Potvrdi password:</div>
-    <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
+        <div>Potvrdi password:</div>
+        <input #confPassword type="password" name="confPassword" placeholder="potvrdite password" />
 
-    <div>Broj telefona:</div>
-    <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
+        <div>Broj telefona:</div>
+        <input #mobitel type="text" name="mobitel" placeholder="unesite telefon" />
 
-    <div>OIB:</div>
-    <input #oib type="text" name="oib" placeholder="unesite OIB" />
+        <div>OIB:</div>
+        <input #oib type="text" name="oib" placeholder="unesite OIB" />
 
-    <div id="btn">
-      <button class="btn btn-outline-dark" (click)="addUser(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
-      <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
-    </div>
-  </form>
+        <div id="btn">
+            <button class="btn btn-outline-dark" (click)="addUser(ime.value, prezime.value, email.value, oib.value, mobitel.value, password.value, confPassword.value)">Spremi</button>
+            <button class="btn btn-outline-dark" (click)="closeForm()">Odustani</button>
+        </div>
+    </form>
 </div>
