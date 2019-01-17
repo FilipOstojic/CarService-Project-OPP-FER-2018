@@ -144,6 +144,7 @@ public class UserController {
 			userService.deleteRecord(user);
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -1,5 +1,6 @@
 package hr.fer.opp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,7 @@ public class UserVehicle extends Vehicle {
 	@Column(name = "vehicleStatus", nullable = true)
 	private String vehicleStatus;
 
-	@OneToOne(mappedBy="vehicle")
+	@OneToOne(mappedBy="vehicle", cascade = CascadeType.REMOVE)
     private Appointment appointment; 
 	
 	public UserVehicle() {

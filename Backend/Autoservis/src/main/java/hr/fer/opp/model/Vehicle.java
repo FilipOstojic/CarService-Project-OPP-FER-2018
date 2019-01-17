@@ -84,5 +84,4 @@ public abstract class Vehicle {
 			return false;
 		return true;
 	}
-
 }
